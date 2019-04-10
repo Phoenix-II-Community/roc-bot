@@ -1,0 +1,42 @@
+I want to know all ships
+
+#SHIP 
+!ship                           (print ship help)
+!ship -w <aura>                 (print list of shps with an aura)
+!ship -w apex <apex_name>       (print list of ships with apex name)
+!ship dmg                       (print list of dmg brackets)
+!ship dmg <value>               (print list of ships with specified dmg )
+!ship <ship>                    (print basic ship info)
+!ship -d <ship>                 (print detailed ship info)
+!ship cost                      (print cost of ship)
+!ship cost upgrade              (print break down of upgrade cost)
+
+#APEX
+!apex                           (print apex help)
+!apex cost
+!apex list                      
+!apex <apex_name>               (print basic apex info)
+!apex -w <apex_name>            (print list of ships with <apex_name>)
+
+!apex <apex_rank>               (print list of ships matching apex rank)
+
+
+#INVADER
+
+!invader                            (print invader help)
+!invader names                      (prints invader names and turret count)
+!invader <invader_name> health      (print invaer HP)
+
+Cron jobs 
+
+Announce new Daily, Specialist, BHS Community 
+
+
+``` ship_name   dmg_type    dmg
+ ----------  ----------  -----
+ Proxymar    sb          21.25   Does fine for its self
+ Trireme     sb          21.25   Does fine for its self
+ Czar        sb          21.25   Does fine for its self
+ Ogon        ap          21.25   Even with the dmg buff the main style is hard to utilise from Act 4 onwards. 
+ X-81        sb          21.25   Doing fine. 
+ Lorilou     hi          21.25   Don't see it on ladder but this is the sheep affect maybe.```
