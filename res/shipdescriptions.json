@@ -1,8 +1,0 @@
-{
-  "ship":[
-    {
-      "shipname":"Shinova",
-      "desc":"Shinova's weapon $weapon.name has $weapon.damage dps"
-    }
-  ]
-}
