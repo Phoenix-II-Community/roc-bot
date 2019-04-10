@@ -1,0 +1,733 @@
+{
+  "ships": [
+    {
+      "name": "Shinova",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":31.25,
+        "name":"Tachyon cannon"
+      },
+      "aura": "Bullet EMP", "zen": "Kappa drive", "r":1
+    },
+    {
+      "name": "NC-150",
+      "weapon": {
+        "damage type":"sb",
+        "damage output": 34.38,
+        "spread":"Medium",
+        "name":"Plasma cannon"
+      },
+      "aura": "Stun EMP", "zen": "Personal shield", "r":1
+    },
+    {
+      "name": "Tar'cah",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":31.25,
+        "name": "Storm Blaster"
+      },
+      "aura": "Point defense", "zen": "Kappa Drive", "r":1
+    },
+    {
+      "name": "Veil",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":31.25,
+        "name":"Fusion Laser"
+      },
+      "aura": "Bullet EMP", "zen": "Mega bomb", "r":1
+    },
+    {
+      "name": "Krillou",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":31.25,
+        "name":"Photon bombs"
+      },
+      "aura": "Stun EMP", "zen": "Mega bomb", "r":2
+    },
+    {
+      "name": "Jericho",
+      "weapon": {
+        "damage type":"ap",
+        "damage output": 25,
+        "name":"Inferno seekers"
+      },
+      "aura": "Bullet EMP", "zen": "Personal shield", "r":1
+    },
+    {
+      "name": "Fujin",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":37.5,
+        "name":"Quantum beam"
+      },
+      "aura": "Laser storm", "zen": "Mega laser", "r":3
+    },
+    {
+      "name": "Jn'dur",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":34.38,
+        "name":"Plasma diffuser"
+      },
+      "aura": "Barrier", "zen": "Mega bomb", "r":1
+    },
+    {
+      "name": "Tempest",
+      "weapon": {
+        "damage type":"hi",
+        "damage output": 34.38,
+        "name":"Ion crystalizer"
+      },
+      "aura": "Bullet EMP", "zen": "Mega laser", "r":1
+    },
+    {
+      "name": "Yoth-Hola",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":25,
+        "homing capability":"Perfect",
+        "name":"Vortex howler",
+        "Description":"A laid back kit with the ability to tackle most missions. Does well in missions with a good mix of lasers and bullets,but struggles in most bullet heavy missions."
+      },
+      "aura": "Point defense", "zen": "Personal shield", "r":3
+    },
+    {
+      "name": "Razor VI",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":31.25,
+        "capacity":1000,
+        "capacity-format":"ms",
+        "name":"Phase disruptor"
+      },
+      "aura": "Barrier", "zen": "Mega laser", "r":1
+    },
+    {
+      "name": "Mist star",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":25,
+        "homing capability":"Perfect",
+        "name": "Flux seekers",
+        "description":"Fun, non-scrubby Stun EMP kit with ample ability to tackle most laser missions."
+      },
+      "aura": "Stun EMP", "zen": "Kappa drive", "r":1
+    },
+    {
+      "name": "Proxymar",
+      "weapon": {
+        "damage type":"sb",
+        "damage output": 21.25,
+        "name":"Lightning conduit"
+      },
+      "aura": "Missile swarm", "zen": "Mega bomb", "r":1
+    },
+    {
+      "name": "Oran",
+      "weapon": {
+        "damage type":"ap",
+        "damage output": 21.25,
+        "name":"Meson laser"
+      },
+      "aura": "Stun EMP", "zen": "Kappa drive", "r":3
+    },
+    {
+      "name": "Kada Veni",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":25,
+        "name":"Pulse battery"
+      },
+      "aura": "Barrier", "zen": "Mega bomb", "r":1
+    },
+    {
+      "name": "Wrackr",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":34,
+        "name": "Seismic blaster"
+      },
+      "aura": "Point defense", "zen": "Mega bomb", "r":1
+    },
+    {
+      "name": "Trireme",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":21.25,
+        "target tracking":"Instant",
+        "name":"Burst pulsar",
+        "description":"A fast and reliable kit with ample offensive and defensive ability.struggles againt extreme MIRV spam."
+      },
+      "aura": "Missile swarm", "zen": "Teleport", "r":3
+    },
+    {
+      "name": "Cinnri",
+      "weapon": {
+        "damage type":"hi",
+        "damage output": 25,
+        "name": "Neutron launcher"
+      },
+      "aura": "Stun EMP", "zen": "Mega laser", "r":3
+    },
+    {
+      "name": "Phoenix",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":31.25,
+        "name":"Helix cannon"
+      },
+      "aura": "Bullet EMP", "zen": "Personal shield", "r":2
+    },
+    {
+      "name": "Buhloo",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":31.25,
+        "name":"Quantum prisms"
+      },
+      "aura": "Laser storm", "zen": "Mega bomb", "r":1
+    },
+    {
+      "name": "Czar",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":21.25,
+        "target tracking":"Instant",
+        "name":"Fission slammer"
+      },
+      "aura": "Stun EMP", "zen": "Teleport", "r":2
+    },
+    {
+      "name": "Havoc",
+      "weapon": {
+        "damage type":"ap",
+        "damage output": 31.25,
+        "name": "Mass driver"
+      },
+      "aura": "Laser storm", "zen": "Mega laser", "r":2
+    },
+    {
+      "name": "Geist",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":37.5,
+        "spread":"Wide",
+        "name":"Quantum blast"
+      },
+      "aura": "Missile swarm", "zen": "Personal shield", "r":3
+    },
+    {
+      "name": "Juggernaut",
+      "weapon": {
+        "damage type":"ap",
+        "damage output": 25,
+        "name": "Devastator cannon"
+      },
+      "aura": "Bullet EMP", "zen": "Mega bomb", "r":2
+    },
+    {
+      "name": "Tillat'or",
+      "weapon": {
+        "damage type":"hi",
+        "name": "Gatling cannon"
+      },
+      "aura": "Barrier", "zen": "Teleport", "r":2
+    },
+    {
+      "name": "Elyon",
+      "weapon": {
+        "damage type":"hi",
+        "name": "Blaze laser"
+      },
+      "aura": "Laser storm", "zen": "Kappa drive", "r":1
+    },
+    {
+      "name": "Ogon",
+      "weapon": {
+        "damage type":"ap",
+        "damage output": 21.25,
+        "tracking":"slow",
+        "name": "Photon array"
+      },
+      "aura": "Laser storm", "zen": "Kappa drive", "r":1
+    },
+    {
+      "name": "Vuxine",
+      "weapon": {
+        "damage output":25,
+        "damage type":"sb",
+        "name": "Vortex launcher"
+      },
+      "aura": "Point defense", "zen": "Kappa drive", "r":2
+    },
+    {
+      "name": "Photurius",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":34.38,
+        "name": "Photon charge"
+      },
+      "aura": "Stun EMP", "zen": "Mega laser", "r":2
+    },
+    {
+      "name": "Xaniea",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":34.38,
+        "spread":"Wide",
+        "name": "Photon pods"
+      },
+      "aura": "Laser storm", "zen": "Teleport", "r":3
+    },
+    {
+      "name": "Arietis",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":34.38,
+        "name": "Particle disruptor"
+      },
+      "aura": "Point defense", "zen": "Mega Laser", "r":2
+    },
+    {
+      "name": "Atlas",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":31.25,
+        "name":"Autocannon"
+      },
+      "aura": "Missile swarm", "zen": "Personal shield", "r":2
+    },
+    {
+      "name": "Essin",
+      "weapon": {
+        "damage type":"sb",
+        "name": "Cyclone cannon"
+      },
+      "aura": "Laser storm", "zen": "Personal shield", "r":2
+    },
+    {
+      "name": "EX04239",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":37.5,
+        "capacity":500,
+        "capacity-format":"ms",
+        "name": "Meson projectors"
+      },
+      "aura": "Missile swarm", "zen": "Mega laser", "r":2
+    },
+    {
+      "name": "Aurora",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":36.5,
+        "blast damage":"High",
+        "blast radius":200,
+        "name": "Quantum nuke"
+      },
+      "aura": "Bullet EMP", "zen": "Teleport", "r":3
+    },
+    {
+      "name": "Von Braun",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":37.5,
+        "name": "Daisy cutter"
+      },
+      "aura": "Missile swarm", "zen": "Kappa drive", "r":2
+    },
+    {
+      "name": "Gorthaur",
+      "weapon": {
+        "damage type":"hi",
+        "damage output": 27.5,
+        "name": "Barrage cannons"
+      },
+      "aura": "Barrier", "zen": "Personal shield", "r":2
+    },
+    {
+      "name": "Heechi",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":25,
+        "homing capability":"Very Good",
+        "name": "Quantum seekers"
+      },
+      "aura": "Barrier", "zen": "Kappa drive", "r":3
+    },
+    {
+      "name": "Prime X",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":31.25,
+        "name": "Vulcan"
+      },
+      "aura": "Missile swarm", "zen": "Teleport", "r":2
+    },
+    {
+      "name": "Sakura",
+      "weapon": {
+        "damage type":"ap",
+        "damage output": 37.5,
+        "name": "Edge projector"
+      },
+      "aura": "Barrier", "zen": "Teleport", "r":3
+    },
+    {
+      "name": "Vani-Vith",
+      "weapon": {
+        "damage type":"hi",
+        "damage output": 31.25,
+        "name": "Spark fusor"
+      },
+      "aura": "Vorpal lance", "zen": "Teleport", "r":2
+    },
+    {
+      "name": "Zephyr",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":31.25,
+        "name": "Photon rails"
+      },
+      "aura": "Point defense", "zen": "Kappa drive", "r":1
+    },
+    {
+      "name": "Baqlor",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":31.25,
+        "capacity":450,
+	"capacity-format":"ms",
+        "name": "Serrator laser"
+      },
+      "aura": "Chrono field", "zen": "Mega bomb", "r":3
+    },
+    {
+      "name": "502-Q8",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":31.25,
+        "name": "Plasma compresser"
+      },
+      "aura": "Phalanx", "zen": "Mega laser", "r":1
+    },
+    {
+      "name": "Dragonfly",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":31.25,
+
+        "name":"Twin miniguns"
+      },
+      "aura": "Ion cannon", "zen": "Mega bomb", "r":1
+    },
+    {
+      "name": "Hime",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":25,
+        "homing capability":"Perfect",
+        "name": "Spirit lash"
+      },
+      "aura": "Chrono field", "zen": "Mega laser", "r":3
+    },
+    {
+      "name": "Hunter",
+      "weapon": {
+        "damage type":"ap",
+        "damage output": 25,
+        "name": "Hyper blaster"
+      },
+      "aura": "Phalanx", "zen": "Teleport", "r":2
+    },
+    {
+      "name": "Gladius",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":25,
+        "homing capability":"Average",
+        "name": "Plasma missiles"
+      },
+      "aura": "Vorpal lance", "zen": "Kappa drive", "r":1
+    },
+    {
+      "name": "Lokie",
+      "weapon": {
+        "damage type":"ap",
+        "name": "Tremor field"
+      },
+      "aura": "Laser storm", "zen": "Personal shield", "r":1
+    },
+    {
+      "name": "Barret",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":31.25,
+        "name": "Boson cannon"
+      },
+      "aura": "Ion cannon", "zen": "Teleport", "r":2
+    },
+    {
+      "name": "Saber",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":31.25,
+        "name": "Nova blaster"
+      },
+      "aura": "Vorpal lance", "zen": "Reflex EMP", "r":2
+    },
+    {
+      "name": "Valkyrie",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":31.25,
+        "name": "Tachyon projector"
+      },
+      "aura": "Phalanx", "zen": "Mega bomb", "r":1
+    },
+    {
+      "name": "Proteus",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":35.76,
+        "name": "Photon detonator"
+      },
+      "aura": "Point defense", "zen": "Mega laser", "r":2
+    },
+    {
+      "name": "Yigothu",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":25,
+        "homing capability":"Very Good",
+        "name": "Zatha probes"
+      },
+      "aura": "Chrono field", "zen": "Reflex EMP", "r":3
+    },
+    {
+      "name": "Torrent",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":31.5,
+        "name": "Quantum stream"
+      },
+      "aura": "Stun EMP", "zen": "Personal shield", "r":1
+    },
+    {
+      "name": "Orion",
+      "weapon": {
+        "damage type":"ap",
+        "damage output": 25,
+        "name": "Photon scatter"
+      },
+      "aura": "Point defense", "zen": "Teleport", "r":2
+    },
+    {
+      "name": "Exarch",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":34.38,
+        "laser beams":18,
+        "name":"Phase prisms"
+      },
+      "aura": "Vorpal lance", "zen": "Mega laser", "r":3
+    },
+    {
+      "name": "Njörun",
+      "weapon": {
+        "damage type":"sb",
+        "damage output": 31.25,
+        "name": "Wave cannons"
+      },
+      "aura": "Chrono field", "zen": "Personal shield", "r":2
+    },
+    {
+      "name": "Boxer",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":31.25,
+        "name": "Flash cutter"
+      },
+      "aura": "Phalanx", "zen": "Reflex EMP", "r":1
+    },
+    {
+      "name": "Sonah",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":25,
+        "name": "Firestorm"
+      },
+      "aura": "Ion cannon", "zen": "Reflex EMP", "r":2
+    },
+    {
+      "name": "Corsair",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":31.25,
+        "name": "Rocket pods"
+      },
+      "aura": "Missile swarm", "zen": "Tracking minigun", "r":3
+    },
+    {
+      "name": "Antioch",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":31.25,
+        "name": "Proton crystallizer"
+      },
+      "aura": "Vorpal lance", "zen": "Personal shield", "r":1
+    },
+    {
+      "name": "UHB",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":25,
+        "name": "Blast laser"
+      },
+      "aura": "Missile swarm", "zen": "Reflex EMP", "r":2
+    },
+    {
+      "name": "Trinity",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":31.25,
+        "name": "Warp ripper"
+      },
+      "aura": "Chrono field", "zen": "Trinity teleport", "r":3
+    },
+    {
+      "name": "Wraith",
+      "weapon": {
+        "damage type":"hi",
+        "damage output":31.25,
+        "capacity":400,
+	"capacity-format":"ms",
+        "name": "Electron laser"
+      },
+      "aura": "Vorpal lance", "zen": "Mega bomb", "r":3
+    },
+    {
+      "name": "X-81",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":21.25,
+        "homing capability":"Perfect",
+        "name": "Aim-540 mantis"
+      },
+      "aura": "Ion cannon", "zen": "Mega laser", "r":3
+    },
+    {
+      "name": "Scuuxun",
+      "weapon": {
+        "damage type":"sb",
+        "damage output":32.25,
+        "name": "T'kari spikes"
+      },
+      "aura": "Laser storm", "zen": "Reflex EMP", "r":2
+    },
+    {
+      "name": "Shogun",
+      "weapon": {
+        "damage type":"ap",
+        "damage output":31.25,
+        "target tracking":"Instant",
+        "name": "Phantom katana"
+      },
+      "aura": "Blade storm", "zen": "Reflex EMP", "r":3
+    },
+    {
+      "name":"NC-271",
+      "weapon": {
+        "damage output":31.25,
+        "damage type":"sb",
+        "name":"Plasma cluster"
+      },
+      "aura": "Ion cannon", "zen": "Personal shield", "r":2
+    },
+    {
+      "name":"Predator",
+      "weapon": {
+        "damage output":31.25,
+        "damage type":"ap",
+        "name":"Dual blaster"
+      },
+      "aura": "Barrier", "zen": "Reflex EMP", "r":2
+    },
+    {
+      "name":"Lorilou",
+      "weapon": {
+        "damage output":21.25,
+        "damage type":"hi",
+        "name":"Quad phaser"
+      },
+      "aura": "Phalanx", "zen": "Mega laser", "r":2
+    },
+    {
+      "name":"AB8/Klyn",
+      "weapon": {
+        "damage output":37.5,
+        "damage type":"hi",
+        "name":"Photon diffuser"
+      },
+      "aura": "Point defense", "zen": "Reflex EMP", "r":2
+    },
+    {
+      "name":"Polaris",
+      "weapon": {
+        "damage output":31.25,
+        "damage type":"sb",
+        "tracking": "fast",
+        "name":"Gamma blaster"
+      },
+      "aura": "Ion cannon", "zen": "Kappa drive", "r":2
+    },
+    {
+      "name":"Icarus",
+      "weapon": {
+        "damage output":37.5,
+        "damage type":"ap",
+        "capacity": 800,
+        "capacity-format": "ms",
+        "name":"Inferno laser"
+      },
+      "aura": "Vorpal lance", "zen": "Teleport", "r":2
+    },
+    {
+      "name":"Mirage",
+      "weapon": {
+        "damage output":25,
+	"target tracking":"Instant",
+	"capacity":800,
+	"capacity-format":"ms",
+	"damage type":"sb",
+	"name":"Plasma rays"
+      },
+      "aura":"Bullet EMP", "zen": "Nightfury", "r":3
+
+    },
+	{
+		"name":"Marauder",
+		"weapon":  {
+		 	"damage output":25,
+		 	"homing capability":"Very Good",
+		 	"damage type":"ap",
+			"name":"G.O. Cannons"
+	  },
+	  "aura":"Phalanx", "zen":"Kappa Drive", "r":1
+	  
+	},
+	{
+	  "name":"Lyova",
+	  "weapon": {
+	  	"damage output":31.25,
+	  	"capacity":400,
+	  	"capacity-format":"ms",
+	  	"damage type":"hi",
+	  	"name":"Photon Shredder"
+	  },
+	  "aura":"Bullet EMP", "zen":"Reflex EMP", "r":3
+	  }
+  ]
+}
