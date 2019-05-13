@@ -12,32 +12,47 @@ BHS Community
 # Modulo
 Current Daily
 
-#SHIP 
-!ship                           (print ship help)
-!ship -w <aura>                 (print list of shps with an aura)
-!ship -w apex <apex_name>       (print list of ships with apex name)
-!ship dmg                       (print list of dmg brackets)
-!ship dmg <value>               (print list of ships with specified dmg )
-!ship <ship>                    (print basic ship info)
-!ship -d <ship>                 (print detailed ship info)
-!ship cost                      (print cost of ship)
-!ship cost upgrade              (print break down of upgrade cost)
+-a aura
+-c cost
+-d damage
+-h help
+-r random
+-w with
+-u upgrades
 
-#APEX
-!apex                           (print apex help)
-!apex cost
-!apex list                      
-!apex <apex_name>               (print basic apex info)
-!apex -w <apex_name>            (print list of ships with <apex_name>)
-
-!apex <apex_rank>               (print list of ships matching apex rank)
-
-
-#INVADER
+#INVADER 
 
 !invader                            (print invader help)
 !invader names                      (prints invader names and turret count)
-!invader <invader_name> health      (print invaer HP)
+!invader <invader_name> health      (print a specific invaders HP stats for all affinities)
+!invader <affinity> health          (print all invaders HP that match the affinity eg, 'sb' shield breaker, 'hi' high impact, 'ap' armour piercing)
+
+#MISSION (modulo)
+!mission -h -m
+!mission -m                         (print the current mission)
+!mission -m 
+
+#SHIP 
+!ship                               (print ship help)
+!ship -w -a <aura>                  (print list of shps with an aura)
+!ship -w -x <apex_name>             (print list of ships with apex name)
+!ship -d                            (print list of dmg brackets)
+!ship -d <ship>                     (print list of ships with specified dmg )
+!ship -d <ship>                     (print detailed ship info)
+!ship -c                            (print cost of ship)
+!ship -u                            (print break down of upgrade cost)
+
+#APEX
+!apex -h                            (print apex help)
+!apex 
+!apex -c                        
+!apex <apex_name>                   (print basic apex info)
+!apex -w <apex_name>                (print list of ships with <apex_name> including cost)
+!apex <apex_rank>                   (print list of ships matching apex rank)
+
+#LADDER
+!ladder -h
+!ladder -l                          (print the top 10 of current)
 
 
 
