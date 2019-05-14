@@ -3,19 +3,15 @@
 
 import settings
 import discord
-import functools
-import inspect
-import typing
 
 from discord.ext import commands
 import json
-from discord.utils import get
-from functools import partial
 
-# Create variable json_data assign the opening of a file to it
+# Open the required json files and assign it to a variable foo_data
 ships_json = open('/Users/peter.carstairs/scripts/apex-bot/res/ships.json')
-print(ships_json)
 ships_data = json.load(ships_json)
+invaders_json = open('/Users/peter.carstairs/scripts/apex-bot/res/invaders.json')
+invaders_data = json.load(invaders_json)
 
 
 class MyClient(discord.Client):
@@ -25,15 +21,15 @@ class MyClient(discord.Client):
     async def on_message(self, message):
         print('Message from {0.author}: {0.content}'.format(message))
 
-def ship_stat(ship_name, stat_name):  # <-- note, you don't have to call it arg1 in the other functions, they can
-    # make up their own name for it that will only be used within that function,
-    # so the code is more descriptive returns the first seen stat for the given
-    # ship name and stat name
+
+# Ship.json stat gathering function
+def ship_stat(ship_name, stat_name):
     for element in ships_data[ship_name]:
         stat_value = element[stat_name]
         return stat_value
 
 
+# Variable embeded colour function
 def em_colour(type):
     if type == "sb":
         return 0x3a77f9
@@ -43,6 +39,7 @@ def em_colour(type):
         return 0xffb820
 
 
+# Variable damage_type emoji function
 def em_emojidmg(type):
     emojisb = "<:sb:572354637336936448>"
     emojihi = "<:hi:572354637043335169>"
@@ -54,7 +51,7 @@ def em_emojidmg(type):
     elif type == "ap":
         return emojiap
 
-
+# Variable rarity emoji function
 def em_emojirarity(type):
     emojicommon = "<:common:576427314368217128>"
     emojirare = "<:rare:576427437831880714>"
@@ -66,6 +63,7 @@ def em_emojirarity(type):
     elif type == "superrare":
         return emojisuperrare
 
+
 client = MyClient()
 bot = commands.Bot(command_prefix='!')
 
@@ -74,8 +72,10 @@ def customemoji(search):
     iconemoji = discord.utils.get(emojis(), name=search)
     return iconemoji
 
+# Bot function for ship calls
+# This requires some changes to enable arg passing of 1 or 2 arguments as well as error handling. 
 @bot.command()
-async def ships(ctx, arg1):
+async def ship(ctx, arg1):
     ship_embed_title = em_emojirarity(ship_stat(arg1, "rarity")) + " " + ship_stat(arg1, "ship_name")
     ship_embed_description = em_emojidmg(ship_stat(arg1, "damage_type")) + " " + str(ship_stat(arg1, "damage_output"))
     ship_embed_zen = ship_stat(arg1, "zen")
@@ -88,17 +88,6 @@ async def ships(ctx, arg1):
     return
 
 
-#@bot.command()
-#async def invaders(ctx, arg1):
-#    for element in jdata[arg1]:
-#        await ctx.send(element['ship_name'] + "\n" + \
-#                       element['damage type'] + "\n" + \
-#                       str(element['damage output']) + "\n" + \
-#                       element['weapon_name'] + "\n" + \
-#                       element['aura'] + "\n" + \
-#                       element['zen'] + "\n" + \
-#                       ":" + element['r'] + ":")
-#        return
 
 
 bot.run(settings.discordkey)
