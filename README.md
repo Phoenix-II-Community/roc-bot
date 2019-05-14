@@ -1,25 +1,23 @@
 # apex-bot
 
 ### Todos
-
  - Write the bot
 
-# Cron jobs 
+### Cron jobs 
 Announce new Daily
 Specialist
 BHS Community 
 
-#HELP
+### HELP
 !help                               basic user functions
 
-#INVADER 
-
+### INVADER 
 !invader -h                         invader help
 !invader -l                         invader names and turret count
 !invader -n <invader_name>          named invader HP stats for all affinities
 !invader -a <affinity>              all invaders HP that match the affinity 
 
-#APEX
+### APEX
 !apex -h                            apex help
 !apex -c                            apex ranks with costs (list)
 !apex -w                            list of weapon apex
@@ -30,13 +28,12 @@ BHS Community
                                     include cost, apex_type (weapon/aura/zen)
 !apex -r <apex_rank>                list of ships matching apex rank
 
-
-#MISSION modulo
+### MISSION modulo
 !mission -h                         mission help
 !mission -m                         current mission
 !mission -c                         mission cycle
 
-#SHIP 
+### SHIP 
 !ship -h                            ship help
 !ship -c                            cost of ship upgrades
 !ship -i <ship>                     basic ship info
@@ -47,12 +44,9 @@ BHS Community
 !ship -a <aura>                     list of shps with an aura
 !ship -z <zen>                      list of ships with apex name
 
-#LADDER
+### LADDER
 !ladder -h                          ladder help
 !ladder -t                          the top 10 of current S4 daily
-
-
-
 
 ### Mentions
 
