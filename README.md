@@ -11,7 +11,7 @@
 
 ### HELP
 ```
-!help                        basic user functions
+!help                           basic user functions
 ```
 
 ### INVADER 
@@ -43,7 +43,7 @@
 
 ### SHIP 
 ```
-!ship -h                     ship help
+!ship -h                        ship help
 !ship -c                        cost of ship upgrades
 !ship -i <ship>                 basic ship info
 !ship -e <ship>                 extended ship info
@@ -56,8 +56,8 @@
 
 ### LADDER
 ```
-!ladder -h                          ladder help
-!ladder -t                          the top 10 of current S4 daily
+!ladder -h                      ladder help
+!ladder -t                      the top 10 of current S4 daily
 ```
 
 ## Mentions
