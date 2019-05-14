@@ -67,13 +67,8 @@ def em_emojirarity(type):
 client = MyClient()
 bot = commands.Bot(command_prefix='!')
 
-
-def customemoji(search):
-    iconemoji = discord.utils.get(emojis(), name=search)
-    return iconemoji
-
 # Bot function for ship calls
-# This requires some changes to enable arg passing of 1 or 2 arguments as well as error handling. 
+# This requires some changes to enable arg passing of 1 or 2 arguments as well as error handling.
 @bot.command()
 async def ship(ctx, arg1):
     ship_embed_title = em_emojirarity(ship_stat(arg1, "rarity")) + " " + ship_stat(arg1, "ship_name")
