@@ -9,7 +9,8 @@ Specialist
 BHS Community 
 
 ### HELP
-```!help                               basic user functions```
+```!help                               basic user functions
+```
 
 ### INVADER 
 ```!invader -h                         invader help
