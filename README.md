@@ -9,16 +9,16 @@ Specialist
 BHS Community 
 
 ### HELP
-!help                               basic user functions
+```!help                               basic user functions```
 
 ### INVADER 
-!invader -h                         invader help
+```!invader -h                         invader help
 !invader -l                         invader names and turret count
 !invader -n <invader_name>          named invader HP stats for all affinities
-!invader -a <affinity>              all invaders HP that match the affinity 
+!invader -a <affinity>              all invaders HP that match the affinity```
 
 ### APEX
-!apex -h                            apex help
+```!apex -h                            apex help
 !apex -c                            apex ranks with costs (list)
 !apex -w                            list of weapon apex
 !apex -a                            list of aura apexs
@@ -26,15 +26,15 @@ BHS Community
 !apex -d <apex_name>                apex Description
 !apex -w <apex_name>                list ships with <apex_name>, 
                                     include cost, apex_type (weapon/aura/zen)
-!apex -r <apex_rank>                list of ships matching apex rank
+!apex -r <apex_rank>                list of ships matching apex rank```
 
 ### MISSION modulo
-!mission -h                         mission help
+```!mission -h                         mission help
 !mission -m                         current mission
-!mission -c                         mission cycle
+!mission -c                         mission cycle```
 
 ### SHIP 
-!ship -h                            ship help
+```!ship -h                            ship help
 !ship -c                            cost of ship upgrades
 !ship -i <ship>                     basic ship info
 !ship -e <ship>                     extended ship info
@@ -42,11 +42,11 @@ BHS Community
 !ship -d <damage_output>            default list of dmg brackets, print list for supplied value
 !ship -w <weapon>                   list of ships with specified weapon type 
 !ship -a <aura>                     list of shps with an aura
-!ship -z <zen>                      list of ships with apex name
+!ship -z <zen>                      list of ships with apex name```
 
 ### LADDER
-!ladder -h                          ladder help
-!ladder -t                          the top 10 of current S4 daily
+```!ladder -h                          ladder help
+!ladder -t                          the top 10 of current S4 daily```
 
 ### Mentions
 
