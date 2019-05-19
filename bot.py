@@ -28,6 +28,13 @@ def ship_stat(ship_name, stat_name):
         stat_value = element[stat_name]
         return stat_value
 
+# Ship.json stat gathering function
+def invader_stat(invader_name, stat_name):
+    for element in invaders_data[invader_name]:
+        if sta
+        if stat_value = element[stat_name]
+        return stat_value
+
 
 # Variable embeded colour function
 def em_colour(type):
@@ -63,6 +70,13 @@ def em_emojirarity(type):
     elif type == "superrare":
         return emojisuperrare
 
+invader_help = '''
+**HELP**
+`!invader -h` invader help
+`!invader -l` invader names and turret count
+`!invader -n <invader_name>` named invader HP stats for all affinities
+`!invader -a <affinity>` all invaders HP that match the affinity
+'''
 
 client = MyClient()
 bot = commands.Bot(command_prefix='!')
@@ -82,7 +96,14 @@ async def ship(ctx, arg1):
     await ctx.send(embed=embed)
     return
 
-
+@bot.command()
+async def invader(ctx, arg1):
+    #invader_embed_title = invader_stat(arg1, "invader_name")
+    #invader_embed_description = invader_stat(arg1, ["armor"]) + "\n" + invader_stat(arg1, ["shield"]) + "\n" + invader_stat(arg1, ["hull"])
+    embed = discord.Embed(title="Invaders", description=invader_help, colour=0xefb328)
+    embed.add_field(name="Aura", value=invader_help, inline=False)
+    await ctx.send(invader_help)
+    return
 
 
 bot.run(settings.discordkey)
