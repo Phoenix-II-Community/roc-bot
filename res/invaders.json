@@ -1,38 +1,38 @@
 {
     "turrets": {
-        "Sparrow":1,
-        "Raven":2,
-        "Heron":3,
-        "Eagle":3,
-        "Vulture":4,
-        "Condor":6,
-        "Roc":10
+        "sparrow":1,
+        "raven":2,
+        "heron":3,
+        "eagle":3,
+        "vulture":4,
+        "condor":6,
+        "roc":10
     },
     "hull": {
-        "Sparrow":  {"Affinity":"hi","HP":5},
-        "Raven":    {"Affinity":"hi","HP":27},
-        "Heron":    {"Affinity":"hi","HP":63},
-        "Eagle":    {"Affinity":"hi","HP":110},
-        "Vulture":  {"Affinity":"hi","HP":270},
-        "Condor":   {"Affinity":"hi","HP":450},
-        "Roc":      {"Affinity":"hi","HP":810}
+        "sparrow":  {"Affinity":"hi","HP":5},
+        "raven":    {"Affinity":"hi","HP":27},
+        "heron":    {"Affinity":"hi","HP":63},
+        "eagle":    {"Affinity":"hi","HP":110},
+        "vulture":  {"Affinity":"hi","HP":270},
+        "condor":   {"Affinity":"hi","HP":450},
+        "roc":      {"Affinity":"hi","HP":810}
     },
     "armor": {
-        "Sparrow":  {"Affinity":"ap","HP":4},
-        "Raven":    {"Affinity":"ap","HP":24},
-        "Heron":    {"Affinity":"ap","HP":56},
-        "Eagle":    {"Affinity":"ap","HP":99},
-        "Vulture":  {"Affinity":"ap","HP":243},
-        "Condor":   {"Affinity":"ap","HP":405},
-        "Roc":      {"Affinity":"ap","HP":729}
+        "sparrow":  {"Affinity":"ap","HP":4},
+        "raven":    {"Affinity":"ap","HP":24},
+        "heron":    {"Affinity":"ap","HP":56},
+        "eagle":    {"Affinity":"ap","HP":99},
+        "vulture":  {"Affinity":"ap","HP":243},
+        "condor":   {"Affinity":"ap","HP":405},
+        "roc":      {"Affinity":"ap","HP":729}
     },
     "shield": {
-        "Sparrow":  {"Affinity":"sb","HP":5,"Hull":3,"Shield":2},
-        "Raven":    {"Affinity":"sb","HP":31,"Hull":18,"Shield":13},
-        "Heron":    {"Affinity":"sb","HP":73,"Hull":42,"Shield":31},
-        "Eagle":    {"Affinity":"sb","HP":128,"Hull":73,"Shield":55},
-        "Vulture":  {"Affinity":"sb","HP":315,"Hull":180,"Shield":135},
-        "Condor":   {"Affinity":"sb","HP":525,"Hull":300,"Shield":225},
-        "Roc":      {"Affinity":"sb","HP":945,"Hull":540,"Shield":405}
+        "sparrow":  {"Affinity":"sb","HP":5,"Hull":3,"Shield":2},
+        "raven":    {"Affinity":"sb","HP":31,"Hull":18,"Shield":13},
+        "heron":    {"Affinity":"sb","HP":73,"Hull":42,"Shield":31},
+        "eagle":    {"Affinity":"sb","HP":128,"Hull":73,"Shield":55},
+        "vulture":  {"Affinity":"sb","HP":315,"Hull":180,"Shield":135},
+        "condor":   {"Affinity":"sb","HP":525,"Hull":300,"Shield":225},
+        "roc":      {"Affinity":"sb","HP":945,"Hull":540,"Shield":405}
     }
 }
