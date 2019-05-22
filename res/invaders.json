@@ -1,38 +1,47 @@
 {
     "turrets": {
-        "sparrow":1,
-        "raven":2,
-        "heron":3,
-        "eagle":3,
-        "vulture":4,
-        "condor":6,
-        "roc":10
+        "sparrow":  1,
+        "raven":    2,
+        "heron":    3,
+        "eagle":    3,
+        "vulture":  4,
+        "condor":   6,
+        "roc":      10
     },
     "hull": {
-        "sparrow":  {"Affinity":"hi","HP":5},
-        "raven":    {"Affinity":"hi","HP":27},
-        "heron":    {"Affinity":"hi","HP":63},
-        "eagle":    {"Affinity":"hi","HP":110},
-        "vulture":  {"Affinity":"hi","HP":270},
-        "condor":   {"Affinity":"hi","HP":450},
-        "roc":      {"Affinity":"hi","HP":810}
+        "sparrow":  5,
+        "raven":    27,
+        "heron":    63,
+        "eagle":    110,
+        "vulture":  270,
+        "condor":   450,
+        "roc":      810
     },
     "armor": {
-        "sparrow":  {"Affinity":"ap","HP":4},
-        "raven":    {"Affinity":"ap","HP":24},
-        "heron":    {"Affinity":"ap","HP":56},
-        "eagle":    {"Affinity":"ap","HP":99},
-        "vulture":  {"Affinity":"ap","HP":243},
-        "condor":   {"Affinity":"ap","HP":405},
-        "roc":      {"Affinity":"ap","HP":729}
+        "sparrow":  4,
+        "raven":    24,
+        "heron":    56,
+        "eagle":    99,
+        "vulture":  243,
+        "condor":   405,
+        "roc":      729
     },
-    "shield": {
-        "sparrow":  {"Affinity":"sb","HP":5,"Hull":3,"Shield":2},
-        "raven":    {"Affinity":"sb","HP":31,"Hull":18,"Shield":13},
-        "heron":    {"Affinity":"sb","HP":73,"Hull":42,"Shield":31},
-        "eagle":    {"Affinity":"sb","HP":128,"Hull":73,"Shield":55},
-        "vulture":  {"Affinity":"sb","HP":315,"Hull":180,"Shield":135},
-        "condor":   {"Affinity":"sb","HP":525,"Hull":300,"Shield":225},
-        "roc":      {"Affinity":"sb","HP":945,"Hull":540,"Shield":405}
+    "shield_total": {
+        "sparrow":  5,
+        "raven":    31,
+        "heron":    73,
+        "eagle":    128,
+        "vulture":  315,
+        "condor":   525,
+        "roc":      945
+    },
+    "shield_hull": {
+        "sparrow":  [3,2],
+        "raven":    [18,13],
+        "heron":    [42,31],
+        "eagle":    [73,55],
+        "vulture":  [180,135],
+        "condor":   [300,225],
+        "roc":      [540,405]
     }
 }
