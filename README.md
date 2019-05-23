@@ -16,48 +16,51 @@
 
 ### INVADER 
 ```
-!invader -h                     invader help
-!invader -l                     invader names and turret count
-!invader -n <invader_name>      named invader HP stats for all affinities
-!invader -a <affinity>          all invaders HP that match the affinity
+!invader -h                         invader help
+!invader -l                         invader names and turret count
+!invader <invader_name>             named invader HP stats for all affinities
+!invader -a --affinity <affinity>   all invaders HP that match the affinity
+!invader -t --terse <affinity>      (terse) all invaders HP that match the affinity
 ```
 
 ### APEX
 ```
-!apex -h                        apex help
-!apex -c                        apex ranks with costs (list)
-!apex -w                        list of weapon apex
-!apex -a                        list of aura apexs
-!apex -z                        list of zen apexs
-!apex -d <apex_name>            apex Description
-!apex -w <apex_name>            list ships with <apex_name>, 
-                                include cost, apex_type (weapon/aura/zen)
-!apex -r <apex_rank>            list of ships matching apex rank
+!apex <ship>                        apexs the ship has
+!apex -a --aura                     list of aura apexs
+!apex -c --cost                     apex ranks with costs (list)
+!apex -h --help                     apex help
+!apex -w --weapon                   list of weapon apex
+!apex -z --zen                      list of zen apexs
+!apex -d --description <apex_name>  apex Description
+!apex -f --find <apex_name>         list ships with <apex_name>, 
+                                    include cost, apex_type (weapon/aura/zen)
+!apex -r --rank <apex_rank>         list of ships matching apex rank
 ```
 
 ### MISSION modulo
-```!mission -h                  mission help
-!mission -m                     current mission
-!mission -c                     mission cycle
+```
+!mission -h                     mission help
+!mission -r --rotation          mission rotation
+!mission -c --current           current mission
 ```
 
 ### SHIP 
 ```
+!ship <ship>                    basic ship info
+!ship -a --aura <aura>          list of shps with an aura
+!ship -c --cost                 cost of ship upgrades
+!ship -d --damage <dmg>         list of dmg brackets, matched ships for value
+!ship -e --extended <ship>      extended ship info
 !ship -h                        ship help
-!ship -c                        cost of ship upgrades
-!ship -i <ship>                 basic ship info
-!ship -e <ship>                 extended ship info
-!ship -r <n>                    print random number of ships, default 10
-!ship -d <damage_output>        default list of dmg brackets, print list for supplied value
-!ship -w <weapon>               list of ships with specified weapon type 
-!ship -a <aura>                 list of shps with an aura
-!ship -z <zen>                  list of ships with apex name
+!ship -r --random <n>           print random number of ships, default 10
+!ship -w --weapon <weapon>      list of ships with specified weapon type 
+!ship -z --zen <zen>            list of ships with zen name
 ```
 
 ### LADDER
 ```
 !ladder -h                      ladder help
-!ladder -t                      the top 10 of current S4 daily
+!ladder -t --top                the top 10 of current S4 daily
 ```
 
 ## Mentions
