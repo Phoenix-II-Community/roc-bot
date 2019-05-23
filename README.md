@@ -32,8 +32,7 @@
 !apex -w --weapon                   list of weapon apex
 !apex -z --zen                      list of zen apexs
 !apex -d --description <apex_name>  apex Description
-!apex -f --find <apex_name>         list ships with <apex_name>, 
-                                    include cost, apex_type (weapon/aura/zen)
+!apex -f --find <apex_name>         list ships with <apex_name>, include cost, apex_type (weapon/aura/zen)
 !apex -r --rank <apex_rank>         list of ships matching apex rank
 ```
 
