@@ -3,12 +3,13 @@
 
 import settings
 import discord
-import argparse
-import shlex
-from shlex import split
-
+import logging
+from discord.utils import get
 from discord.ext import commands
 import json
+
+logging.basicConfig(level=logging.INFO)
+
 
 # Open the required json files and assign it to a variable foo_data
 ships_json = open('/Users/peter.carstairs/scripts/apex-bot/res/ships.json')
@@ -72,44 +73,8 @@ invader_help = '''
 `!invader -a <affinity>` all invaders HP that match the affinity
 '''
 
-class Arguments(argparse.ArgumentParser):
-    def error(self, message):
-        raise RuntimeError(message)
-
-
 client = MyClient()
 bot = commands.Bot(command_prefix="'")
-
-# Bot function for ship calls
-# This requires some changes to enable arg passing of 1 or 2 arguments as well as error handling.
-# @bot.command()
-# async def ship(ctx, arg1):
-#     ship_embed_title = em_emojirarity(ship_stat(arg1, "rarity")) + " " + ship_stat(arg1, "ship_name")
-#     ship_embed_description = em_emojidmg(ship_stat(arg1, "damage_type")) + " " + str(ship_stat(arg1, "damage_output"))
-#     ship_embed_zen = ship_stat(arg1, "zen")
-#     ship_embed_aura = ship_stat(arg1, "aura")
-#     embed_colour = em_colour(ship_stat(arg1, "damage_type"))
-#     embed = discord.Embed(title=ship_embed_title, description=ship_embed_description, colour=embed_colour)
-#     embed.add_field(name="Aura", value=ship_embed_aura, inline=False)
-#     embed.add_field(name="Zen", value=ship_embed_zen, inline=False)
-#     await ctx.send(embed=embed)
-#     return
-
-@bot.command()
-async def invader(ctx, *, args):
-    # start the arg parser using the vanilla argparse class
-    ship_parser = Arguments(prog='bot')
-    # add a argument for input from the CLI or in this case from a discord message
-    ship_parser.add_argument('ship')
-    #try:
-    #    args_var = ship_parser.parse_args(shlex.split(ship))
-    #    ship_input = args_var.ship
-    #    send_ship_data = ship_stat(ship_input, "zen")
-    #except RuntimeError as e:
-    #    return await ctx.send(e)
-    a = shlex.split(args)
-    await ctx.send(a)
-    return
 
 @bot.group()
 async def ship(ctx):
@@ -128,5 +93,27 @@ async def info(ctx, arg1):
       embed.add_field(name="Zen", value=ship_embed_zen, inline=False)
       await ctx.send(embed=embed)
       return
+
+
+# If a message receives the :el: emoji, then the bot should add it's own :el: reaction
+@bot.event
+async def on_reaction_add(reaction, user):
+    # we do not want the bot to react to its own reaction
+    if user == bot.user:
+        return
+    if str(reaction.emoji) == "<:el:373097097727049728>":
+        emoji = get(bot.emojis, name='el')
+        await reaction.message.add_reaction(emoji)
+
+
+# If someone uses the :el: emoji in a message then the bot should add it's own :el: reaction to the message.
+@bot.event
+async def on_message(message):
+    # we do not want the bot to reply to itself
+    if message.author == bot.user:
+        return
+    if ':el:' in message.content:
+        emoji = get(bot.emojis, name='el')
+        await message.add_reaction(emoji)
 
 bot.run(settings.discordkey)
