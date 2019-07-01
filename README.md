@@ -11,26 +11,26 @@
 
 ### HELP
 ```
-!help                           basic user functions
+!help                               basic user functions
 ```
 
 ### INVADER 
 ```
+!invader -l --list                  invader names and turret count
 !invader -h                         invader help
-!invader -l                         invader names and turret count
-!invader <invader_name>             named invader HP stats for all affinities
+!invader -i --invader <name>        named invader HP stats for all affinities
 !invader -a --affinity <affinity>   all invaders HP that match the affinity
 !invader -t --terse <affinity>      (terse) all invaders HP that match the affinity
 ```
 
 ### APEX
 ```
-!apex <ship>                        apexs the ship has
-!apex -a --aura                     list of aura apexs
 !apex -c --cost                     apex ranks with costs (list)
 !apex -h --help                     apex help
 !apex -w --weapon                   list of weapon apex
+!apex -a --aura                     list of aura apexs
 !apex -z --zen                      list of zen apexs
+!apex -s --ship <ship>              apexs the ship has
 !apex -d --description <apex_name>  apex Description
 !apex -f --find <apex_name>         list ships with <apex_name>, 
                                     include cost, apex_type (weapon/aura/zen)
@@ -46,15 +46,15 @@
 
 ### SHIP 
 ```
-!ship <ship>                    basic ship info
-!ship -a --aura <aura>          list of shps with an aura
-!ship -c --cost                 cost of ship upgrades
-!ship -d --damage <dmg>         list of dmg brackets, matched ships for value
-!ship -e --extended <ship>      extended ship info
+!ship info <ship>               basic ship info
+!ship aura <aura>               list of shps with an aura
+!ship cost                      cost of ship upgrades
+!ship damage <dmg>              list of dmg brackets, matched ships for value
+!ship extended <ship>           extended ship info
 !ship -h                        ship help
-!ship -r --random <n>           print random number of ships, default 10
-!ship -w --weapon <weapon>      list of ships with specified weapon type 
-!ship -z --zen <zen>            list of ships with zen name
+!ship random <n>                print random number of ships, default 10
+!ship weapon <weapon>           list of ships with specified weapon type 
+!ship zen <zen>                 list of ships with zen name
 ```
 
 ### LADDER
