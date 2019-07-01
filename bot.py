@@ -4,8 +4,6 @@
 import settings
 import discord
 import argparse
-import shlex
-from shlex import split
 import logging
 from discord.utils import get
 from discord.ext import commands
@@ -25,6 +23,8 @@ class MyClient(discord.Client):
 
     async def on_message(self, message):
         print('Message from {0.author}: {0.content}'.format(message))
+
+
 
 # Ship.json stat gathering function
 def ship_stat(ship_name, stat_name):
@@ -72,30 +72,6 @@ class Arguments(argparse.ArgumentParser):
 client = MyClient()
 bot = commands.Bot(command_prefix="!")
 
-# If a message receives the :el: emoji, then the bot should add it's own :el: reaction
-@bot.event
-async def on_reaction_add(reaction, user):
-    # we do not want the bot to react to its own reaction
-    if user == bot.user:
-        return
-    if str(reaction.emoji) == "<:el:373097097727049728>":
-        emoji = get(bot.emojis, name='el')
-        await reaction.message.add_reaction(emoji)
-        return
-
-
-# If someone uses the :el: emoji in a message then the bot should add it's own :el: reaction to the message.
-@bot.event
-async def on_message(message):
-    await bot.process_commands(message)
-    # we do not want the bot to reply to itself
-    if message.author == bot.user:
-        return
-    if ':el:' in message.content:
-        emoji = get(bot.emojis, name='el')
-        await bot.process_commands(message.add_reaction(emoji))
-        return
-
 @bot.group()
 async def ship(ctx):
     if ctx.invoked_subcommand is None:
@@ -114,5 +90,27 @@ async def info(ctx, arg1):
       await ctx.send(embed=embed)
       return
 
+# If a message receives the :el: emoji, then the bot should add it's own :el: reaction
+@bot.event
+async def on_reaction_add(reaction, user):
+    # we do not want the bot to react to its own reaction
+    if user == bot.user:
+        return
+    if str(reaction.emoji) == "<:el:373097097727049728>":
+        emoji = get(bot.emojis, name='el')
+        await reaction.message.add_reaction(emoji)
+        return
+
+# If someone uses the :el: emoji in a message then the bot should add it's own :el: reaction to the message.
+@bot.event
+async def on_message(message):
+    await bot.process_commands(message)
+    # we do not want the bot to reply to itself
+    if message.author == bot.user:
+        return
+    if ':el:' in message.content:
+        emoji = get(bot.emojis, name='el')
+        await message.add_reaction(emoji)
+        return
 
 bot.run(settings.discordkey)
