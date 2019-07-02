@@ -57,12 +57,6 @@
 !ship zen <zen>                 list of ships with zen name
 ```
 
-### LADDER
-```
-!ladder -h                      ladder help
-!ladder -t --top                the top 10 of current S4 daily
-```
-
 ## Mentions
 
 Phoenix II is an arcade Shoot'Em Up developed by Firi Games in 2016. Firi Games is an independent game studio focused on developing premium games for iPhone, iPad and Apple TV. Firi Games is based in The Hague, Netherlands.
