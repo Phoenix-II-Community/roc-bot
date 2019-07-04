@@ -3,7 +3,6 @@
 
 import settings
 import discord
-import argparse
 import logging
 from discord.utils import get
 from discord.ext import commands
@@ -23,8 +22,6 @@ class MyClient(discord.Client):
 
     async def on_message(self, message):
         print('Message from {0.author}: {0.content}'.format(message))
-
-
 
 # Ship.json stat gathering function
 def ship_stat(ship_name, stat_name):
@@ -65,12 +62,8 @@ def em_emojirarity(type):
     elif type == "superrare":
         return emojisuperrare
 
-class Arguments(argparse.ArgumentParser):
-    def error(self, message):
-        raise RuntimeError(message)
-
 client = MyClient()
-bot = commands.Bot(command_prefix="!")
+bot = commands.Bot(command_prefix=".")
 
 @bot.group()
 async def ship(ctx):
