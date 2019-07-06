@@ -17,6 +17,8 @@ emoji_json = open('/Users/peter.carstairs/scripts/apex-bot/res/emoji.json')
 emoji_data = json.load(emoji_json)
 
 
+embed_colours = {"sb": 0x3a77f9, "hi": 0xee4529, "ap": 0xffb820}
+
 logging.basicConfig(level=logging.INFO)
 
 class MyClient(discord.Client):
@@ -28,9 +30,10 @@ class MyClient(discord.Client):
 
 # ship.json stat gathering function
 def ship_stat(ship_name, stat_name):
-    for element in ships_data[ship_name]:
+    for element in ships_data[ship_name.lower()]:
         stat_value = element[stat_name]
         return stat_value
+
 
 # emoji.json stat gathering function
 def emoji_stat(feature_name):
@@ -38,15 +41,24 @@ def emoji_stat(feature_name):
         stat_value = element[feature_name]
         return stat_value
 
-# Variable embeded colour function
-def em_colour(type):
-    if type == "sb":
-        return 0x3a77f9
-    elif type == "hi":
-        return 0xee4529
-    elif type == "ap":
-        return 0xffb820
+def get_em_colour(arg1):
+    dmg_type = ship_stat(arg1, "damage_type")
+    em_colour = embed_colours[dmg_type]
+    return em_colour
 
+def get_ship_description_small(arg1):
+    ship_description_small = emoji("dps") + " " + str(ship_stat(arg1, "damage_output")) + "\n" \
+                             + emoji(ship_stat(arg1, "damage_type")) + " " + (ship_stat(arg1, "weapon_name")) + "\n" \
+                             + emoji(ship_stat(arg1, "aura")) + " " + ship_stat(arg1, "aura") + "\n" \
+                             + emoji(ship_stat(arg1, "zen")) + " " + ship_stat(arg1, "zen")
+    return ship_description_small
+
+# Creates the title of the discord emebed consisting of the rarity emoji and the ship name.
+def get_ship_title(arg1):
+    ship_title = emoji(ship_stat(arg1, "rarity")) + " " + ship_stat(arg1, "ship_name")
+    return ship_title
+
+# receives the element from ships.json maybe another file in future and uses it as a key in emoji.json.
 def emoji(key):
     emoji = emoji_data[key]
     return emoji
@@ -59,15 +71,14 @@ async def ship(ctx):
     if ctx.invoked_subcommand is None:
         await ctx.send('Invalid ship command passed.')
 
+# Sub command to the @bot.group() decorator ship function.
+# Intended that for use in high traffic channels, the output size is intential small.
+# A 5 line embed with basic info: name, weapon, dps, aura and zen.
 @ship.command()
 async def info(ctx, *, arg1):
-      ship_embed_title = em_emojirarity(ship_stat(arg1, "rarity")) + " " + ship_stat(arg1, "ship_name")
-
-      ship_embed_description = "<:dps:596613103941058560> " + str(ship_stat(arg1, "damage_output")) + "\n" \
-                    + em_emojidmg(ship_stat(arg1, "damage_type")) + " " + (ship_stat(arg1, "weapon_name")) + "\n" \
-                    + emoji(ship_stat(arg1, "aura")) + " " + ship_stat(arg1, "aura") + "\n" \
-                    + emoji(ship_stat(arg1, "zen")) + " " + ship_stat(arg1, "zen")
-      embed_colour = em_colour(ship_stat(arg1, "damage_type"))
+      ship_embed_title = get_ship_title(arg1)
+      ship_embed_description = get_ship_description_small(arg1)
+      embed_colour = get_em_colour(arg1)
       embed = discord.Embed(title=ship_embed_title, description=ship_embed_description, colour=embed_colour)
       await ctx.send(embed=embed)
       return
