@@ -13,6 +13,9 @@ ships_json = open('/Users/peter.carstairs/scripts/apex-bot/res/ships.json')
 ships_data = json.load(ships_json)
 invaders_json = open('/Users/peter.carstairs/scripts/apex-bot/res/invaders.json')
 invaders_data = json.load(invaders_json)
+emoji_json = open('/Users/peter.carstairs/scripts/apex-bot/res/emoji.json')
+emoji_data = json.load(emoji_json)
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -23,10 +26,16 @@ class MyClient(discord.Client):
     async def on_message(self, message):
         print('Message from {0.author}: {0.content}'.format(message))
 
-# Ship.json stat gathering function
+# ship.json stat gathering function
 def ship_stat(ship_name, stat_name):
     for element in ships_data[ship_name]:
         stat_value = element[stat_name]
+        return stat_value
+
+# emoji.json stat gathering function
+def emoji_stat(feature_name):
+    for element in emoji_data[feature_name]:
+        stat_value = element[feature_name]
         return stat_value
 
 # Variable embeded colour function
@@ -38,48 +47,28 @@ def em_colour(type):
     elif type == "ap":
         return 0xffb820
 
-# Variable damage_type emoji function
-def em_emojidmg(type):
-    emojisb = "<:sb:572354637336936448>"
-    emojihi = "<:hi:572354637043335169>"
-    emojiap = "<:ap:572354637320159252>"
-    if type == "sb":
-        return emojisb
-    elif type == "hi":
-        return emojihi
-    elif type == "ap":
-        return emojiap
-
-# Variable rarity emoji function
-def em_emojirarity(type):
-    emojicommon = "<:common:576427314368217128>"
-    emojirare = "<:rare:576427437831880714>"
-    emojisuperrare = "<:superrare:576427437844332544>"
-    if type == "common":
-        return emojicommon
-    elif type == "rare":
-        return emojirare
-    elif type == "superrare":
-        return emojisuperrare
+def emoji(key):
+    emoji = emoji_data[key]
+    return emoji
 
 client = MyClient()
-bot = commands.Bot(command_prefix=".")
+bot = commands.Bot(command_prefix="!")
 
 @bot.group()
 async def ship(ctx):
     if ctx.invoked_subcommand is None:
-        await ctx.send('Invalid ship command passed...')
+        await ctx.send('Invalid ship command passed.')
 
 @ship.command()
-async def info(ctx, arg1):
+async def info(ctx, *, arg1):
       ship_embed_title = em_emojirarity(ship_stat(arg1, "rarity")) + " " + ship_stat(arg1, "ship_name")
-      ship_embed_description = em_emojidmg(ship_stat(arg1, "damage_type")) + " " + str(ship_stat(arg1, "damage_output"))
-      ship_embed_zen = ship_stat(arg1, "zen")
-      ship_embed_aura = ship_stat(arg1, "aura")
+
+      ship_embed_description = "<:dps:596613103941058560> " + str(ship_stat(arg1, "damage_output")) + "\n" \
+                    + em_emojidmg(ship_stat(arg1, "damage_type")) + " " + (ship_stat(arg1, "weapon_name")) + "\n" \
+                    + emoji(ship_stat(arg1, "aura")) + " " + ship_stat(arg1, "aura") + "\n" \
+                    + emoji(ship_stat(arg1, "zen")) + " " + ship_stat(arg1, "zen")
       embed_colour = em_colour(ship_stat(arg1, "damage_type"))
       embed = discord.Embed(title=ship_embed_title, description=ship_embed_description, colour=embed_colour)
-      embed.add_field(name="Aura", value=ship_embed_aura, inline=False)
-      embed.add_field(name="Zen", value=ship_embed_zen, inline=False)
       await ctx.send(embed=embed)
       return
 
