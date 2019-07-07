@@ -7,13 +7,16 @@ import logging
 from discord.utils import get
 from discord.ext import commands
 import json
+from pathlib import Path
+
+home_dir = Path.home()
 
 # Open the required json files and assign it to a variable foo_data
-ships_json = open('/Users/peter.carstairs/scripts/apex-bot/res/ships.json')
+ships_json = open(('{home_dir}/scripts/apex-bot/res/ships.json').format(home_dir=home_dir))
 ships_data = json.load(ships_json)
-invaders_json = open('/Users/peter.carstairs/scripts/apex-bot/res/invaders.json')
+invaders_json = open(('{home_dir}/scripts/apex-bot/res/invaders.json').format(home_dir=home_dir))
 invaders_data = json.load(invaders_json)
-emoji_json = open('/Users/peter.carstairs/scripts/apex-bot/res/emoji.json')
+emoji_json = open(('{home_dir}/scripts/apex-bot/res/emoji.json').format(home_dir=home_dir))
 emoji_data = json.load(emoji_json)
 
 
