@@ -47,10 +47,14 @@ def get_em_colour(arg1):
     return em_colour
 
 def get_ship_description_small(arg1):
-    ship_description_small = emoji("dps") + " " + str(ship_stat(arg1, "damage_output")) + "\n" \
-                             + emoji(ship_stat(arg1, "damage_type")) + " " + (ship_stat(arg1, "weapon_name")) + "\n" \
-                             + emoji(ship_stat(arg1, "aura")) + " " + ship_stat(arg1, "aura") + "\n" \
-                             + emoji(ship_stat(arg1, "zen")) + " " + ship_stat(arg1, "zen")
+    ship_description_small = """{emojidps} {dpsvalue}
+    {emojidmgtype} {weaponname}
+    {emojiaura} {auraname}
+    {emojizen} {zenname}
+    """.format(emojidps=emoji("dps"), dpsvalue=str(ship_stat(arg1, "damage_output")), \
+                emojidmgtype=emoji(ship_stat(arg1, "damage_type")), weaponname=(ship_stat(arg1, "weapon_name")), \
+                emojiaura=emoji(ship_stat(arg1, "aura")), auraname=ship_stat(arg1, "aura"), \
+                emojizen=emoji(ship_stat(arg1, "zen")), zenname=ship_stat(arg1, "zen"))
     return ship_description_small
 
 # Creates the title of the discord emebed consisting of the rarity emoji and the ship name.
