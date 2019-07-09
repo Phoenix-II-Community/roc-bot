@@ -4,6 +4,8 @@
 import settings
 import discord
 import logging
+import fuzzywuzzy
+from fuzzywuzzy import process
 from discord.utils import get
 from discord.ext import commands
 import json
@@ -12,11 +14,11 @@ from pathlib import Path
 home_dir = Path.home()
 
 # Open the required json files and assign it to a variable foo_data
-ships_json = open(('{home_dir}/scripts/apex-bot/res/ships.json').format(home_dir=home_dir))
+ships_json = open(('{hd}/scripts/apex-bot/res/ships.json').format(hd=home_dir))
 ships_data = json.load(ships_json)
-invaders_json = open(('{home_dir}/scripts/apex-bot/res/invaders.json').format(home_dir=home_dir))
+invaders_json = open(('{hd}/scripts/apex-bot/res/invaders.json').format(hd=home_dir))
 invaders_data = json.load(invaders_json)
-emoji_json = open(('{home_dir}/scripts/apex-bot/res/emoji.json').format(home_dir=home_dir))
+emoji_json = open(('{hd}/scripts/apex-bot/res/emoji.json').format(hd=home_dir))
 emoji_data = json.load(emoji_json)
 
 
@@ -31,9 +33,14 @@ class MyClient(discord.Client):
     async def on_message(self, message):
         print('Message from {0.author}: {0.content}'.format(message))
 
+def fuzz_search(find_this):
+    found_this = process.extractOne(find_this, ships_data)
+    ship_name = found_this[-1]
+    return ship_name
+
 # ship.json stat gathering function
-def ship_stat(ship_name, stat_name):
-    for element in ships_data[ship_name.lower()]:
+def ship_stat(find_ship, stat_name):
+    for element in ships_data[fuzz_search(find_ship)]:
         stat_value = element[stat_name]
         return stat_value
 
