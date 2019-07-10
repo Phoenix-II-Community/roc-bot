@@ -33,29 +33,34 @@ class MyClient(discord.Client):
     async def on_message(self, message):
         print('Message from {0.author}: {0.content}'.format(message))
 
-def fuzz_search(find_this):
+##############
+### Functions
+##############
+
+# return the ship name from ships_data using the last value
+# the last value is the ship name 
+def ship_search(find_this):
     found_this = process.extractOne(find_this, ships_data)
     ship_name = found_this[-1]
     return ship_name
 
-# ship.json stat gathering function
+# Use the slutty ship_search function to return the ship name key which flies 
+# in the face of how a dict is meant to work. The stat_name is provided from the
+# get_ship_description_small function or similar. 
 def ship_stat(find_ship, stat_name):
-    for element in ships_data[fuzz_search(find_ship)]:
-        stat_value = element[stat_name]
-        return stat_value
+    stat_value = ships_data[ship_search(find_ship)][stat_name]
+    return stat_value
 
-
-# emoji.json stat gathering function
-def emoji_stat(feature_name):
-    for element in emoji_data[feature_name]:
-        stat_value = element[feature_name]
-        return stat_value
-
+# Discord embed have a line of the left hand side. This line can be coloured
+# This function uses one of the 3 damage_type choices to select a colour from
+# the embed_colours variable (red/yellow/blue)
 def get_em_colour(arg1):
     dmg_type = ship_stat(arg1, "damage_type")
     em_colour = embed_colours[dmg_type]
     return em_colour
 
+# This is the small embed description output used by the
+#  "!ship info <ship name>" command. 
 def get_ship_description_small(arg1):
     ship_description_small = ("{emojidps} {dpsvalue}\n"
     "{emojidmgtype} {weaponname}\n"
@@ -70,15 +75,28 @@ def get_ship_description_small(arg1):
             zenname=ship_stat(arg1, "zen"))
     return ship_description_small
 
-# Creates the title of the discord emebed consisting of the rarity emoji and the ship name.
+# Creates the title of the discord emebed consisting of the rarity emoji 
+# the ship name.
 def get_ship_title(arg1):
-    ship_title = emoji(ship_stat(arg1, "rarity")) + " " + ship_stat(arg1, "ship_name")
+    ship_title = ("{rarityemoji} {nameofship}").format(\
+        rarityemoji=emoji(ship_stat(arg1, "rarity")), 
+        nameofship=ship_stat(arg1, "ship_name"))
     return ship_title
 
-# receives the element from ships.json maybe another file in future and uses it as a key in emoji.json.
+# Receives the element from ships.json maybe another file in 
+# future and uses it as a key in emoji.json.
 def emoji(key):
     emoji = emoji_data[key]
     return emoji
+
+def get_ship_image(arg1):
+    urlgit = "https://github.com/Phoenix-II-Community/apex-bot/raw/master/img/"
+    url = ("{giturl}{shipname}.png").format(giturl=urlgit, shipname=ship_search(arg1))
+    return url
+
+################
+### Bot commands
+################
 
 client = MyClient()
 bot = commands.Bot(command_prefix="!")
@@ -93,12 +111,18 @@ async def ship(ctx):
 # A 5 line embed with basic info: name, weapon, dps, aura and zen.
 @ship.command()
 async def info(ctx, *, arg1):
-      ship_embed_title = get_ship_title(arg1)
-      ship_embed_description = get_ship_description_small(arg1)
-      embed_colour = get_em_colour(arg1)
-      embed = discord.Embed(title=ship_embed_title, description=ship_embed_description, colour=embed_colour)
-      await ctx.send(embed=embed)
-      return
+    ship_embed_title = get_ship_title(arg1)
+    ship_embed_description = get_ship_description_small(arg1)
+    embed_colour = get_em_colour(arg1)
+    embed = discord.Embed(title=ship_embed_title, description=ship_embed_description, colour=embed_colour)
+    embed.set_thumbnail(url=get_ship_image(arg1))
+    await ctx.send(embed=embed)
+    return
+
+#@info.error
+#async def info_error(ctx, error):
+#    if isinstance(error, commands.MissingRequiredArgument):
+#        await ctx.send('nothing to see here comrade.')
 
 # If a message receives the :el: emoji, then the bot should add it's own :el: reaction
 @bot.event
