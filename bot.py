@@ -96,7 +96,7 @@ def get_ship_image(arg1):
 
 ################
 ### Bot commands
-################
+#################
 
 client = MyClient()
 bot = commands.Bot(command_prefix="!")

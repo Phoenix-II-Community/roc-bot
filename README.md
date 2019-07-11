@@ -16,7 +16,7 @@
 
 ### INVADER 
 ```
-!invader -l --list              invader names and turret count
+!invader list                   invader names and turret count
 !invader help                   invader help
 !invader invader <name>         named invader HP stats for all affinities
 !invader affinity <affinity>    all invaders HP that match the affinity
@@ -35,6 +35,7 @@
 !ship weapon <weapon>           list of ships with specified weapon type 
 !ship zen <zen>                 list of ships with zen name
 ```
+^
 
 ### MISSION modulo
 ```
