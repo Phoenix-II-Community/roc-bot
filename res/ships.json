@@ -70,7 +70,7 @@
   "nc-271": {"ship_name":"NC-271", "damage_type":"sb", "damage_output":37.5, "weapon_name":"Plasma Cluster", "aura":"Ion Cannon", "zen":"Personal Shield", "rarity":"rare"},
   "predator": {"ship_name":"Predator", "damage_type":"ap", "damage_output":31.25, "weapon_name":"Dual Blaster", "aura":"Barrier", "zen":"Reflex EMP", "rarity":"rare"},
   "lorilou": {"ship_name":"Lorilou", "damage_type":"hi", "damage_output":21.25, "weapon_name":"Quad Phaser", "aura":"Phalanx", "zen":"Mega Laser", "rarity":"rare"},
-  "ab8klyn": {"ship_name":"AB8/Klyn", "damage_type":"hi", "damage_output":37.5, "weapon_name":"Photon Diffuser", "aura":"Point Defense", "zen":"Reflex EMP", "rarity":"rare"},
+  "ab8klyn": {"ship_name":"AB8/Klyn", "damage_type":"hi", "damage_output":37.5, "weapon_name":"Proton Diffuser", "aura":"Point Defense", "zen":"Reflex EMP", "rarity":"rare"},
   "polaris": {"ship_name":"Polaris", "damage_type":"sb", "damage_output":31.25, "weapon_name":"Gamma Blaster", "aura":"Ion Cannon", "zen":"Kappa Drive", "rarity":"rare"},
   "icarus": {"ship_name":"Icarus", "damage_type":"ap", "damage_output":37.5, "weapon_name":"Inferno Laser", "aura":"Vorpal Lance", "zen":"Teleport", "rarity":"rare"},
   "mirage": {"ship_name":"Mirage", "damage_type":"sb", "damage_output":25, "weapon_name":"Plasma Rays", "aura":"Bullet EMP", "zen":"nightfury", "rarity":"superrare"},
