@@ -110,8 +110,6 @@ async def bday(ctx):
         present = datetime.datetime.now()
         future = datetime.datetime(2019, 7, 27, 16, 0, 0)
         difference = future - present
-        print(str(difference))
-        print(str(difference)[0])
         await ctx.send(difference)
 
 
