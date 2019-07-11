@@ -108,7 +108,7 @@ bot = commands.Bot(command_prefix="!")
 async def bday(ctx):
     if ctx.invoked_subcommand is None:
         present = datetime.datetime.now()
-        future = datetime.datetime(2019, 7, 27, 16, 0, 0)
+        future = datetime.datetime(2019, 7, 28, 8, 0, 0)
         difference = future - present
         await ctx.send(difference)
 
