@@ -41,47 +41,50 @@ class MyClient(discord.Client):
 # return the ship name from ships_data using the last value
 # the last value is the ship name 
 def ship_search(find_this):
-    found_this = process.extractOne(find_this, ships_data)
-    ship_name = found_this[-1]
+    found_this = process.extractOne(find_this, ships_data.keys())
+    ship_name = found_this[0]
     return ship_name
 
 # Use the slutty ship_search function to return the ship name key which flies 
 # in the face of how a dict is meant to work. The stat_name is provided from the
 # get_ship_description_small function or similar. 
 def ship_stat(find_ship, stat_name):
-    stat_value = ships_data[ship_search(find_ship)][stat_name]
-    return stat_value
+    ship_dict = ships_data[ship_search(find_ship)]
+    return ship_dict
 
 # Discord embed have a line of the left hand side. This line can be coloured
 # This function uses one of the 3 damage_type choices to select a colour from
 # the embed_colours variable (red/yellow/blue)
 def get_em_colour(arg1):
-    dmg_type = ship_stat(arg1, "damage_type")
+    ship_dict = ships_data[ship_search(arg1)]
+    dmg_type = ship_dict["damage_type"]
     em_colour = embed_colours[dmg_type]
     return em_colour
 
 # This is the small embed description output used by the
 #  "!ship info <ship name>" command. 
 def get_ship_description_small(arg1):
+    ship_dict = ships_data[ship_search(arg1)]
     ship_description_small = ("{emojidps} {dpsvalue}\n"
     "{emojidmgtype} {weaponname}\n"
     "{emojiaura} {auraname}\n"
     "{emojizen} {zenname}\n").format(emojidps=emoji("dps"),
-            dpsvalue=str(ship_stat(arg1, "damage_output")),
-            emojidmgtype=emoji(ship_stat(arg1, "damage_type")),
-            weaponname=(ship_stat(arg1, "weapon_name")),
-            emojiaura=emoji(ship_stat(arg1, "aura")),
-            auraname=ship_stat(arg1, "aura"),
-            emojizen=emoji(ship_stat(arg1, "zen")),
-            zenname=ship_stat(arg1, "zen"))
+            dpsvalue=str(ship_dict["damage_output"]),
+            emojidmgtype=emoji(ship_dict["damage_type"]),
+            weaponname=(ship_dict["weapon_name"]),
+            emojiaura=emoji(ship_dict["aura"]),
+            auraname=ship_dict["aura"],
+            emojizen=emoji(ship_dict["zen"]),
+            zenname=ship_dict["zen"])
     return ship_description_small
 
 # Creates the title of the discord emebed consisting of the rarity emoji 
 # the ship name.
 def get_ship_title(arg1):
+    ship_dict = ships_data[ship_search(arg1)]
     ship_title = ("{rarityemoji} {nameofship}").format(\
-        rarityemoji=emoji(ship_stat(arg1, "rarity")), 
-        nameofship=ship_stat(arg1, "ship_name"))
+        rarityemoji=emoji(ship_dict["rarity"]), 
+        nameofship=ship_dict["ship_name"])
     return ship_title
 
 # Receives the element from ships.json maybe another file in 
@@ -135,7 +138,6 @@ async def info(ctx, *, arg1):
 #async def info_error(ctx, error):
 #    if isinstance(error, commands.MissingRequiredArgument):
 #        await ctx.send('nothing to see here comrade.')
-
 # If a message receives the :el: emoji, then the bot should add it's own :el: reaction
 @bot.event
 async def on_reaction_add(reaction, user):
