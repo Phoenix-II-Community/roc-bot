@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: iso-8859-15 -*-
 
+import datetime
 import settings
 import discord
 import logging
@@ -100,6 +101,16 @@ def get_ship_image(arg1):
 
 client = MyClient()
 bot = commands.Bot(command_prefix="!")
+
+
+
+@bot.command()
+async def countdown():
+    today = datetime.date.today()
+    future = datetime.date(2019,7,28)
+    diff = future - today
+    await ctx.send(diff.days)
+
 
 @bot.group()
 async def ship(ctx):
