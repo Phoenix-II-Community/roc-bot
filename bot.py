@@ -103,13 +103,16 @@ client = MyClient()
 bot = commands.Bot(command_prefix="!")
 
 
-
+# quick countodwn hack until Phoenix II Birthday on 2019 June 28
 @bot.command()
-async def countdown():
-    today = datetime.date.today()
-    future = datetime.date(2019,7,28)
-    diff = future - today
-    await ctx.send(diff.days)
+async def bday(ctx):
+    if ctx.invoked_subcommand is None:
+        present = datetime.datetime.now()
+        future = datetime.datetime(2019, 7, 28, 0, 0, 0)
+        difference = future - present
+        print(str(difference))
+        print(str(difference)[0])
+        await ctx.send(difference)
 
 
 @bot.group()
