@@ -1,5 +1,18 @@
 # apex-bot
 
+Information bot for the community Phoenix II discord server. 
+
+## Installation 
+`git clone git@github.com:Phoenix-II-Community/apex-bot.git`
+
+Dependancies
+
+`python3 -m pip install -U discord.py`
+`python3 -m pip install -U fuzzywuzzy`
+
+discord.py
+fuzzywuzzy
+
 ## Todos
  - Write the bot
  - Cron jobs 
