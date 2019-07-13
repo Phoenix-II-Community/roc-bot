@@ -132,7 +132,6 @@ async def info(ctx, *, arg1):
     embed = discord.Embed(title=ship_embed_title, description=ship_embed_description, colour=embed_colour)
     embed.set_thumbnail(url=get_ship_image(arg1))
     await ctx.send(embed=embed)
-    return
 
 #@info.error
 #async def info_error(ctx, error):
