@@ -7,11 +7,10 @@ Information bot for the community Phoenix II discord server.
 
 Dependancies
 
-`python3 -m pip install -U discord.py`
-`python3 -m pip install -U fuzzywuzzy`
-
-discord.py
-fuzzywuzzy
+```
+python3 -m pip install -U discord.py
+python3 -m pip install -U fuzzywuzzy
+```
 
 ## Todos
  - Write the bot
