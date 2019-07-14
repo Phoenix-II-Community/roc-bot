@@ -73,7 +73,7 @@
   "ab8klyn": {"ship_name":"AB8/Klyn", "damage_type":"hi", "damage_output":37.5, "weapon_name":"Proton Diffuser", "aura":"Point Defense", "zen":"Reflex EMP", "rarity":"rare"},
   "polaris": {"ship_name":"Polaris", "damage_type":"sb", "damage_output":31.25, "weapon_name":"Gamma Blaster", "aura":"Ion Cannon", "zen":"Kappa Drive", "rarity":"rare"},
   "icarus": {"ship_name":"Icarus", "damage_type":"ap", "damage_output":37.5, "weapon_name":"Inferno Laser", "aura":"Vorpal Lance", "zen":"Teleport", "rarity":"rare"},
-  "mirage": {"ship_name":"Mirage", "damage_type":"sb", "damage_output":25, "weapon_name":"Plasma Rays", "aura":"Bullet EMP", "zen":"Night Fury", "rarity":"superrare"},
+  "mirage": {"ship_name":"Mirage", "damage_type":"sb", "damage_output":25, "weapon_name":"Plasma Rays", "aura":"Bullet EMP", "zen":"Nightfury", "rarity":"superrare"},
   "marauder": {"ship_name":"Marauder", "damage_type":"ap", "damage_output":25, "weapon_name":"G.O. Cannons", "aura":"Phalanx", "zen":"Kappa Drive", "rarity":"common"},
   "lyova": {"ship_name":"Lyova", "damage_type":"hi", "damage_output":31.25, "weapon_name":"Photon Shredder", "aura":"Bullet EMP", "zen":"Reflex EMP", "rarity":"superrare"},
   "qhelqod": {"ship_name":"QhelQod", "damage_type":"hi", "damage_output":31.25, "weapon_name":"Uqtor Bolts", "aura":"Barrier", "zen":"Mega Bomb", "rarity":"rare"},
