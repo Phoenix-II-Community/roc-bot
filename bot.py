@@ -65,10 +65,10 @@ def get_em_colour(arg1):
 #  "!ship info <ship name>" command. 
 def get_ship_description_small(arg1):
     ship_dict = ships_data[ship_search(arg1)]
-    ship_description_small = ("{emojidps} {dpsvalue}\n"
-    "{emojidmgtype} {weaponname}\n"
-    "{emojiaura} {auraname}\n"
-    "{emojizen} {zenname}\n").format(emojidps=emoji("dps"),
+    ship_description_small = ("{emojidps} DPS {dpsvalue}\n"
+    "{emojidmgtype} Weapon {weaponname}\n"
+    "{emojiaura} Aura {auraname}\n"
+    "{emojizen} Zen {zenname}\n").format(emojidps=emoji("dps"),
             dpsvalue=str(ship_dict["damage_output"]),
             emojidmgtype=emoji(ship_dict["damage_type"]),
             weaponname=(ship_dict["weapon_name"]),
