@@ -35,19 +35,26 @@ python3 -m pip install -U fuzzywuzzy
 !invader terse <affinity>       (terse) all invaders HP that match the affinity
 ```
 
+### PRICE 
+```
+!price weapon                   upgrade price of weapon levels (list)
+!price aura                     upgrade price of aura levels (list)
+!price zen                      upgrade price of zen levels (list)
+!price apex                     price of apex brackets (list)
+```
+
 ### SHIP 
 ```
 !ship info <ship>               basic ship info
+!ship detail <ship>             detailed ship info
 !ship aura <aura>               list of shps with an aura
-!ship cost                      cost of ship upgrades
-!ship damage <dmg>              list of dmg brackets, matched ships for value
-!ship extended <ship>           extended ship info
-!ship help                      ship help
-!ship random <n>                print random number of ships, default 10
-!ship weapon <weapon>           list of ships with specified weapon type 
 !ship zen <zen>                 list of ships with zen name
+!ship affinity <affinity>       list of ships with specified weapon type 
+!ship damage                    list of dmg brackets
+!ship damage <dmg>              list of ships with dmg inc type
+!ship random <n>                print random number of ships, default 10
+!ship help                      ship help
 ```
-^
 
 ### MISSION modulo
 ```
@@ -58,7 +65,6 @@ python3 -m pip install -U fuzzywuzzy
 
 ### APEX
 ```
-!apex cost                      apex ranks with costs (list)
 !apex help                      apex help
 !apex weapon                    list of weapon apex
 !apex aura                      list of aura apexs
@@ -69,6 +75,7 @@ python3 -m pip install -U fuzzywuzzy
                                 include cost, apex_type (weapon/aura/zen)
 !apex rank <apex_rank>          list of ships matching apex rank
 ```
+
 ## Mentions
 
 Phoenix II is an arcade Shoot'Em Up developed by Firi Games in 2016. Firi Games is an independent game studio focused on developing premium games for iPhone, iPad and Apple TV. Firi Games is based in The Hague, Netherlands.
