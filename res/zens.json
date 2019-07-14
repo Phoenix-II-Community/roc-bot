@@ -1,107 +1,76 @@
 {
-  "zens":[
-    {
-      "name":"Kappa drive",
-      "desc":"Attracts and generates energy particles.",
-      "abbreviations":["kd"],
-      "properties":{
-        "attraction power":214,
-        "generator efficiency":157,
-        "generator efficiency-format":"%"
-      },
-      "ult":{
-        "name":"Kappa Overdrive",
-        "desc":"Slows down time while active."
-      }
+  "Kappa Drive":{
+    "desc":"Attracts and generates energy particles.",
+    "properties":{
+      "attraction power":214,
+      "generator efficiency":157
     },
-    
-    {
-      "name":"Personal Shield",
-      "desc":"Become Invulnerable for a short time.",
-      "abbreviations":["ps"],
-      "properties": {
-        "max duration":3.5,
-        "max duration-format":"s",
-        "charge duration":0.4,
-        "charge duration-format":"s",
-        "charge time increase":2,
-        "charge time increase-format":"s",
-        "charge time recovery":"very slow"
-      },
-      "ult": {
-        "name":"Laser reflection",
-        "desc":"reflects enemy laser back at them, dealing considerable damage"
-      }
+    "ult":{
+      "name":"Kappa Overdrive",
+      "desc":"Slows down time while active."
+    }
+  },
+  "Personal Shield":{
+    "name":"Personal Shield",
+    "desc":"Become Invulnerable for a short time.",
+    "properties": {
+      "max duration":3.5,
+      "charge duration":0.4,
+      "charge time increase":2,
+      "charge time recovery":"very slow"
     },
-    
-    {
-      "name":"Mega bomb",
-      "desc":"Damages enemies on screen in a large radius",
-      "abbreviations":["mb"],
-       "properties": {
-        "damage":30,
-        "radius":400,
-        "charge duration":2,
-        "charge duration-format":"s",
-        "charge time increase":0.4,
-        "charge time increase-format":"s",
-        "charge time recovery":"average",
-        "fusion core damage":30
-
+    "ult": {
+      "name":"Laser reflection",
+      "desc":"reflects enemy laser back at them, dealing considerable damage"
+    }
+  },  
+  "Mega Bomb":{
+    "desc":"Damages enemies on screen in a large radius",
+    "properties": {
+      "damage":30,
+      "radius":400,
+      "charge duration":2,
+      "charge time increase":0.4,
+      "charge time recovery":"average",
+      "fusion core damage":30
       },
       "ult":{
         "name":"Fusion core",
         "desc":"Enemies in the charging reticle will receive double damage"
       }
     },
-    
-    {
-      "name":"Mega Laser",
+    "Mega Laser":{
       "desc":"Deals massive damage in a straight line in front of your ship.also destroys bullets.",
-      "abbreviations":["ml"],
-      "properties": {
+      "properties":{
         "damage":170,
         "charge duration":1.9,
-        "charge duration-format":"s",
         "charge time increase":0.25,
-        "charge time increase-format":"s",
         "charge time recovery":"very fast",
         "beam width":150
-
       },
       "ult": {
         "name":"Beam width",
         "desc":"Makes the beam 50% wider"
       }
-      },
-
-    {
-        "name":"Teleport",
-        "desc":"Teleports the ship anywhere on screen",
-        "abbreviations":["tp"],
-         "properties": {
-          "charge duration":0.4,
-          "charge duration-format":"s",
-          "charge time increase":0.2,
-          "charge time increase-format":"s",
-          "charge time recovery":"fast"
+    },
+    "Teleport":{
+      "desc":"Teleports the ship anywhere on screen",
+      "properties": {
+        "charge duration":0.4,
+        "charge time increase":0.2,
+        "charge time recovery":"fast"
         },
         "ult": {
           "name":"Arrival EMP",
           "desc":"destroys bullets in a small radius around your ship upon arrival"
         }
       },
-
-    {
-      "name":"Reflex EMP",
+      "Reflex EMP":{
       "desc":"Destroys bullets in a moderate radius around your ship",
-      "abbreviations":["re","remp"],
        "properties": {
         "radius":225,
         "charge duration":0.6,
-        "charge duration-format":"s",
         "charge time increase":2,
-        "charge time-format": "s",
         "charge time recovery":"slow",
         "damage":20
       },
@@ -110,20 +79,14 @@
         "desc":"deals moderate damage to ships in the radius of the blast"
       }
     },
-
-    {
-      "name": "Tracking Minigun",
+    "Tracking Minigun":{
       "desc": "activates a tracking minigun when charged",
-      "abbreviations":["tm"],
       "properties": {
         "target tracking": "fast",
         "damage": 210,
         "duration": 6,
-        "duration-format": "s",
         "charging duration": 1,
-        "chraging duration-format": "s",
         "charge time increase": 17,
-        "chrage time increase-format":"s",
         "charge time recovery": "average"
       },
       "ult": {
@@ -131,17 +94,12 @@
         "desc": "shoots homing missiles along with the minigun"
       }
     },
-
-    {
-      "name":"Trinity teleport",
+    "Trinity Teleport":{
       "desc":"shoots a moderate damage projectile upon arrival",
-      "abbreviations":["ttp"],
       "properties": {
         "damage":8,
         "charge duration":0.4,
-        "charge duration-format":"s",
         "charge time increase":0.2,
-        "charge time-format": "s",
         "charge time recovery":"fast"
       },
       "ult": {
@@ -149,17 +107,12 @@
         "desc":"destroys bullets in a small radius around your ship upon arrival"
       }
     },
-
-    {
-      "name":"Nightfury",
+    "Nightfury":{
       "desc":"Charges the epic Nightfury laser",
-      "abbreviations":["nf"],
       "properties": {
         "damage":300,
         "charge duration":2.3,
-        "charge duration-format":"s",
         "charge time increase":0.8,
-        "charge time-format": "s",
         "charge time recovery":"Very slow",
 	"Bullet destruction":"Enabled"
       },
@@ -167,6 +120,5 @@
         "name":"TBA",
         "desc":"TBA"
       }
-    }
-  ]
+  }
 }
