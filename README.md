@@ -76,6 +76,11 @@ python3 -m pip install -U fuzzywuzzy
 !apex rank <apex_rank>          list of ships matching apex rank
 ```
 
+### SOURCE
+```
+!source                         link to github repo
+```
+
 ## Mentions
 
 Phoenix II is an arcade Shoot'Em Up developed by Firi Games in 2016. Firi Games is an independent game studio focused on developing premium games for iPhone, iPad and Apple TV. Firi Games is based in The Hague, Netherlands.
