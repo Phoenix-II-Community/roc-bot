@@ -35,7 +35,7 @@
         "condor":   525,
         "roc":      945
     },
-    "shield_hull": {
+    "hull_shield": {
         "sparrow":  [3,2],
         "raven":    [18,13],
         "heron":    [42,31],
