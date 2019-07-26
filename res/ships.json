@@ -80,7 +80,7 @@
   "nimbus": {"number":"79", "ship_name":"Nimbus", "damage_type":"hi", "damage_output":"31.25", "weapon_name":"Twin Disintegrators", "aura":"Stun EMP", "zen":"Reflex EMP", "rarity":"rare"},
   "widget": {"number":"80", "ship_name":"Widget", "damage_type":"ap", "damage_output":"25", "weapon_name":"Omni Projectors", "aura":"Point Defense", "zen":"Personal Shield", "rarity":"superrare"},
   "ship81": {"number":"81", "ship_name":"unknown", "damage_type":"hi", "damage_output":"unknown", "weapon_name":"unknown", "aura":"Laser Storm", "zen":"Focus Lance", "rarity":"vegemite"},
-  "luna": {"number":"82", "ship_name":"Luna", "damage_type":"sb", "damage_output":"37.5", "weapon_name":"unknown", "aura":"Point Defense", "zen":"Teleport", "rarity":"superrare"},
+  "luna": {"number":"82", "ship_name":"Luna", "damage_type":"sb", "damage_output":"37.5", "weapon_name":"Ataras Laser", "aura":"Point Defense", "zen":"Teleport", "rarity":"superrare"},
   "zhetass": {"number":"83", "ship_name":"Zhetass", "damage_type":"sb", "damage_output":"31.25", "weapon_name":"Flux Array", "aura":"Phalanx", "zen":"Personal Shield", "rarity":"rare"},
   "neni": {"number":"84", "ship_name":"Neni", "damage_type":"ap", "damage_output":"31.25", "weapon_name":"Photon Bolt", "aura":"Vorpal Lance", "zen":"Mega Laser", "rarity":"rare"},
   "xavis": {"number":"85", "ship_name":"Xavis", "damage_type":"hi", "damage_output":"31.25", "weapon_name":"Turbo Pods", "aura":"Ion Cannon", "zen":"Focus Lance", "rarity":"common"},
