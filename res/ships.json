@@ -88,5 +88,5 @@
   "starless": {"number":"87", "ship_name":"Starless", "damage_type":"sb", "damage_output":"31.25", "weapon_name":"Plasma Blasters", "aura":"Goliath Missile", "zen":"Reflex EMP", "rarity":"rare"},
   "kibbarax": {"number":"88", "ship_name":"Kibbarax", "damage_type":"hi", "damage_output":"31.25", "weapon_name":"Umomu Lasers", "aura":"Missile Swarm", "zen":"Mega Bomb", "rarity":"common"},
   "unknown": {"number":"89", "ship_name":"unknown", "damage_type":"sb", "damage_output":"unknown", "weapon_name":"unknown", "aura":"unknown", "zen":"unknown", "rarity":"superrare"},
-  "zimitr": {"number":"90", "ship_name":"Zimitr", "damage_type":"sb", "damage_output":"unknown", "weapon_name":"Arurus Satellites", "aura":"Stun EMP", "zen":"Reflex EMP", "rarity":"rare"}
+  "zimitr": {"number":"90", "ship_name":"Zimitr", "damage_type":"sb", "damage_output":"25", "weapon_name":"Arurus Satellites", "aura":"Stun EMP", "zen":"Reflex EMP", "rarity":"rare"}
 }
