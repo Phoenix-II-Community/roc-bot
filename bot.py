@@ -33,7 +33,7 @@ zen_list = ["Kappa Drive", "Mega Laser", "Mega Bomb", "Teleport", "Reflex EMP",\
     "Personal Shield", "Tracking Minigun", "Focus Lance", \
         "Trinity Teleport", "Nightfury"]
 
-wpn_dmg_list = ["High Impact", "Armor Piercing", "Shield Breaker"]
+affinity_list = ["High Impact", "Armor Piercing", "Shield Breaker"]
 
 
 logging.basicConfig(level=logging.INFO)
@@ -129,7 +129,7 @@ def zen_search(find_this):
             list1.append(elements['ship_name'])
     return ', '.join(list1)
 
-def wpn_dmg_search(find_this):
+def affinity_search(find_this):
     list1 = []
     if find_this == "ap":
         find_this = "Armor Piercing"
@@ -139,7 +139,7 @@ def wpn_dmg_search(find_this):
         find_this = "Shield Breaker"
     else:
         pass
-    found_this = process.extractOne(find_this, wpn_dmg_list)
+    found_this = process.extractOne(find_this, affinity_list)
     for elements in ships_data.values():
         if elements['damage_type'] == found_this[0]:
             list1.append(elements['ship_name'])
@@ -170,8 +170,8 @@ async def ship(ctx):
         await ctx.send('Invalid ship command passed.')
 
 @ship.command()
-async def weapon(ctx, *, arg1):
-    list_of_ships = wpn_dmg_search(arg1)
+async def affinity(ctx, *, arg1):
+    list_of_ships = affinity_search(arg1)
     await ctx.send(list_of_ships)
 
 @ship.command()
