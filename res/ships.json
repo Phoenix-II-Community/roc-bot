@@ -79,7 +79,7 @@
   "qhelqod": {"number":"78", "ship_name":"QhelQod", "damage_type":"hi", "damage_output":"31.25", "weapon_name":"Uqtor Bolts", "aura":"Barrier", "zen":"Mega Bomb", "rarity":"rare"},
   "nimbus": {"number":"79", "ship_name":"Nimbus", "damage_type":"hi", "damage_output":"31.25", "weapon_name":"Twin Disintegrators", "aura":"Stun EMP", "zen":"Reflex EMP", "rarity":"rare"},
   "widget": {"number":"80", "ship_name":"Widget", "damage_type":"ap", "damage_output":"25", "weapon_name":"Omni Projectors", "aura":"Point Defense", "zen":"Personal Shield", "rarity":"superrare"},
-  "ship81": {"number":"81", "ship_name":"unknown", "damage_type":"hi", "damage_output":"unknown", "weapon_name":"unknown", "aura":"Laser Storm", "zen":"Focus Lance", "rarity":"vegemite"},
+  "reaper": {"number":"81", "ship_name":"Reaper", "damage_type":"hi", "damage_output":"25", "weapon_name":"unknown", "aura":"Laser Storm", "zen":"Focus Lance", "rarity":"superrare"},
   "luna": {"number":"82", "ship_name":"Luna", "damage_type":"sb", "damage_output":"37.5", "weapon_name":"Ataras Laser", "aura":"Point Defense", "zen":"Teleport", "rarity":"superrare"},
   "zhetass": {"number":"83", "ship_name":"Zhetass", "damage_type":"sb", "damage_output":"31.25", "weapon_name":"Flux Array", "aura":"Phalanx", "zen":"Personal Shield", "rarity":"rare"},
   "neni": {"number":"84", "ship_name":"Neni", "damage_type":"ap", "damage_output":"31.25", "weapon_name":"Photon Bolt", "aura":"Vorpal Lance", "zen":"Mega Laser", "rarity":"rare"},
@@ -87,6 +87,6 @@
   "claymore": {"number":"86", "ship_name":"Claymore", "damage_type":"hi", "damage_output":"25", "weapon_name":"Mirawave Cannons", "aura":"Goliath Missile", "zen":"Teleport", "rarity":"rare"},
   "starless": {"number":"87", "ship_name":"Starless", "damage_type":"sb", "damage_output":"31.25", "weapon_name":"Plasma Blasters", "aura":"Goliath Missile", "zen":"Reflex EMP", "rarity":"rare"},
   "kibbarax": {"number":"88", "ship_name":"Kibbarax", "damage_type":"hi", "damage_output":"31.25", "weapon_name":"Umomu Lasers", "aura":"Missile Swarm", "zen":"Mega Bomb", "rarity":"common"},
-  "ship89": {"number":"89", "ship_name":"ship89", "damage_type":"sb", "damage_output":"unknown", "weapon_name":"unknown", "aura":"Goliath Missile", "zen":"Focus Lance", "rarity":"vegemite"},
+  "banshee": {"number":"89", "ship_name":"Banshee", "damage_type":"sb", "damage_output":"25", "weapon_name":"Stormbringer", "aura":"Goliath Missile", "zen":"Focus Lance", "rarity":"vesuperraregemite"},
   "zimitr": {"number":"90", "ship_name":"Zimitr", "damage_type":"sb", "damage_output":"25", "weapon_name":"Arurus Satellites", "aura":"Stun EMP", "zen":"Reflex EMP", "rarity":"rare"}
 }
