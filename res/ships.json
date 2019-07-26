@@ -84,7 +84,7 @@
   "unknown": {"number":"83", "ship_name":"unknown", "damage_type":"sb", "damage_output":"unknown", "weapon_name":"unknown", "aura":"Point Defense", "zen":"Personal Shield", "rarity":"superrare"},
   "neni": {"number":"84", "ship_name":"Neni", "damage_type":"ap", "damage_output":"31.25", "weapon_name":"Photon Bolt", "aura":"Vorpal Lance", "zen":"Mega Laser", "rarity":"rare"},
   "xavis": {"number":"85", "ship_name":"Xavis", "damage_type":"hi", "damage_output":"31.25", "weapon_name":"Turbo Pods", "aura":"Ion Cannon", "zen":"Focus Lance", "rarity":"common"},
-  "claymore": {"number":"86", "ship_name":"Claymore", "damage_type":"hi", "damage_output":"25", "weapon_name":"Microwave Cannons", "aura":"Goliath Missile", "zen":"Teleport", "rarity":"rare"},
+  "claymore": {"number":"86", "ship_name":"Claymore", "damage_type":"hi", "damage_output":"25", "weapon_name":"Mirawave Cannons", "aura":"Goliath Missile", "zen":"Teleport", "rarity":"rare"},
   "starless": {"number":"87", "ship_name":"Starless", "damage_type":"sb", "damage_output":"31.25", "weapon_name":"Plasma Blasters", "aura":"Goliath Missile", "zen":"Reflex EMP", "rarity":"rare"},
   "kibbarax": {"number":"88", "ship_name":"Kibbarax", "damage_type":"hi", "damage_output":"31.25", "weapon_name":"Umomu Lasers", "aura":"Point Defense", "zen":"Personal Shield", "rarity":"common"},
   "unknown": {"number":"89", "ship_name":"unknown", "damage_type":"sb", "damage_output":"unknown", "weapon_name":"unknown", "aura":"unknown", "zen":"unknown", "rarity":"superrare"},
