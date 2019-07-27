@@ -50,8 +50,8 @@ python3 -m pip install -U fuzzywuzzy
 !ship aura <aura>               list of shps with an aura
 !ship zen <zen>                 list of ships with zen name
 !ship affinity <affinity>       list of ships with specified weapon type 
-!ship damage                    list of dmg brackets
-!ship damage <dmg>              list of ships with dmg inc type
+!ship dmg                       list of dmg brackets
+!ship dmg <dmg>                 list of ships with dmg inc type
 !ship random <n>                print random number of ships, default 10
 !ship help                      ship help
 ```

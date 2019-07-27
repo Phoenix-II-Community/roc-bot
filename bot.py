@@ -35,6 +35,7 @@ zen_list = ["Kappa Drive", "Mega Laser", "Mega Bomb", "Teleport", "Reflex EMP",\
 
 affinity_list = ["High Impact", "Armor Piercing", "Shield Breaker"]
 
+damage_list = ["21.25", "25", "31.25", "34.38", "36.5", "37.5"]
 
 logging.basicConfig(level=logging.INFO)
 
@@ -94,6 +95,8 @@ def get_ship_description_small(ship_name):
             ship=ship_dict)
     return ship_description_small
 
+# Each ship has a number based on the in game order they were listed and added.
+# return that number. 
 def find_number(ship_name):
     ship_dict = ships_data[ship_name]
     number = ship_dict["number"]
@@ -143,7 +146,26 @@ def affinity_search(find_this):
     for elements in ships_data.values():
         if elements['damage_type'] == found_this[0]:
             list1.append(elements['ship_name'])
-    return ', '.join(list1)
+        description = '\n'.join(list1)
+        title = ("{emoji} {damage_type} Ships").format(emoji=emoji(found_this[0]), \
+            damage_type=found_this[0])
+        embed = discord.Embed(title=title, description=description)
+    return embed
+
+
+def damage_search(find_this):
+    list1 = []
+    found_this = process.extractOne(find_this, damage_list)
+    for elements in ships_data.values():
+        if elements['damage_output'] == found_this[0]:
+            list1.append(("{emoji} {name}").format(\
+                emoji=emoji(elements['damage_type']), \
+                name=elements['ship_name']))
+        description = '\n'.join(list1)
+        title = ("{emoji} DPS {dps}").format(emoji=emoji("dps"), \
+            dps=found_this[0])
+        embed = discord.Embed(title=title, description=description)
+    return embed
 
 ################################################################
 ####                      Bot commands                      ####
@@ -170,9 +192,14 @@ async def ship(ctx):
         await ctx.send('Invalid ship command passed.')
 
 @ship.command()
+async def dmg(ctx, *, arg1):
+    dmg_embed = damage_search(arg1)
+    await ctx.send(embed=embed)
+
+@ship.command()
 async def affinity(ctx, *, arg1):
-    list_of_ships = affinity_search(arg1)
-    await ctx.send(list_of_ships)
+    affinity_embed = affinity_search(arg1)
+    await ctx.send(embed=affinity_embed)
 
 @ship.command()
 async def aura(ctx, *, arg1):
@@ -193,7 +220,8 @@ async def info(ctx, *, arg1):
     ship_embed_title = get_ship_title(ship_name)
     ship_embed_description = get_ship_description_small(ship_name)
     embed_colour = get_em_colour(ship_name)
-    embed = discord.Embed(title=ship_embed_title, description=ship_embed_description, colour=embed_colour)
+    embed = discord.Embed(title=ship_embed_title, 
+    description=ship_embed_description, colour=embed_colour)
     embed.set_thumbnail(url=get_ship_image(ship_name))
     await ctx.send(embed=embed)
 
