@@ -25,6 +25,7 @@ emoji_data = json.load(emoji_json)
 
 
 embed_colours = {"Shield Breaker": 0x3a77f9, "High Impact": 0xee4529, "Armor Piercing": 0xffb820}
+
 aura_list = ["Bullet EMP", "Stun EMP", "Barrier", "Laser Storm", \
     "Missile Swarm", "Point Defence", "Chrono Field", "Vorpal Lance", \
     "Phalanx", "Ion Cannon","Goliath Missile", "Blade Storm"]
@@ -36,6 +37,9 @@ zen_list = ["Kappa Drive", "Mega Laser", "Mega Bomb", "Teleport", "Reflex EMP",\
 affinity_list = ["High Impact", "Armor Piercing", "Shield Breaker"]
 
 damage_list = ["21.25", "25", "31.25", "34.38", "36.5", "37.5"]
+
+rarity_list = ["Common", "Rare", "Super Rare"]
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -122,7 +126,11 @@ def aura_search(find_this):
     for elements in ships_data.values():
         if elements['aura'] == found_this[0]:
             list1.append(elements['ship_name'])
-    return ', '.join(list1)
+        description = '\n'.join(list1)
+        title = ("{emoji} {aura} Ships").format(emoji=emoji(found_this[0]), \
+            aura=found_this[0])
+        embed = discord.Embed(title=title, description=description)
+    return embed
 
 def zen_search(find_this):
     list1 = []
@@ -130,8 +138,12 @@ def zen_search(find_this):
     for elements in ships_data.values():
         if elements['zen'] == found_this[0]:
             list1.append(elements['ship_name'])
-    return ', '.join(list1)
-
+        description = '\n'.join(list1)
+        title = ("{emoji} {zen} Ships").format(emoji=emoji(found_this[0]), \
+            zen=found_this[0])
+        embed = discord.Embed(title=title, description=description)
+    return embed
+    
 def affinity_search(find_this):
     list1 = []
     if find_this == "ap":
@@ -149,7 +161,8 @@ def affinity_search(find_this):
         description = '\n'.join(list1)
         title = ("{emoji} {damage_type} Ships").format(emoji=emoji(found_this[0]), \
             damage_type=found_this[0])
-        embed = discord.Embed(title=title, description=description)
+        em_colour = found_this
+        embed = discord.Embed(title=title, description=description, colour=embed_colour)
     return embed
 
 
@@ -166,6 +179,22 @@ def damage_search(find_this):
             dps=found_this[0])
         embed = discord.Embed(title=title, description=description)
     return embed
+
+
+def rarity_search(find_this):
+    list1 = []
+    found_this = process.extractOne(find_this, rarity_list)
+    for elements in ships_data.values():
+        if elements['rarity'] == found_this[0]:
+            list1.append(("{emoji} {name}").format(\
+                emoji=emoji(elements['damage_type']), \
+                name=elements['ship_name']))
+        description = '\n'.join(list1)
+        title = ("{emoji} {rarity} Ships").format(emoji=emoji(found_this[0]), \
+            rarity=found_this[0])
+        embed = discord.Embed(title=title, description=description)
+    return embed
+
 
 ################################################################
 ####                      Bot commands                      ####
@@ -192,9 +221,14 @@ async def ship(ctx):
         await ctx.send('Invalid ship command passed.')
 
 @ship.command()
+async def rarity(ctx, *, arg1):
+    rarity_embed = rarity_search(arg1)
+    await ctx.send(embed=rarity_embed)
+
+@ship.command()
 async def dmg(ctx, *, arg1):
     dmg_embed = damage_search(arg1)
-    await ctx.send(embed=embed)
+    await ctx.send(embed=dmg_embed)
 
 @ship.command()
 async def affinity(ctx, *, arg1):
@@ -203,13 +237,13 @@ async def affinity(ctx, *, arg1):
 
 @ship.command()
 async def aura(ctx, *, arg1):
-    list_of_ships = aura_search(arg1)
-    await ctx.send(list_of_ships)
+    aura_embed = aura_search(arg1)
+    await ctx.send(embed=aura_embed)
 
 @ship.command()
 async def zen(ctx, *, arg1):
-    list_of_ships = zen_search(arg1)
-    await ctx.send(list_of_ships)
+    zen_embed = zen_search(arg1)
+    await ctx.send(embed=zen_embed)
 
 # Sub command to the @bot.group() decorator ship function.
 # Intended that for use in high traffic channels, the output size is intential 
