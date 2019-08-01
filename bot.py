@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: iso-8859-15 -*-
+# -*- coding: utf-8 -*-
 
 import datetime
 import settings
@@ -12,6 +12,7 @@ from discord.utils import get
 from discord.ext import commands
 import json
 from pathlib import Path
+import discord.ext.commands
 
 home_dir = Path.home()
 
@@ -125,7 +126,8 @@ def aura_search(find_this):
     found_this = process.extractOne(find_this, aura_list)
     for elements in ships_data.values():
         if elements['aura'] == found_this[0]:
-            list1.append(elements['ship_name'])
+            list1.append(("{emoji} {name}").format(emoji=customemoji(elements['ship_name'].lower()),
+             name=elements['ship_name']))
         description = '\n'.join(list1)
         title = ("{emoji} {aura} Ships").format(emoji=emoji(found_this[0]), \
             aura=found_this[0])
@@ -137,7 +139,8 @@ def zen_search(find_this):
     found_this = process.extractOne(find_this, zen_list)
     for elements in ships_data.values():
         if elements['zen'] == found_this[0]:
-            list1.append(elements['ship_name'])
+            list1.append(("{emoji} {name}").format(emoji=customemoji(elements['ship_name']),
+             name=elements['ship_name']))
         description = '\n'.join(list1)
         title = ("{emoji} {zen} Ships").format(emoji=emoji(found_this[0]), \
             zen=found_this[0])
@@ -157,12 +160,13 @@ def affinity_search(find_this):
     found_this = process.extractOne(find_this, affinity_list)
     for elements in ships_data.values():
         if elements['damage_type'] == found_this[0]:
-            list1.append(elements['ship_name'])
+            list1.append(("{emoji} {name}").format(emoji=customemoji(elements['ship_name'].lower()),
+             name=elements['ship_name']))
         description = '\n'.join(list1)
         title = ("{emoji} {damage_type} Ships").format(emoji=emoji(found_this[0]), \
             damage_type=found_this[0])
-        em_colour = found_this
-        embed = discord.Embed(title=title, description=description, colour=embed_colour)
+        em_colour = embed_colours[found_this[0]]
+        embed = discord.Embed(title=title, description=description, colour=em_colour)
     return embed
 
 
@@ -195,6 +199,11 @@ def rarity_search(find_this):
         embed = discord.Embed(title=title, description=description)
     return embed
 
+def customemoji(find_this):
+    clean_find = find_this.replace(" ", "").replace("-", "").replace("/", "").replace("'", "").replace(chr(246), "o")
+    emoji = discord.utils.get(bot.emojis, name = clean_find)
+    print(emoji)
+    return emoji
 
 ################################################################
 ####                      Bot commands                      ####
@@ -219,6 +228,12 @@ async def source(ctx):
 async def ship(ctx):
     if ctx.invoked_subcommand is None:
         await ctx.send('Invalid ship command passed.')
+
+@ship.command()
+async def fmji(ctx, *, arg1):
+    emoji_send = customemoji(arg1)
+    await ctx.send(emoji_send)
+
 
 @ship.command()
 async def rarity(ctx, *, arg1):
