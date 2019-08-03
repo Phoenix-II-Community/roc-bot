@@ -13,6 +13,8 @@ from discord.ext import commands
 import json
 from pathlib import Path
 import discord.ext.commands
+import re
+import unicodedata
 
 home_dir = Path.home()
 
@@ -139,7 +141,7 @@ def zen_search(find_this):
     found_this = process.extractOne(find_this, zen_list)
     for elements in ships_data.values():
         if elements['zen'] == found_this[0]:
-            list1.append(("{emoji} {name}").format(emoji=customemoji(elements['ship_name']),
+            list1.append(("{emoji} {name}").format(emoji=customemoji(elements['ship_name'].lower()),
              name=elements['ship_name']))
         description = '\n'.join(list1)
         title = ("{emoji} {zen} Ships").format(emoji=emoji(found_this[0]), \
@@ -175,11 +177,12 @@ def damage_search(find_this):
     found_this = process.extractOne(find_this, damage_list)
     for elements in ships_data.values():
         if elements['damage_output'] == found_this[0]:
-            list1.append(("{emoji} {name}").format(\
-                emoji=emoji(elements['damage_type']), \
+            list1.append(("{dpsemoji} {shipemoji} {name}").format(\
+                dpsemoji=emoji(elements['damage_type']), \
+                shipemoji=customemoji(elements['ship_name'].lower()),\
                 name=elements['ship_name']))
         description = '\n'.join(list1)
-        title = ("{emoji} DPS {dps}").format(emoji=emoji("dps"), \
+        title = ("{dpsemoji} DPS {dps}").format(dpsemoji=emoji("dps"), \
             dps=found_this[0])
         embed = discord.Embed(title=title, description=description)
     return embed
@@ -199,11 +202,14 @@ def rarity_search(find_this):
         embed = discord.Embed(title=title, description=description)
     return embed
 
+
+def sanitise_input(input_string):
+    words_only = re.sub('\W+','', input_string)
+    return unicodedata.normalize('NFKD', words_only).encode('ascii', 'ignore').decode('utf8')
+
 def customemoji(find_this):
-    clean_find = find_this.replace(" ", "").replace("-", "").replace("/", "").replace("'", "").replace(chr(246), "o")
-    emoji = discord.utils.get(bot.emojis, name = clean_find)
-    print(emoji)
-    return emoji
+    find_sanitised = sanitise_input(find_this)
+    return discord.utils.get(bot.emojis, name = find_sanitised)
 
 ################################################################
 ####                      Bot commands                      ####
