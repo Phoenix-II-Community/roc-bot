@@ -30,12 +30,11 @@ emoji_data = json.load(emoji_json)
 embed_colours = {"Shield Breaker": 0x3a77f9, "High Impact": 0xee4529, "Armor Piercing": 0xffb820}
 
 aura_list = ["Bullet EMP", "Stun EMP", "Barrier", "Laser Storm", \
-    "Missile Swarm", "Point Defence", "Chrono Field", "Vorpal Lance", \
+    "Missile Swarm", "Point Defense", "Chrono Field", "Vorpal Lance", \
     "Phalanx", "Ion Cannon","Goliath Missile", "Blade Storm"]
 
 zen_list = ["Kappa Drive", "Mega Laser", "Mega Bomb", "Teleport", "Reflex EMP",\
-    "Personal Shield", "Tracking Minigun", "Focus Lance", \
-        "Trinity Teleport", "Nightfury"]
+    "Personal Shield", "Tracking Minigun", "Focus Lance", "Nightfury"]
 
 affinity_list = ["High Impact", "Armor Piercing", "Shield Breaker"]
 
@@ -91,7 +90,6 @@ def emoji(key):
 #  "!ship info <ship name>" command. 
 def get_ship_description_small(ship_name):
     ship_dict = ships_data[ship_name]
-    print(ship_dict)
     ship_description_small = ("{emojidps} {ship[damage_output]}\n"
     "{emojidmgtype} {ship[weapon_name]}\n"
     "{emojiaura} {ship[aura]}\n"
@@ -103,7 +101,7 @@ def get_ship_description_small(ship_name):
     return ship_description_small
 
 # Each ship has a number based on the in game order they were listed and added.
-# return that number. 
+# return that100% number. 
 def find_number(ship_name):
     ship_dict = ships_data[ship_name]
     number = ship_dict["number"]
@@ -128,8 +126,10 @@ def aura_search(find_this):
     found_this = process.extractOne(find_this, aura_list)
     for elements in ships_data.values():
         if elements['aura'] == found_this[0]:
-            list1.append(("{emoji} {name}").format(emoji=customemoji(elements['ship_name'].lower()),
-             name=elements['ship_name']))
+            list1.append(("{elementemoji} {shipemoji} {name}").format(\
+                elementemoji=emoji(elements['damage_type']), \
+                shipemoji=customemoji(elements['ship_name'].lower()),\
+                name=elements['ship_name']))
         description = '\n'.join(list1)
         title = ("{emoji} {aura} Ships").format(emoji=emoji(found_this[0]), \
             aura=found_this[0])
@@ -141,8 +141,10 @@ def zen_search(find_this):
     found_this = process.extractOne(find_this, zen_list)
     for elements in ships_data.values():
         if elements['zen'] == found_this[0]:
-            list1.append(("{emoji} {name}").format(emoji=customemoji(elements['ship_name'].lower()),
-             name=elements['ship_name']))
+            list1.append(("{elementemoji} {shipemoji} {name}").format(\
+                elementemoji=emoji(elements['damage_type']), \
+                shipemoji=customemoji(elements['ship_name'].lower()),\
+                name=elements['ship_name']))
         description = '\n'.join(list1)
         title = ("{emoji} {zen} Ships").format(emoji=emoji(found_this[0]), \
             zen=found_this[0])
@@ -177,8 +179,8 @@ def damage_search(find_this):
     found_this = process.extractOne(find_this, damage_list)
     for elements in ships_data.values():
         if elements['damage_output'] == found_this[0]:
-            list1.append(("{dpsemoji} {shipemoji} {name}").format(\
-                dpsemoji=emoji(elements['damage_type']), \
+            list1.append(("{elementemoji} {shipemoji} {name}").format(\
+                elementemoji=emoji(elements['damage_type']), \
                 shipemoji=customemoji(elements['ship_name'].lower()),\
                 name=elements['ship_name']))
         description = '\n'.join(list1)
@@ -208,8 +210,60 @@ def sanitise_input(input_string):
     return unicodedata.normalize('NFKD', words_only).encode('ascii', 'ignore').decode('utf8')
 
 def customemoji(find_this):
-    find_sanitised = sanitise_input(find_this)
+    find_sanitised = sanitise_input(find_this.lower())
     return discord.utils.get(bot.emojis, name = find_sanitised)
+
+def auralisting():
+    list1 = []
+    for elements in aura_list:
+        list1.append(("{emoji} {name}").format(
+            emoji=customemoji(elements),
+            name=elements))
+    description = '\n'.join(list1)
+    title = ("Auras")
+    return discord.Embed(title=title, description=description)
+
+def zenlisting():
+    list1 = []
+    for elements in zen_list:
+        list1.append(("{emoji} {name}").format(
+            emoji=customemoji(elements),
+            name=elements))
+    description = '\n'.join(list1)
+    title = ("Zens")
+    return discord.Embed(title=title, description=description)
+
+def affinitylisting():
+    list1 = []
+    for elements in affinity_list:
+        list1.append(("{emoji} {name}").format(
+            emoji=customemoji(elements),
+            name=elements))
+    description = '\n'.join(list1)
+    title = ("Main Weapon Affinities")
+    return discord.Embed(title=title, description=description)
+
+def damagelisting():
+    list1 = []
+    for elements in damage_list:
+        list1.append(("{name}").format(name=elements))
+    description = '\n'.join(list1)
+    title = ("{dpsemoji} Damage Brackets").format(dpsemoji=emoji("dps"))
+    return discord.Embed(title=title, description=description)
+
+def raritylisting():
+    list1 = []
+    for elements in rarity_list:
+        list1.append(("{emoji} {name}").format(
+            emoji=customemoji(elements),
+            name=elements))
+    description = '\n'.join(list1)
+    title = ("{rareemoji} Rarities").format(rareemoji=emoji("vegemite"))
+    return discord.Embed(title=title, description=description)
+
+
+#def zenlisting():
+
 
 ################################################################
 ####                      Bot commands                      ####
@@ -218,11 +272,10 @@ def customemoji(find_this):
 # quick countodwn hack until Phoenix II Birthday on 2019 June 28
 @bot.command()
 async def bday(ctx):
-    if ctx.invoked_subcommand is None:
-        present = datetime.datetime.now()
-        future = datetime.datetime(2019, 7, 28, 8, 0, 0)
-        difference = future - present
-        await ctx.send(difference)
+    present = datetime.datetime.now()
+    future = datetime.datetime(2019, 7, 28, 8, 0, 0)
+    difference = future - present
+    await ctx.send(difference)
 
 @bot.command()
 async def source(ctx):
@@ -235,36 +288,45 @@ async def ship(ctx):
     if ctx.invoked_subcommand is None:
         await ctx.send('Invalid ship command passed.')
 
+
 @ship.command()
-async def fmji(ctx, *, arg1):
-    emoji_send = customemoji(arg1)
-    await ctx.send(emoji_send)
+async def dmg(ctx, *, arg1=None):
+    if arg1 == None:
+        await ctx.send(embed=damagelisting())
+    else:
+        await ctx.send(embed=damage_search(arg1))
 
 
 @ship.command()
-async def rarity(ctx, *, arg1):
-    rarity_embed = rarity_search(arg1)
-    await ctx.send(embed=rarity_embed)
+async def aura(ctx, *, arg1=None):
+    if arg1 == None:
+        await ctx.send(embed=auralisting())
+    else:
+        await ctx.send(embed=aura_search(arg1))
+
 
 @ship.command()
-async def dmg(ctx, *, arg1):
-    dmg_embed = damage_search(arg1)
-    await ctx.send(embed=dmg_embed)
+async def zen(ctx, *, arg1=None):
+    if arg1 == None:
+        await ctx.send(embed=zenlisting())
+    else:
+        await ctx.send(embed=zen_search(arg1))
 
 @ship.command()
-async def affinity(ctx, *, arg1):
-    affinity_embed = affinity_search(arg1)
-    await ctx.send(embed=affinity_embed)
+async def rarity(ctx, *, arg1=None):
+    if arg1 == None:
+        await ctx.send(embed=raritylisting())
+    else:
+        await ctx.send(embed=rarity_search(arg1))
+
 
 @ship.command()
-async def aura(ctx, *, arg1):
-    aura_embed = aura_search(arg1)
-    await ctx.send(embed=aura_embed)
+async def affinity(ctx, *, arg1=None):
+    if arg1 == None:
+        await ctx.send(embed=affinitylisting())
+    else:
+        await ctx.send(embed=affinity_search(arg1))
 
-@ship.command()
-async def zen(ctx, *, arg1):
-    zen_embed = zen_search(arg1)
-    await ctx.send(embed=zen_embed)
 
 # Sub command to the @bot.group() decorator ship function.
 # Intended that for use in high traffic channels, the output size is intential 
