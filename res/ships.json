@@ -62,7 +62,7 @@
   "corsair": {"number":"61", "ship_name":"Corsair", "damage_type":"High Impact", "damage_output":"31.25", "weapon_name":"Rocket Pods", "aura":"Missile Swarm", "zen":"Tracking Minigun", "rarity":"Super Rare"},
   "antioch": {"number":"62", "ship_name":"Antioch", "damage_type":"Armor Piercing", "damage_output":"31.25", "weapon_name":"Proton Crystallizer", "aura":"Vorpal Lance", "zen":"Personal Shield", "rarity":"Common"},
   "uhb": {"number":"63", "ship_name":"UHB", "damage_type":"High Impact", "damage_output":"25", "weapon_name":"Blast Laser", "aura":"Missile Swarm", "zen":"Reflex EMP", "rarity":"Rare"},
-  "trinity": {"number":"64", "ship_name":"Trinity", "damage_type":"Armor Piercing", "damage_output":"31.25", "weapon_name":"Warp Ripper", "aura":"Chrono Field", "zen":"Trinity Teleport", "rarity":"Super Rare"},
+  "trinity": {"number":"64", "ship_name":"Trinity", "damage_type":"Armor Piercing", "damage_output":"31.25", "weapon_name":"Warp Ripper", "aura":"Chrono Field", "zen":"Teleport", "rarity":"Super Rare"},
   "wraith": {"number":"65", "ship_name":"Wraith", "damage_type":"High Impact", "damage_output":"31.25", "weapon_name":"Electron Laser", "aura":"Vorpal Lance", "zen":"Mega Bomb", "rarity":"Super Rare"},
   "x81": {"number":"66", "ship_name":"X-81", "damage_type":"Shield Breaker", "damage_output":"25", "weapon_name":"Aim-540 Mantis", "aura":"Ion Cannon", "zen":"Mega Laser", "rarity":"Super Rare"},
   "scuuxun": {"number":"67", "ship_name":"Scuuxun", "damage_type":"Shield Breaker", "damage_output":"31.25", "weapon_name":"T'Kari Spikes", "aura":"Laser Storm", "zen":"Reflex EMP", "rarity":"Rare"},
