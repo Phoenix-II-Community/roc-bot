@@ -23,8 +23,6 @@ ships_json = open(('{hd}/scripts/apex-bot/res/ships.json').format(hd=home_dir))
 ships_data = json.load(ships_json)
 invaders_json = open(('{hd}/scripts/apex-bot/res/invaders.json').format(hd=home_dir))
 invaders_data = json.load(invaders_json)
-emoji_json = open(('{hd}/scripts/apex-bot/res/emoji.json').format(hd=home_dir))
-emoji_data = json.load(emoji_json)
 
 
 embed_colours = {"Shield Breaker": 0x3a77f9, "High Impact": 0xee4529, "Armor Piercing": 0xffb820}
