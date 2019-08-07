@@ -66,23 +66,17 @@ def get_em_colour(ship_name):
     em_colour = embed_colours[dmg_type]
     return em_colour
 
-# Receives the element from ships.json maybe another file in 
-# future and uses it as a key in emoji.json.
-def emoji(key):
-    emoji = emoji_data[key]
-    return emoji
-
 # This is the small embed description output used by the
 #  "!ship info <ship name>" command. 
 def get_ship_description_small(ship_name):
     ship_dict = ships_data[ship_name]
-    ship_description_small = ("{emojidps} {ship[damage_output]}\n"
+    ship_description_small = ("{emojidps} {ship[dmg]}\n"
     "{emojidmgtype} {ship[weapon_name]}\n"
     "{emojiaura} {ship[aura]}\n"
-    "{emojizen} {ship[zen]}\n").format(emojidps=emoji("dps"),
-            emojidmgtype=emoji(ship_dict["affinity"]),
-            emojiaura=emoji(ship_dict["aura"]),
-            emojizen=emoji(ship_dict["zen"]),
+    "{emojizen} {ship[zen]}\n").format(emojidps=customemoji("dps"),
+            emojidmgtype=customemoji(ship_dict["affinity"]),
+            emojiaura=customemoji(ship_dict["aura"]),
+            emojizen=customemoji(ship_dict["zen"]),
             ship=ship_dict)
     return ship_description_small
 
@@ -98,7 +92,7 @@ def find_number(ship_name):
 def get_ship_title(ship_name):
     ship_dict = ships_data[ship_name]
     ship_title = ("{rarityemoji} {nameofship}").format(\
-        rarityemoji=emoji(ship_dict["rarity"]), 
+        rarityemoji=customemoji(ship_dict["rarity"]), 
         nameofship=ship_dict["ship_name"])
     return ship_title
 
@@ -124,7 +118,7 @@ def make_element_set(ctxsc):
 #    for elements in ships_data.values():
 #        if elements['aura'] == found_this[0]:
 #            list1.append(("{elementemoji} {shipemoji} {name}").format(\
-#                elementemoji=emoji(elements['affinity']), \
+#                elementemoji=customemoji(elements['affinity']), \
 #                shipemoji=customemoji(elements['ship_name'].lower()),\
 #                name=elements['ship_name']))
 #    description = '\n'.join(list1)
@@ -136,11 +130,11 @@ def aura_search(find_this, ctxsc):
     for elements in ships_data.values():
         if elements['aura'] == found_this[0]:
             list1.append(("{elementemoji} {shipemoji} {name}").format(\
-                elementemoji=emoji(elements['affinity']), \
+                elementemoji=customemoji(elements['affinity']), \
                 shipemoji=customemoji(elements['ship_name'].lower()),\
                 name=elements['ship_name']))
     description = '\n'.join(list1)
-    title = ("{emoji} {aura} Ships").format(emoji=emoji(found_this[0]), \
+    title = ("{emoji} {aura} Ships").format(emoji=customemoji(found_this[0]), \
         aura=found_this[0])
     embed = discord.Embed(title=title, description=description)
     return embed
@@ -151,11 +145,11 @@ def zen_search(find_this, ctxsc):
     for elements in ships_data.values():
         if elements['zen'] == found_this[0]:
             list1.append(("{elementemoji} {shipemoji} {name}").format(\
-                elementemoji=emoji(elements['affinity']), \
+                elementemoji=customemoji(elements['affinity']), \
                 shipemoji=customemoji(elements['ship_name'].lower()),\
                 name=elements['ship_name']))
         description = '\n'.join(list1)
-        title = ("{emoji} {zen} Ships").format(emoji=emoji(found_this[0]), \
+        title = ("{emoji} {zen} Ships").format(emoji=customemoji(found_this[0]), \
             zen=found_this[0])
         embed = discord.Embed(title=title, description=description)
     return embed
@@ -176,7 +170,7 @@ def affinity_search(find_this, ctxsc):
             list1.append(("{emoji} {name}").format(emoji=customemoji(elements['ship_name'].lower()),
              name=elements['ship_name']))
         description = '\n'.join(list1)
-        title = ("{emoji} {affinity} Ships").format(emoji=emoji(found_this[0]), \
+        title = ("{emoji} {affinity} Ships").format(emoji=customemoji(found_this[0]), \
             affinity=found_this[0])
         em_colour = embed_colours[found_this[0]]
         embed = discord.Embed(title=title, description=description, colour=em_colour)
@@ -187,13 +181,13 @@ def damage_search(find_this, ctxsc):
     list1 = []
     found_this = process.extractOne(find_this, make_element_set(ctxsc))
     for elements in ships_data.values():
-        if elements['damage_output'] == found_this[0]:
+        if elements['dmg'] == found_this[0]:
             list1.append(("{elementemoji} {shipemoji} {name}").format(\
-                elementemoji=emoji(elements['affinity']), \
+                elementemoji=customemoji(elements['affinity']), \
                 shipemoji=customemoji(elements['ship_name'].lower()),\
                 name=elements['ship_name']))
         description = '\n'.join(list1)
-        title = ("{dpsemoji} DPS {dps}").format(dpsemoji=emoji("dps"), \
+        title = ("{dpsemoji} DPS {dps}").format(dpsemoji=customemoji("dps"), \
             dps=found_this[0])
         embed = discord.Embed(title=title, description=description)
     return embed
@@ -205,10 +199,10 @@ def rarity_search(find_this, ctxsc):
     for elements in ships_data.values():
         if elements['rarity'] == found_this[0]:
             list1.append(("{emoji} {name}").format(\
-                emoji=emoji(elements['affinity']), \
+                emoji=customemoji(elements['affinity']), \
                 name=elements['ship_name']))
         description = '\n'.join(list1)
-        title = ("{emoji} {rarity} Ships").format(emoji=emoji(found_this[0]), \
+        title = ("{emoji} {rarity} Ships").format(emoji=customemoji(found_this[0]), \
             rarity=found_this[0])
         embed = discord.Embed(title=title, description=description)
     return embed
@@ -257,7 +251,7 @@ def damagelisting(ctxsc):
     for elements in make_element_set(ctxsc):
         list1.append(("{name}").format(name=elements))
     description = '\n'.join(list1)
-    title = ("{dpsemoji} Damage Brackets").format(dpsemoji=emoji("dps"))
+    title = ("{dpsemoji} Damage Brackets").format(dpsemoji=customemoji("dps"))
     return discord.Embed(title=title, description=description)
 
 def raritylisting(ctxsc):
@@ -267,7 +261,7 @@ def raritylisting(ctxsc):
             emoji=customemoji(elements),
             name=elements))
     description = '\n'.join(list1)
-    title = ("{rareemoji} Rarities").format(rareemoji=emoji("vegemite"))
+    title = ("{rareemoji} Rarities").format(rareemoji=customemoji("vegemite"))
     return discord.Embed(title=title, description=description)
 
 
