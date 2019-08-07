@@ -46,14 +46,17 @@ python3 -m pip install -U fuzzywuzzy
 ### SHIP 
 ```
 !ship info <ship>               basic ship info
-!ship detail <ship>             detailed ship info
-!ship aura <aura>               list of shps with an aura
+#!ship detail <ship>            detailed ship info
+!ship aura                      list of Auras
+!ship aura <aura>               list of ships with an aura
+!ship zen                       list of Zens
 !ship zen <zen>                 list of ships with zen name
+!ship affinity                  list of Affinities 
 !ship affinity <affinity>       list of ships with specified weapon type 
-!ship dmg                       list of dmg brackets
-!ship dmg <dmg>                 list of ships with dmg inc type
-!ship random <n>                print random number of ships, default 10
-!ship help                      ship help
+!ship dmg                       list of Damage brackets
+!ship dmg <dmg>                 list of ships with Damage inc type
+#!ship random <n>               print random number of ships, default 10
+#!ship help                     ship help
 ```
 
 ### MISSION modulo
