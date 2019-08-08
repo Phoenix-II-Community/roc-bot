@@ -110,7 +110,16 @@ def make_element_set(ctxsc):
 
 # A standard list used by many funcitons to output a list 
 # affinity emoji, ship emoji, ship name. 
-def generic_ship_list(found_this, ctxsc):
+def ship_command_common_title(found_this, ctxsc):
+    if ctxsc == "dmg":
+        var_title = ("{dpsemoji} DPS {dps}").format(dpsemoji=customemoji("dps"), \
+            dps=found_this[0])
+    else:
+        var_title = ("{emoji} {context} Ships").format(emoji=customemoji(found_this[0]), \
+            context=found_this[0])
+    return var_title
+
+def ship_command_common_list(found_this, ctxsc):
     list1 = []
     for elements in ships_data.values():
         if elements[ctxsc] == found_this[0]:
@@ -120,19 +129,11 @@ def generic_ship_list(found_this, ctxsc):
                 name=elements['ship_name']))
     return '\n'.join(list1)
 
-def ship_command_title(found_this, ctxsc):
-    if ctxsc == "dmg":
-        var_title = ("{dpsemoji} DPS {dps}").format(dpsemoji=customemoji("dps"), \
-            dps=found_this[0])
-    else:
-        var_title = ("{emoji} {rarity} Ships").format(emoji=customemoji(found_this[0]), \
-            rarity=found_this[0])
-    return var_title
-
 def ship_command_common_query(find_this, ctxsc):
     found_this = process.extractOne(find_this, make_element_set(ctxsc))
-    description = generic_ship_list(found_this, ctxsc)
-    title = ship_command_title(found_this, ctxsc)
+    print(found_this)
+    description = ship_command_common_list(found_this, ctxsc)
+    title = ship_command_common_title(found_this, ctxsc)
     embed = discord.Embed(title=title, description=description)
     return embed
 
