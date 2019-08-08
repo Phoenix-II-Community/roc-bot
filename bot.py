@@ -113,16 +113,16 @@ def make_element_set(ctxsc):
 def ship_command_common_title(found_this, ctxsc):
     if ctxsc == "dmg":
         var_title = ("{dpsemoji} DPS {dps}").format(dpsemoji=customemoji("dps"), \
-            dps=found_this[0])
+            dps=found_this)
     else:
-        var_title = ("{emoji} {context} Ships").format(emoji=customemoji(found_this[0]), \
-            context=found_this[0])
+        var_title = ("{emoji} {context} Ships").format(emoji=customemoji(found_this), \
+            context=found_this)
     return var_title
 
 def ship_command_common_list(found_this, ctxsc):
     list1 = []
     for elements in ships_data.values():
-        if elements[ctxsc] == found_this[0]:
+        if elements[ctxsc] == found_this:
             list1.append(("{elementemoji} {shipemoji} {name}").format(\
                 elementemoji=customemoji(elements['affinity']), \
                 shipemoji=customemoji(elements['ship_name'].lower()),\
@@ -130,8 +130,7 @@ def ship_command_common_list(found_this, ctxsc):
     return '\n'.join(list1)
 
 def ship_command_common_query(find_this, ctxsc):
-    found_this = process.extractOne(find_this, make_element_set(ctxsc))
-    print(found_this)
+    found_this = process.extractOne(find_this, make_element_set(ctxsc))[0]
     description = ship_command_common_list(found_this, ctxsc)
     title = ship_command_common_title(found_this, ctxsc)
     embed = discord.Embed(title=title, description=description)
@@ -161,7 +160,7 @@ def affinity_search(find_this, ctxsc):
     return embed
 
 def sanitise_input(input_string):
-    words_only = re.sub('\W+','', input_string)
+    words_only = re.sub(r'\W+','', input_string)
     return unicodedata.normalize('NFKD', words_only).encode('ascii', 'ignore').decode('utf8')
 
 def customemoji(find_this):
