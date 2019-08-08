@@ -24,7 +24,6 @@ ships_data = json.load(ships_json)
 invaders_json = open(('{hd}/scripts/apex-bot/res/invaders.json').format(hd=home_dir))
 invaders_data = json.load(invaders_json)
 
-
 embed_colours = {"Shield Breaker": 0x3a77f9, "High Impact": 0xee4529, "Armor Piercing": 0xffb820}
 
 logging.basicConfig(level=logging.INFO)
@@ -107,31 +106,24 @@ def make_element_set(ctxsc):
     new_set = set({})
     for elements in ships_data.values():
         new_set.add(elements[ctxsc])
-    print(new_set)
     return sorted(new_set)
 
 # A standard list used by many funcitons to output a list 
 # affinity emoji, ship emoji, ship name. 
-#def generic_ship_list(found_this):
-#    for elements in ships_data.values():
-#        if elements['aura'] == found_this[0]:
-#            list1.append(("{elementemoji} {shipemoji} {name}").format(\
-#                elementemoji=customemoji(elements['affinity']), \
-#                shipemoji=customemoji(elements['ship_name'].lower()),\
-#                name=elements['ship_name']))
-#    description = '\n'.join(list1)
-
-
-def aura_search(find_this, ctxsc):
+def generic_ship_list(found_this, ctxsc):
     list1 = []
-    found_this = process.extractOne(find_this, make_element_set(ctxsc))
     for elements in ships_data.values():
-        if elements['aura'] == found_this[0]:
+        if elements[ctxsc] == found_this[0]:
             list1.append(("{elementemoji} {shipemoji} {name}").format(\
                 elementemoji=customemoji(elements['affinity']), \
                 shipemoji=customemoji(elements['ship_name'].lower()),\
                 name=elements['ship_name']))
-    description = '\n'.join(list1)
+    return '\n'.join(list1)
+
+
+def aura_search(find_this, ctxsc):
+    found_this = process.extractOne(find_this, make_element_set(ctxsc))
+    description = generic_ship_list(found_this, ctxsc)
     title = ("{emoji} {aura} Ships").format(emoji=customemoji(found_this[0]), \
         aura=found_this[0])
     embed = discord.Embed(title=title, description=description)
