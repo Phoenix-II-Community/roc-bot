@@ -287,7 +287,11 @@ async def rarity(ctx, *, arg1=None):
     if arg1 == None:
         await ctx.send(embed=raritylisting(sub_command))
     else:
+<<<<<<< HEAD
         await generic_ship_command_embed(ctx, arg1, sub_command)
+=======
+        await generic_ship_command_embed(arg1, arg1, sub_command)
+>>>>>>> 91cfe9bfa05edb5769cd8d0f0387de18e5065b57
 
 
 @ship.command()
