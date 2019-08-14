@@ -102,16 +102,20 @@ def get_ship_image(ship_name):
 
 # Making a set of elements found based on the sub command string that's used.
 # The sub command string matches a ship.json key.  
-def make_element_set(ctxsc):
+def make_element_set(sub_command):
     new_set = set({})
     for elements in ships_data.values():
-        new_set.add(elements[ctxsc])
+        new_set.add(elements[sub_command])
     return sorted(new_set)
+
+
+def finder(find_this, sub_command):
+    return process.extractOne(find_this, make_element_set(sub_command))[0]
 
 # A standard list used by many funcitons to output a list 
 # affinity emoji, ship emoji, ship name. 
-def ship_command_common_title(found_this, ctxsc):
-    if ctxsc == "dmg":
+def ship_command_common_title(found_this, sub_command):
+    if sub_command == "dmg":
         var_title = ("{dpsemoji} DPS {dps}").format(dpsemoji=customemoji("dps"), \
             dps=found_this)
     else:
@@ -119,25 +123,33 @@ def ship_command_common_title(found_this, ctxsc):
             context=found_this)
     return var_title
 
-def ship_command_common_list(found_this, ctxsc):
+
+def ship_command_common_list(found_this, sub_command):
     list1 = []
     for elements in ships_data.values():
-        if elements[ctxsc] == found_this:
+        if elements[sub_command] == found_this:
             list1.append(("{elementemoji} {shipemoji} {name}").format(\
                 elementemoji=customemoji(elements['affinity']), \
                 shipemoji=customemoji(elements['ship_name'].lower()),\
                 name=elements['ship_name']))
-    return '\n'.join(list1)
+    return (list1)
 
-def ship_command_common_query(find_this, ctxsc):
-    found_this = process.extractOne(find_this, make_element_set(ctxsc))[0]
-    description = ship_command_common_list(found_this, ctxsc)
-    title = ship_command_common_title(found_this, ctxsc)
-    embed = discord.Embed(title=title, description=description)
-    return embed
 
-  
-def affinity_search(find_this, ctxsc):
+def ship_command_embed_pager(found_this, sub_command):
+    paginator = commands.Paginator(prefix='', suffix='', max_size=2000)
+    for ship_line in ship_command_common_list(found_this, sub_command):
+        paginator.add_line(ship_line)
+    return paginator.pages
+
+
+async def generic_ship_command_embed(ctx, arg1, sub_command):
+    found_this = finder(arg1, sub_command)
+    title = ship_command_common_title(found_this, sub_command)
+    for page in ship_command_embed_pager(found_this, sub_command):
+        await ctx.send(embed=discord.Embed(title=title, description=page))
+
+ 
+def affinity_search(find_this, sub_command):
     list1 = []
     if find_this == "ap":
         find_this = "Armor Piercing"
@@ -147,13 +159,16 @@ def affinity_search(find_this, ctxsc):
         find_this = "Shield Breaker"
     else:
         pass
-    found_this = process.extractOne(find_this, make_element_set(ctxsc))
+    found_this = process.extractOne(find_this, make_element_set(sub_command))
     for elements in ships_data.values():
         if elements['affinity'] == found_this[0]:
-            list1.append(("{emoji} {name}").format(emoji=customemoji(elements['ship_name'].lower()),
-             name=elements['ship_name']))
+            list1.append(("{emoji} {name}").format(
+                emoji=customemoji(elements['ship_name'].lower()
+                ),
+                name=elements['ship_name']))
         description = '\n'.join(list1)
-        title = ("{emoji} {affinity} Ships").format(emoji=customemoji(found_this[0]), \
+        title = ("{emoji} {affinity} Ships").format(
+            emoji=customemoji(found_this[0]), \
             affinity=found_this[0])
         em_colour = embed_colours[found_this[0]]
         embed = discord.Embed(title=title, description=description, colour=em_colour)
@@ -167,9 +182,9 @@ def customemoji(find_this):
     find_sanitised = sanitise_input(find_this.lower())
     return discord.utils.get(bot.emojis, name = find_sanitised)
 
-def auralisting(ctxsc):
+def auralisting(sub_command):
     list1 = []
-    for elements in make_element_set(ctxsc):
+    for elements in make_element_set(sub_command):
         list1.append(("{emoji} {name}").format(
             emoji=customemoji(elements),
             name=elements))
@@ -177,9 +192,9 @@ def auralisting(ctxsc):
     title = ("Auras")
     return discord.Embed(title=title, description=description)
 
-def zenlisting(ctxsc):
+def zenlisting(sub_command):
     list1 = []
-    for elements in make_element_set(ctxsc):
+    for elements in make_element_set(sub_command):
         list1.append(("{emoji} {name}").format(
             emoji=customemoji(elements),
             name=elements))
@@ -187,9 +202,9 @@ def zenlisting(ctxsc):
     title = ("Zens")
     return discord.Embed(title=title, description=description)
 
-def affinitylisting(ctxsc):
+def affinitylisting(sub_command):
     list1 = []
-    for elements in make_element_set(ctxsc):
+    for elements in make_element_set(sub_command):
         list1.append(("{emoji} {name}").format(
             emoji=customemoji(elements),
             name=elements))
@@ -197,26 +212,23 @@ def affinitylisting(ctxsc):
     title = ("Main Weapon Affinities")
     return discord.Embed(title=title, description=description)
 
-def damagelisting(ctxsc):
+def damagelisting(sub_command):
     list1 = []
-    for elements in make_element_set(ctxsc):
+    for elements in make_element_set(sub_command):
         list1.append(("{name}").format(name=elements))
     description = '\n'.join(list1)
     title = ("{dpsemoji} Damage Brackets").format(dpsemoji=customemoji("dps"))
     return discord.Embed(title=title, description=description)
 
-def raritylisting(ctxsc):
+def raritylisting(sub_command):
     list1 = []
-    for elements in make_element_set(ctxsc):
+    for elements in make_element_set(sub_command):
         list1.append(("{emoji} {name}").format(
             emoji=customemoji(elements),
             name=elements))
     description = '\n'.join(list1)
     title = ("{rareemoji} Rarities").format(rareemoji=customemoji("vegemite"))
     return discord.Embed(title=title, description=description)
-
-
-#def zenlisting():
 
 
 ################################################################
@@ -245,47 +257,46 @@ async def ship(ctx):
 
 @ship.command()
 async def dmg(ctx, *, arg1=None):
-    ctxsc = ctx.subcommand_passed
+    print(type(ctx))
+    sub_command = ctx.subcommand_passed
     if arg1 == None:
-        await ctx.send(embed=damagelisting(ctxsc))
+        await ctx.send(embed=damagelisting(sub_command))
     else:
-        await ctx.send(embed=ship_command_common_query(arg1, ctxsc))
-
+        await generic_ship_command_embed(ctx, arg1, sub_command)
 
 @ship.command()
 async def aura(ctx, *, arg1=None):
-    ctxsc = ctx.subcommand_passed
+    sub_command = ctx.subcommand_passed
     if arg1 == None:
-        await ctx.send(embed=auralisting(ctxsc))
+        await ctx.send(embed=auralisting(sub_command))
     else:
-        await ctx.send(embed=ship_command_common_query(arg1, ctxsc))
+        await generic_ship_command_embed(arg1, arg1, sub_command)
 
 
 @ship.command()
 async def zen(ctx, *, arg1=None):
-    ctxsc = ctx.subcommand_passed
+    sub_command = ctx.subcommand_passed
     if arg1 == None:
-        await ctx.send(embed=zenlisting(ctxsc))
+        await ctx.send(embed=zenlisting(sub_command))
     else:
-        await ctx.send(embed=ship_command_common_query(arg1, ctxsc))
+        await generic_ship_command_embed(arg1, arg1, sub_command)
 
 @ship.command()
 async def rarity(ctx, *, arg1=None):
-    ctxsc = ctx.subcommand_passed
+    sub_command = ctx.subcommand_passed
     if arg1 == None:
-        await ctx.send(embed=raritylisting(ctxsc))
+        await ctx.send(embed=raritylisting(sub_command))
     else:
-        await ctx.send(embed=ship_command_common_query(arg1, ctxsc))
+        generic_ship_command_embed(arg1, arg1, sub_command)
 
 
 @ship.command()
 async def affinity(ctx, *, arg1=None):
-    ctxsc = ctx.subcommand_passed
+    sub_command = ctx.subcommand_passed
     if arg1 == None:
-        await ctx.send(embed=affinitylisting(ctxsc))
+        await ctx.send(embed=affinitylisting(sub_command))
     else:
-        await ctx.send(embed=affinity_search(arg1, ctxsc))
-
+        await ctx.send(embed=affinity_search(arg1, sub_command))
 
 # Sub command to the @bot.group() decorator ship function.
 # Intended that for use in high traffic channels, the output size is intential 
