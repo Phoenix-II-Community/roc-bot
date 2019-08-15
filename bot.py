@@ -23,10 +23,12 @@ ships_json = open(('{hd}/scripts/apex-bot/res/ships.json').format(hd=home_dir))
 ships_data = json.load(ships_json)
 invaders_json = open(('{hd}/scripts/apex-bot/res/invaders.json').format(hd=home_dir))
 invaders_data = json.load(invaders_json)
-
-embed_colours = {"Shield Breaker": 0x3a77f9, "High Impact": 0xee4529, "Armor Piercing": 0xffb820}
+shortcuts_json = open(('{hd}/scripts/apex-bot/res/shortcuts.json').format(hd=home_dir))
+shortcuts_data = json.load(shortcuts_json)
 
 logging.basicConfig(level=logging.INFO)
+
+embed_colours = {"Shield Breaker": 0x3a77f9, "High Impact": 0xee4529, "Armor Piercing": 0xffb820}
 
 bot = commands.Bot(command_prefix="!")
 
@@ -46,13 +48,6 @@ def ship_search(find_this):
     found_this = process.extractOne(find_this, ships_data.keys())
     ship_name = found_this[0]
     return ship_name
-
-# Use the slutty ship_search function to return the ship name key which flies 
-# in the face of how a dict is meant to work. The stat_name is provided from the
-# get_ship_description_small function or similar. 
-def ship_stat(find_ship, stat_name):
-    ship_dict = ships_data[ship_search(find_ship)]
-    return ship_dict
 
 # Discord embed have a line of the left hand side. This line can be coloured
 # This function uses one of the 3 affinity choices to select a colour from
@@ -108,9 +103,15 @@ def make_element_set(sub_command):
         new_set.add(elements[sub_command])
     return sorted(new_set)
 
+# shortcuts.json is imported and used as shortcuts_data
+def shortcuts(find_this):
+    if find_this in shortcuts_data:
+        return shortcuts_data[find_this]
+    else:
+        return find_this
 
 def finder(find_this, sub_command):
-    return process.extractOne(find_this, make_element_set(sub_command))[0]
+    return process.extractOne(shortcuts(find_this), make_element_set(sub_command))[0]
 
 # A standard list used by many funcitons to output a list 
 # affinity emoji, ship emoji, ship name. 
@@ -354,5 +355,6 @@ async def on_message(message):
         emoji = get(bot.emojis, name='el')
         await message.add_reaction(emoji)
         return
+
 
 bot.run(settings.discordkey)
