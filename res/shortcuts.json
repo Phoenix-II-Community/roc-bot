@@ -17,6 +17,9 @@
     "ps":"Personal Shield",
     "remp":"Reflex EMP",
     "tp":"Teleport",
-    "tm":"Tracking Minigun"
+    "tm":"Tracking Minigun",
+    "sb": "Shield Breaker",
+    "hi": "High Impact",
+    "ap": "Armor Piercing"
 }
 
