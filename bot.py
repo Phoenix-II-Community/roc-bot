@@ -2,19 +2,20 @@
 # -*- coding: utf-8 -*-
 
 import datetime
-import settings
-import discord
-import logging
-import fuzzywuzzy
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
-from discord.utils import get
-from discord.ext import commands
 import json
-from pathlib import Path
-import discord.ext.commands
+import logging
+import random
 import re
 import unicodedata
+from pathlib import Path
+
+import discord
+import discord.ext.commands
+from discord.ext import commands
+from discord.utils import get
+from fuzzywuzzy import process
+
+import settings
 
 home_dir = Path.home()
 
@@ -149,18 +150,30 @@ async def generic_ship_command_embed(ctx, arg1, sub_command):
     for page in ship_command_embed_pager(found_this, sub_command):
         await ctx.send(embed=discord.Embed(title=title, description=page))
 
- 
+def ship_command_random_list(quantity):
+    list1 = []
+    for elements in ships_data.values():
+        list1.append(("{elementemoji} {shipemoji} {name}").format(\
+            elementemoji=customemoji(elements['affinity']), \
+            shipemoji=customemoji(elements['ship_name'].lower()),\
+            name=elements['ship_name']))
+    return random.sample(list1, int(quantity))
+
+def random_command_embed_pager(quantity):
+    paginator = commands.Paginator(prefix='', suffix='', max_size=2000)
+    for ship_line in ship_command_random_list(quantity):
+        paginator.add_line(ship_line)
+    return paginator.pages
+
+async def random_ship_command_embed(ctx, arg1):
+    title = 'Random Selection'
+    for page in random_command_embed_pager(arg1):
+        await ctx.send(embed=discord.Embed(title=title, description=page))
+
+
 def affinity_search(find_this, sub_command):
     list1 = []
-    if find_this == "ap":
-        find_this = "Armor Piercing"
-    elif find_this == "hi":
-        find_this = "High Impact"
-    elif find_this == "sb":
-        find_this = "Shield Breaker"
-    else:
-        pass
-    found_this = process.extractOne(find_this, make_element_set(sub_command))
+    found_this = process.extractOne(shortcuts(find_this), make_element_set(sub_command))
     for elements in ships_data.values():
         if elements['affinity'] == found_this[0]:
             list1.append(("{emoji} {name}").format(
@@ -182,6 +195,7 @@ def sanitise_input(input_string):
 def customemoji(find_this):
     find_sanitised = sanitise_input(find_this.lower())
     return discord.utils.get(bot.emojis, name = find_sanitised)
+
 
 def auralisting(sub_command):
     list1 = []
@@ -298,6 +312,17 @@ async def affinity(ctx, *, arg1=None):
         await ctx.send(embed=affinitylisting(sub_command))
     else:
         await ctx.send(embed=affinity_search(arg1, sub_command))
+
+@ship.command()
+async def rand(ctx, *, arg1=None):
+    if ctx.channel.id == 378546862627749908:
+        if arg1 == None:
+            arg1 = 10
+            await random_ship_command_embed(ctx, arg1)
+        else:
+            await random_ship_command_embed(ctx, arg1)
+    else:
+        await ctx.send("Command limited to <#378546862627749908>.")
 
 # Sub command to the @bot.group() decorator ship function.
 # Intended that for use in high traffic channels, the output size is intential 
