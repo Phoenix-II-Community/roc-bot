@@ -1,139 +1,94 @@
 {
-  "bullet emp": {
-      "name":"Bullet EMP",
-      "desc":"destroys all bullets in it's radius",
-      "properties": {
-        "max radius":450
+  "Bullet EMP": {
+    "Description":"Clears all bullets in the Aura",
+    "Max Radius":450,
+    "Ultimate":"Reset Stun",
+    "Ultimate Description":"Interrupts enemy turrets with a short stun"
+    },
+    "Stun EMP": {
+    "Description":"Stuns enemy turrets in the Aura",
+    "Max Radius":450,
+    "Max Stun Time":5,
+    "Ultimate":"Stun bomb",
+    "Ultimate Description":"deals moderate damage to invaders in the radius.",
+    "Max Damage":5
+    },
+    "Barrier": {
+    "Description":"Barrier that stops bullets and lasers",
+    "max radius":250,
+    "Barrier Strength":"200%",
+    "Ultimate":"Inner lining",
+    "Ultimate Description":"Place an extra Barrier on the inside"
+    },
+    "Laser Storm": {
+    "Description":"Laser Moons strike at targets in range",
+    "laser moons":5,
+    "max duration":"4.5s",
+    "max damage":112,
+    "max radius":500,
+    "Ultimate":"Laser Moon Mk2",
+    "Ultimate Description":"Laser moons shoot two lasers,dealing extra damage"
+  },
+  "Missile Swarm":{
+    "Description":"Missile strike on all targets in range",
+    "missiles":46,
+    "max damage":138,
+    "homing capability":"Perfect",
+    "max radius":450,
+    "Ultimate":"Advanced targeting",
+    "Ultimate Description":"Enables Missiles to switch to other locked targets."
+  },
+  "Point Defense": {
+    "Description":"destroys a small amount of bullets around the ship",
+    "radius":410,
+    "laser beams":10,
+    "efficiency":"300%",
+    "Ultimate":"MIRV defense",
+    "Ultimate Description":"Destroys MIRV projectiles more easily"
+  },
+  "Chrono Field": {
+    "Description":"phases your ship out for a limited time in a small radius",
+    "max duration":5,
+    "max radius":170,
+    "Ultimate":"Phase out",
+    "Ultimate Description":"Phases the ship out for half a second when they exit the field",
+    "phase out":0.5
+  },
+  "Vorpal Lance": {
+    "Description":"Fires a piercing Vopral Lance",
+    "damage": 39.6,
+    "count": 4,
+    "Ultimate": "Vorpal wake",
+    "Ultimate Description": "Destroys enemy bullets hit by Vopral Lance"
+  },
+  "Phalanx": {
+    "Description":"Focused shield in front of the ship",
+    "Phalanx Strength":"150%",
+    "Counters":6,
+    "Ultimate":"Wide Phalanx",
+    "Ultimate Description":"Increases Phalanx coverage"
+  },
+  "Ion cannon":{
+    "Description":"launches a projectile that will stun whatever it hits",
+    "stun time":4,
+    "max count":6,
+    "Ultimate":"EMP bomb",
+    "Ultimate Description":"Deals blast damage on impact"
+    },
+    "Goliath Missile":{
+      "Description":"Fires a missile with a large explosion",
+      "Blast Damage":"Unknown",
+      "Impact Damage":"Unknown",
+      "counters":4,
+      "Blast Radius":"115%",
+      "Ultimate":"Extended Range",
+      "Ultimate Description":"Extends the range of the blast"
       },
-      "ult":{
-        "name":"Reset Stun",
-        "desc":"stuns enemies for a short time to reset their turrets, useful against spinners"
-      }
-    },
-    "stun emp": {
-      "name":"Stun EMP", 
-      "desc":"stuns all enemies in the radius",
-      "properties":{
-        "max radius":450,
-        "max stun time":5
-      },
-      "ult":{
-        "name":"Stun bomb",
-        "desc":"deals moderate damage to invaders in the radius.",
-        "max damage":5
-      }
-    },
-    "barrier": {
-      "name":"Barrier",
-      "desc":"Erects a circular barrier that absorbs enemy fire",
-      "properties": {
-        "max radius":450,
-        "Barrier Strength":200
-      },
-      "ult": {
-        "name":"Inner lining",
-        "desc":"Created a secondary barrier inside the primary one to absorb enemy fire inside the barrier"
-      }
-    },
-    "laser storm": {
-      "name":"Laser Storm",
-      "desc":"Releases Laser Moons for a short time that deal great damage",
-      "properties": {
-        "laser moons":5,
-        "max duration":4.5,
-        "max damage":112,
-        "max radius":500
-      },
-      "ult": {
-      "name":"Laser Moon Mk.II",
-      "desc":"Laser moons shoot two lasers,dealing extra damage"
-    }
-  },
-  "missile swarm":{
-    "name":"Missile swarm",
-    "desc":"releases a volley of high-burst damage missiles",
-    "properties":{
-      "missiles":46,
-      "max damage":138,
-      "homing capability":
-      "Perfect",
-      "max radius":450
-    },
-    "ult": {
-      "name":"Advanced targeting",
-      "desc":"Missiles will change targets if their current one is destroyed, only applies to targets that were inside the aura upon activation."      
-    }
-  },
-  "point defense": {
-    "name":"Point Defense",
-    "desc":"destroys a small amount of bullets around the ship",
-    "properties":{
-      "radius":410,
-      "laser beams":10,
-      "efficiency":300
-    },
-    "ult":{
-      "name":"MIRV defense",
-      "desc":"MIRVs are easier to get rid of"
-    }
-  },
-  "chrono field": {
-    "name":"Chrono Field",
-    "desc":"phases your ship out for a limited time in a small radius",
-    "properties": {
-      "max duration":5,
-      "max radius":170
-    },
-    "ult": {
-      "name":"Phase out",
-      "desc":"Phases the ship out for half a second when they exit the field",
-      "phase out":0.5
-    }
-  },
-  "Vorpal lance": {
-    "name":"Vorpal lance",
-    "desc":"Launches a piercing lance that deals considerable damage",
-    "properties": {
-      "damage": 39.6,
-      "count": 4
-    },
-    "ult": {
-      "name": "Vorpal wake",
-      "desc": "Destroys bullets in its path"
-    }
-  },
-  "phalanx": {
-    "name":"Phalanx",
-    "desc":"created a temporary shield in front of your ship",
-    "properties":{
-      "phalanx strength":150,
-      "counters":6
-    },
-    "ult":{
-      "name":"Wide Phalanx",
-      "desc":"Makes the Phalanx wider and increases it's durability"
-    }
-  },
-  "ion cannon":{
-    "name": "Ion cannon",
-    "desc":"launches a projectile that will stun whatever it hits",
-    "properties":{
-      "stun time":4,
-      "max count":6
-    },
-    "ult":{"name":"EMP bomb",
-      "desc":"Deals moderate damage in a moderate radius"                  
-      }
-    },
-    "blade storm":{
-      "name":"Blade storm",
-      "desc":"Variant of Missile Swarm. deals less damage but requires much less energy to use",
-      "properties":{
-        "max radius":500,
-        "max damage":100
-      },
-      "ult": {
-        "name":"Omnislash",
-        "desc":"Small buff to stats. Any special effect has yet to be determined."}
+    "Blade Storm":{
+      "Description":"Variant of Missile Swarm. deals less damage but requires much less energy to use",
+      "max radius":500,
+      "max damage":100,
+      "Ultimate":"Omnislash",
+      "Ultimate Description":"Small buff to stats. Any special effect has yet to be determined."
     }
 }
