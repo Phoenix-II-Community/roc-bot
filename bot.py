@@ -61,9 +61,9 @@ def get_em_colour(ship_name):
 
 # This is the small embed description output used by the
 #  "!ship info <ship name>" command. 
-def get_ship_description_small(ship_name):
+def get_ship_description_info(ship_name):
     ship_dict = ships_data[ship_name]
-    ship_description_small = ("{emojidps} {ship[dmg]}\n"
+    ship_description_info = ("{emojidps} {ship[dmg]}\n"
     "{emojidmgtype} {ship[weapon_name]}\n"
     "{emojiaura} {ship[aura]}\n"
     "{emojizen} {ship[zen]}\n").format(emojidps=customemoji("dps"),
@@ -71,7 +71,18 @@ def get_ship_description_small(ship_name):
             emojiaura=customemoji(ship_dict["aura"]),
             emojizen=customemoji(ship_dict["zen"]),
             ship=ship_dict)
-    return ship_description_small
+    return ship_description_info
+
+# This is the small embed description output used by the
+#  "!ship info <ship name>" command. 
+def get_ship_description_detail(ship_name):
+    ship_dict = ships_data[ship_name]
+    ship_description_detail = ("{emojidps} {ship[dmg]}\n"
+    "{emojidmgtype} {ship[weapon_name]}\n").format(emojidps=customemoji("dps"),
+            emojidmgtype=customemoji(ship_dict["affinity"]),
+            ship=ship_dict)
+    return ship_description_detail
+
 
 # Each ship has a number based on the in game order they were listed and added.
 # return that100% number. 
@@ -171,14 +182,34 @@ async def random_ship_command_embed(ctx, arg1):
         await ctx.send(embed=discord.Embed(title=title, description=page))
 
 
+def ship_command_all_list():
+    list1 = []
+    for elements in ships_data.values():
+        list1.append(("{elementemoji} {shipemoji} {name}").format(\
+            elementemoji=customemoji(elements['affinity']), \
+            shipemoji=customemoji(elements['ship_name'].lower()),\
+            name=elements['ship_name']))
+    return list1
+
+def all_command_embed_pager():
+    paginator = commands.Paginator(prefix='', suffix='', max_size=2000)
+    for ship_line in ship_command_all_list():
+        paginator.add_line(ship_line)
+    return paginator.pages
+
+async def all_ship_command_embed(ctx):
+    title = 'Random Selection'
+    for page in all_command_embed_pager():
+        await ctx.send(embed=discord.Embed(title=title, description=page))
+
+
 def affinity_search(find_this, sub_command):
     list1 = []
     found_this = process.extractOne(shortcuts(find_this), make_element_set(sub_command))
     for elements in ships_data.values():
         if elements['affinity'] == found_this[0]:
             list1.append(("{emoji} {name}").format(
-                emoji=customemoji(elements['ship_name'].lower()
-                ),
+                emoji=customemoji(elements['ship_name'].lower()),
                 name=elements['ship_name']))
         description = '\n'.join(list1)
         title = ("{emoji} {affinity} Ships").format(
@@ -324,6 +355,14 @@ async def rand(ctx, *, arg1=None):
     else:
         await ctx.send("Command limited to <#378546862627749908>.")
 
+@ship.command()
+async def all(ctx, *, arg1=None):
+    if ctx.channel.id == 378546862627749908:
+        await all_ship_command_embed(ctx)
+    else:
+        await ctx.send("Command limited to <#378546862627749908>.")
+
+
 # Sub command to the @bot.group() decorator ship function.
 # Intended that for use in high traffic channels, the output size is intential 
 # small. A 5 line embed with basic info: name, weapon, dps, aura and zen.
@@ -331,7 +370,7 @@ async def rand(ctx, *, arg1=None):
 async def info(ctx, *, arg1):
     ship_name = ship_search(arg1)
     ship_embed_title = get_ship_title(ship_name)
-    ship_embed_description = get_ship_description_small(ship_name)
+    ship_embed_description = get_ship_description_info(ship_name)
     embed_colour = get_em_colour(ship_name)
     embed = discord.Embed(title=ship_embed_title, 
     description=ship_embed_description, colour=embed_colour)
@@ -344,18 +383,20 @@ async def number(ctx, *, arg1):
     number = find_number(ship_name)
     await ctx.send(number)
 
-# Sub command to the @bot.group() decorator ship function.
-# Intended that for use in low traffic channels, the output size is large.
-# A 6+ line embed with detailed info: name, weapon, dps, aura and zen.
-#@ship.command()
-#async def detail(ctx, *, arg1):
-#    ship_name = ship_search(arg1)
-#    ship_embed_title = get_ship_title(ship_name)
-#    ship_embed_description = get_ship_description_small(ship_name)
-#    embed_colour = get_em_colour(ship_name)
-#    embed = discord.Embed(title=ship_embed_title, description=ship_embed_description, colour=embed_colour)
-#    embed.set_thumbnail(url=get_ship_image(ship_name))
-#    await ctx.send(embed=embed)
+#Sub command to the @bot.group() decorator ship function.
+#Intended that for use in low traffic channels, the output size is large.
+#A 6+ line embed with detailed info: name, weapon, dps, aura and zen.
+@ship.command()
+async def detail(ctx, *, arg1):
+    ship_name = ship_search(arg1)
+    ship_embed_title = get_ship_title(ship_name)
+    ship_embed_description = get_ship_description_detail(ship_name)
+    embed_colour = get_em_colour(ship_name)
+    embed.add_field(name=aura_title, value=aura_value, inline=False)
+    embed.add_field(name=zen_title, value=zen_value, inline=False)
+    embed = discord.Embed(title=ship_embed_title, description=ship_embed_description, colour=embed_colour)
+    embed.set_thumbnail(url=get_ship_image(ship_name))
+    await ctx.send(embed=embed)
 
 
 # If a message receives the :el: emoji, then the bot should add it's own :el: reaction
