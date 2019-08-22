@@ -26,6 +26,10 @@ invaders_json = open(('{hd}/scripts/apex-bot/res/invaders.json').format(hd=home_
 invaders_data = json.load(invaders_json)
 shortcuts_json = open(('{hd}/scripts/apex-bot/res/shortcuts.json').format(hd=home_dir))
 shortcuts_data = json.load(shortcuts_json)
+auras_json = open(('{hd}/scripts/apex-bot/res/auras.json').format(hd=home_dir))
+auras_data = json.load(auras_json)
+zens_json = open(('{hd}/scripts/apex-bot/res/zens.json').format(hd=home_dir))
+zens_data = json.load(zens_json)
 
 logging.basicConfig(level=logging.INFO)
 
@@ -59,6 +63,42 @@ def get_em_colour(ship_name):
     em_colour = embed_colours[dmg_type]
     return em_colour
 
+
+
+def get_detail_aura_value(aura):
+    aura_dict = auras_data[aura]
+    list1 = []
+    for k, v in aura_dict.items():
+        list1.append(("{key} {value}").format(key=k, value=v))
+    return '\n'.join(list1)
+    
+def get_detail_zen_value(zen):
+    zen_dict = zens_data[zen]
+    list1 = []
+    for k, v in zen_dict.items():
+        list1.append(("{key} {value}").format(key=k, value=v))
+    return '\n'.join(list1)
+
+def get_detail_value_zen(ship_name):
+    ship_dict = ships_data[ship_name]
+    zen_title = ("{emoji} {zen}").format(\
+        emoji=customemoji(ship_dict["zen"]), 
+        zen=ship_dict["zen"])
+    return zen_title
+
+def get_detail_value_aura(ship_name):
+    ship_dict = ships_data[ship_name]
+    aura_title = ("{emoji} {zen}").format(\
+        emoji=customemoji(ship_dict["aura"]), 
+        zen=ship_dict["aura"])
+    return aura_title
+
+
+#def get_detail_aura():
+
+#def get_detial_zen():
+
+
 # This is the small embed description output used by the
 #  "!ship info <ship name>" command. 
 def get_ship_description_info(ship_name):
@@ -74,7 +114,7 @@ def get_ship_description_info(ship_name):
     return ship_description_info
 
 # This is the small embed description output used by the
-#  "!ship info <ship name>" command. 
+#  "!ship detail <ship name>" command. 
 def get_ship_description_detail(ship_name):
     ship_dict = ships_data[ship_name]
     ship_description_detail = ("{emojidps} {ship[dmg]}\n"
@@ -388,15 +428,19 @@ async def number(ctx, *, arg1):
 #A 6+ line embed with detailed info: name, weapon, dps, aura and zen.
 @ship.command()
 async def detail(ctx, *, arg1):
-    ship_name = ship_search(arg1)
-    ship_embed_title = get_ship_title(ship_name)
-    ship_embed_description = get_ship_description_detail(ship_name)
-    embed_colour = get_em_colour(ship_name)
-    embed.add_field(name=aura_title, value=aura_value, inline=False)
-    embed.add_field(name=zen_title, value=zen_value, inline=False)
-    embed = discord.Embed(title=ship_embed_title, description=ship_embed_description, colour=embed_colour)
-    embed.set_thumbnail(url=get_ship_image(ship_name))
-    await ctx.send(embed=embed)
+    if ctx.channel.id == 378546862627749908:
+        ship_name = ship_search(arg1)
+        print(ship_name)
+        ship_embed_title = get_ship_title(ship_name)
+        ship_embed_description = get_ship_description_detail(ship_name)
+        embed_colour = get_em_colour(ship_name)
+        embed = discord.Embed(title=ship_embed_title, description=ship_embed_description, colour=embed_colour)
+        embed.add_field(name=get_detail_value_aura(ship_name), value=get_detail_aura_value(ships_data[ship_name]['aura']), inline=False)
+        embed.add_field(name=get_detail_value_zen(ship_name), value=get_detail_zen_value(ships_data[ship_name]['zen']), inline=False)
+        embed.set_thumbnail(url=get_ship_image(ship_name))
+        await ctx.send(embed=embed)
+    else:
+        await ctx.send("Command limited to <#378546862627749908>.")
 
 
 # If a message receives the :el: emoji, then the bot should add it's own :el: reaction

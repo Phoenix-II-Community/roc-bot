@@ -1,87 +1,96 @@
 {
   "Kappa Drive":{
-    "auradesc":"Attracts and generates energy particles.",
-    "attraction power":214,
-    "generator efficiency":157,
-    "ultauraname":"Kappa Overdrive",
-    "ultauradesc":"Slows down time while active."
+    "Description:":"Attracts and generates energy particles.",
+    "Attraction Power:":214,
+    "Generator Efficiency:":157,
+    "Ultimate:":"Kappa Overdrive",
+    "Ultimate Description:":"Slows down time while active."
   },
   "Mega Laser":{
-    "auradesc":"Deals massive damage in a straight line in front of your ship.also destroys bullets.",
-    "damage":170,
-    "charge duration":1.9,
-    "charge time increase":0.25,
-    "charge time recovery":"very fast",
-    "beam width":150,
-    "ultauraname":"Beam width",
-    "ultauradesc":"Makes the beam 50% wider"
+    "Description:":"Deals massive damage in a straight line in front of your ship.also destroys bullets.",
+    "Damage:":170,
+    "Charge Duration:":1.9,
+    "Charge Time Increase:":0.25,
+    "Charge Time Recovery:":"very fast",
+    "Beam Width:":150,
+    "Ultimate:":"Beam width",
+    "Ultimate Description:":"Makes the beam 50% wider"
   },
   "Mega Bomb":{
-    "auradesc":"Damages enemies on screen in a large radius",
-    "damage":30,
-    "radius":400,
-    "charge duration":2,
-    "charge time increase":0.4,
-    "charge time recovery":"average",
-    "fusion core damage":30,
-    "ultauraname":"Fusion core",
-    "ultauradesc":"Enemies in the charging reticle will receive double damage"
+    "Description":"Damages enemies on screen in a large radius",
+    "Damage:":30,
+    "Radius:":400,
+    "Charge Duration:":2,
+    "Charge Time Increase:":0.4,
+    "Charge Time Recovery:":"average",
+    "Fusion Core Damage:":30,
+    "**Ultimate**":"",
+    "Fusion Core:":"Deals addtional damage at the center of the blast."
   },
   "Teleport":{
-    "auradesc":"Teleports the ship anywhere on screen",
-    "charge duration":0.4,
-    "charge time increase":0.2,
-    "charge time recovery":"fast",
-    "ultauraname":"Arrival EMP",
-    "ultauradesc":"destroys bullets in a small radius around your ship upon arrival"
+    "Description:":"Teleports the ship anywhere on screen",
+    "Charge Duration:":0.4,
+    "Charge Time Increase:":0.2,
+    "Charge Time Recovery:":"fast",
+    "Ultimate:":"",
+    "Arrival EMP:":"destroys bullets in a small radius around your ship upon arrival"
   },
   "Reflex EMP":{
-    "auradesc":"Destroys bullets in a moderate radius around your ship",
-    "radius":225,
-    "charge duration":0.6,
-    "charge time increase":2,
-    "charge time recovery":"slow",
-    "damage":20,
-    "ultauraname":"Reflex EMP bomb",
-    "ultauradesc":"deals moderate damage to ships in the radius of the blast"
+    "Description:":"Destroys bullets in a moderate radius around your ship",
+    "Radius:":225,
+    "Charge Duration:":0.6,
+    "Charge Time Increase:":2,
+    "Charge Time Recovery:":"slow",
+    "Damage:":20,
+    "Ultimate:":"Reflex EMP bomb",
+    "Ultimate Description:":"deals moderate damage to ships in the radius of the blast"
   },
   "Personal Shield":{
-    "auradesc":"Become Invulnerable for a short time.",
-    "max duration":3.5,
-    "charge duration":0.4,
-    "charge time increase":2,
-    "charge time recovery":"very slow",
-    "ultauraname":"Laser reflection",
-    "ultauradesc":"reflects enemy laser back at them, dealing considerable damage"
+    "Description:":"Become Invulnerable for a short time.",
+    "Max Duration:":3.5,
+    "Charge Duration:":0.4,
+    "Charge Time Increase:":2,
+    "Charge Time Recovery:":"very slow",
+    "Ultimate:":"Laser reflection",
+    "Ultimate Description:":"reflects enemy laser back at them, dealing considerable damage"
+  },  
+  "Focus Lance":{
+    "Description:":"Charges a piercing Lance.",
+    "Damage:":31.2,
+    "Charge Time:":"0.35s",
+    "Charge Time Increase:":"1s",
+    "Charge Time Recovery:":"Average",
+    "Ultimate:":"",
+    "Armor Piercing:":"Pierces enemy armor"
   },  
   "Tracking Minigun":{
-    "auradesc": "activates a tracking minigun when charged",
-    "target tracking": "fast",
-    "damage": 210,
-    "duration": 6,
-    "charging duration": 1,
-    "charge time increase": 17,
-    "charge time recovery": "average",
-    "ultauraname": "Barrage missiles",
-    "ultauradesc": "shoots homing missiles along with the minigun"
+    "Description:": "activates a tracking minigun when charged",
+    "Target Tracking:": "fast",
+    "Damage:": 210,
+    "Duration:": 6,
+    "Charging Duration:": 1,
+    "Charge Time Increase:": 17,
+    "Charge Time Recovery:": "average",
+    "Ultimate:": "Barrage missiles",
+    "Ultimate Description:": "shoots homing missiles along with the minigun"
   },
   "Trinity Teleport":{
-    "auradesc":"shoots a moderate damage projectile upon arrival",
-    "damage":8,
-    "charge duration":0.4,
-    "charge time increase":0.2,
-    "charge time recovery":"fast",
-    "ultauraname":"Arrival EMP",
-    "ultauradesc":"destroys bullets in a small radius around your ship upon arrival"
+    "Description:":"shoots a moderate damage projectile upon arrival",
+    "Damage:":8,
+    "Charge Duration:":0.4,
+    "Charge Time Increase:":0.2,
+    "Charge Time Recovery:":"fast",
+    "Ultimate:":"Arrival EMP",
+    "Ultimate Description:":"destroys bullets in a small radius around your ship upon arrival"
   },
   "Nightfury":{
-    "auradesc":"Charges the epic Nightfury laser",
-    "damage":300,
-    "charge duration":2.3,
-    "charge time increase":0.8,
-    "charge time recovery":"Very slow",
-    "Bullet destruction":"Enabled",
-    "ultauraname":"TBA",
-    "ultauradesc":"TBA"
+    "Description:":"Charges the epic Nightfury laser",
+    "Damage:":300,
+    "Charge Duration:":2.3,
+    "Charge Time Increase:":0.8,
+    "Charge Time Recovery:":"Very slow",
+    "Bullet destruction:":"Enabled",
+    "Ultimate:":"TBA",
+    "Ultimate Description:":"TBA"
   }
 }
