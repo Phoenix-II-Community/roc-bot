@@ -90,7 +90,7 @@
     "Charge Time Increase:":0.8,
     "Charge Time Recovery:":"Very slow",
     "Bullet destruction:":"Enabled",
-    "Ultimate:":"TBA",
-    "Ultimate Description:":"TBA"
+    "Ultimate:":"Bullet destruction",
+    "Ultimate Description:":"Bullets that make contact with the Nightfury laser are destroyed"
   }
 }
