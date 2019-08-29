@@ -89,8 +89,7 @@
     "Charge Duration:":2.3,
     "Charge Time Increase:":0.8,
     "Charge Time Recovery:":"Very slow",
-    "Bullet destructxion:":"Enabled",
-    "Ultimate:":"TBA",
-    "Ultimate Description:":"TBA"
+    "Ultimate:":"Bullet Destruction",
+    "Ultimate Description:":"Destroys enemy bullets in its path."
   }
 }
