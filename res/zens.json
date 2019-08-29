@@ -89,17 +89,8 @@
     "Charge Duration:":2.3,
     "Charge Time Increase:":0.8,
     "Charge Time Recovery:":"Very slow",
-    "Bullet destruction:":"Enabled",
+    "Bullet destructxion:":"Enabled",
     "Ultimate:":"TBA",
     "Ultimate Description:":"TBA"
-  },
-  "Focus Lance":{
-    "Description:":"Charges a piercing lance",
-    "Damage:":300,
-    "Charge Duration:":0.35,
-    "Charge Time Increase:":1,
-    "Charge Time Recovery:":"Average",
-    "Ultimate:":"Armor Piercing",
-    "Ultimate Description:":"Pierces enemy armor"
   }
 }
