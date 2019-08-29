@@ -90,7 +90,15 @@
     "Charge Time Increase:":0.8,
     "Charge Time Recovery:":"Very slow",
     "Bullet destruction:":"Enabled",
-    "Ultimate:":"Bullet destruction",
-    "Ultimate Description:":"Bullets that make contact with the Nightfury laser are destroyed"
-  }
+    "Ultimate:":"TBA",
+    "Ultimate Description:":"TBA"
+  },
+  "Focus Lance":{
+    "Description:":"Charges a piercing lance",
+    "Damage:":300,
+    "Charge Duration:":0.35,
+    "Charge Time Increase:":1
+    "Charge Time Recovery:":"Average",
+    "Ultimate:":"Armor Piercing",
+    "Ultimate Description:":"Pierces enemy armor"
 }
