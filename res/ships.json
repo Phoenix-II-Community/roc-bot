@@ -7,7 +7,7 @@
   "jericho": {"number":"6", "ship_name":"Jericho", "affinity":"Armor Piercing", "dmg":"25", "weapon_name":"Inferno Seekers", "aura":"Bullet EMP", "zen":"Personal Shield", "rarity":"Common"},
   "fujin": {"number":"7", "ship_name":"Fujin", "affinity":"High Impact", "dmg":"37.5", "weapon_name":"Quantum Beam", "aura":"Laser Storm", "zen":"Mega Laser", "rarity":"Super Rare"},
   "jn'dur": {"number":"8", "ship_name":"Jn'Dur", "affinity":"Shield Breaker", "dmg":"34.38", "weapon_name":"Plasma Diffuser", "aura":"Barrier", "zen":"Mega Bomb", "rarity":"Common"},
-  "tempest": {"number":"9", "ship_name":"Tempest", "affinity":"High Impact", "dmg":"34.38", "weapon_name":"Ion Crystalizer", "aura":"Bullet EMP", "zen":"Mega Laser", "rarity":"Common"},
+  "tempest": {"number":"9", "ship_name":"Tempest", "affinity":"High Impact", "dmg":"34.38", "weapon_name":"Ion Crystallizer", "aura":"Bullet EMP", "zen":"Mega Laser", "rarity":"Common"},
   "yoth-hola": {"number":"10", "ship_name":"Yoth-Hola", "affinity":"Shield Breaker", "dmg":"25", "weapon_name":"Vortex Howler", "aura":"Point Defense", "zen":"Personal Shield", "rarity":"Super Rare"},
   "razorvi": {"number":"11", "ship_name":"Razor VI", "affinity":"Shield Breaker", "dmg":"31.25", "weapon_name":"Phase Disruptor", "aura":"Barrier", "zen":"Mega Laser", "rarity":"Common"},
   "miststar": {"number":"12", "ship_name":"Mist Star", "affinity":"Shield Breaker", "dmg":"25", "weapon_name":"Flux Seekers", "aura":"Stun EMP", "zen":"Kappa Drive", "rarity":"Common"},
