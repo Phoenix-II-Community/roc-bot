@@ -69,7 +69,7 @@
     "Ultimate:":"Wide Phalanx",
     "Ultimate Description:":"Increases Phalanx coverage"
   },
-  "Ion cannon":{
+  "Ion Cannon":{
     "Description:":"launches a projectile that will stun whatever it hits",
     "Stun Time:":"4s",
     "max count:":6,
