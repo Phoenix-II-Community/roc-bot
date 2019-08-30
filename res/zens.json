@@ -7,7 +7,7 @@
     "Ultimate Description:":"Slows down time while active."
   },
   "Mega Laser":{
-    "Description:":"Deals massive damage in a straight line in front of your ship.also destroys bullets.",
+    "Description:":"Deals massive damage in a straight line in front of your ship. Also destroys bullets.",
     "Damage:":170,
     "Charge Duration:":1.9,
     "Charge Time Increase:":0.25,
@@ -24,7 +24,7 @@
     "Charge Time Increase:":0.4,
     "Charge Time Recovery:":"average",
     "Fusion Core Damage:":30,
-    "**Ultimate**":"",
+    "Ultimate":"Fusion Core",
     "Fusion Core:":"Deals addtional damage at the center of the blast."
   },
   "Teleport":{
@@ -60,11 +60,11 @@
     "Charge Time:":"0.35s",
     "Charge Time Increase:":"1s",
     "Charge Time Recovery:":"Average",
-    "Ultimate:":"",
+    "Ultimate:":"Armor Piercing",
     "Armor Piercing:":"Pierces enemy armor"
   },  
   "Tracking Minigun":{
-    "Description:": "activates a tracking minigun when charged",
+    "Description:": "Activates a tracking minigun when charged",
     "Target Tracking:": "fast",
     "Damage:": 210,
     "Duration:": 6,
