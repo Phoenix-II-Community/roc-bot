@@ -55,7 +55,7 @@
     "Phase Out:":0.5
   },
   "Vorpal Lance":{
-    ":":"Fires a piercing Vorpal Lance",
+    "Description:":"Fires a piercing Vorpal Lance",
     "Damage:": 39.6,
     "Count:": 4,
     "Ultimate:": "",
@@ -77,7 +77,7 @@
     "Ultimate Description:":"Deals blast damage on impact"
     },
     "Goliath Missile":{
-      "Goliath Missile:":"Fires a missile with a large explosion",
+      "Description:":"Fires a missile with a large explosion",
       "Blast Damage:":"Unknown",
       "Impact Damage:":"Unknown",
       "Counters:":4,
@@ -86,7 +86,7 @@
       "Ultimate Description:":"Extends the range of the blast"
       },
     "Blade Storm":{
-      "Blade Storm:":"Variant of Missile Swarm. deals less damage but requires much less energy to use",
+      "Description:":"Variant of Missile Swarm. deals less damage but requires much less energy to use",
       "Max Radius:":500,
       "Max Damage:":100,
       "Ultimate:":"Omnislash",
