@@ -55,11 +55,11 @@
     "Phase Out:":0.5
   },
   "Vorpal Lance":{
-    ":":"Fires a piercing Vopral Lance",
+    ":":"Fires a piercing Vorpal Lance",
     "Damage:": 39.6,
     "Count:": 4,
     "Ultimate:": "",
-    "Vorpal wake:": "Destroys enemy bullets hit by Vopral Lance"
+    "Vorpal wake:": "Destroys enemy bullets hit by Vorpal Lance"
 
   },
   "Phalanx":{
