@@ -100,9 +100,9 @@
   },
       "MIRV Launcher":{
     "Description:":"Turret(s) fires a danger circle(s) in the direction it's facing. When the player gets close to it, the danger circle expands into an unknown amount of pellets",
-    "Bullet count:":1
+    "Bullet count:":1,
     "Bullet speed:":"Slow",
-    "Turret/spread count": [1,2,4,6]
+    "Turret/spread count": [1,2,4,6],
     "Turret type:":"MIRV",
     "Tracking:":"No",
     "Tracking rate:":"N/A",
