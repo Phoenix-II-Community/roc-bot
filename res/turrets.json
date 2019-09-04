@@ -19,7 +19,7 @@
     "Tracking:":"No",
     "Tracking rate:":"N/A",
     "Rotating:":"Yes",
-    "Fire rate:":"Slow, medium, fast:":"
+    "Fire rate:":"Slow, medium, fast",
   },
   "Laser Fixed":{
     "Description:":"Turret(s) fires lasers in a single direction that lasts about 2 seconds",
