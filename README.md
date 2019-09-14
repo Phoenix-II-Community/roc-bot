@@ -14,12 +14,12 @@ python3 -m pip install -U fuzzywuzzy
 
 ## Bot Commands
 
-### HELP
+#### HELP
 ```
 !help                               basic user functions
 ```
 
-### SHIP 
+#### SHIP 
 ```
 !ship affinity                  list of Affinities 
 !ship affinity <affinity>       list of ships with specified weapon type 
@@ -38,14 +38,14 @@ python3 -m pip install -U fuzzywuzzy
 !ship help                     ship help
 ```
 
-### SOURCE
+#### SOURCE
 ```
 !source                         link to github repo
 ```
 
 ## Command Todos
 
-### INVADER 
+#### INVADER 
 ```
 #!invader affinity <affinity>    all invaders HP that match the affinity
 #!invader help                   invader help
@@ -53,7 +53,7 @@ python3 -m pip install -U fuzzywuzzy
 #!invader list                   invader names and turret count
 ```
 
-### PRICE 
+#### PRICE 
 ```
 #!price weapon                   upgrade price of weapon levels (list)
 #!price aura                     upgrade price of aura levels (list)
@@ -61,7 +61,7 @@ python3 -m pip install -U fuzzywuzzy
 #!price apex                     price of apex brackets (list)
 ```
 
-### APEX
+#### APEX
 ```
 #!apex help                      apex help
 #!apex weapon                    list of weapon apex
