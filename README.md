@@ -12,13 +12,6 @@ python3 -m pip install -U discord.py
 python3 -m pip install -U fuzzywuzzy
 ```
 
-## Todos
- - Write the bot
- - Cron jobs 
-    - Announce new Daily
-    - Specialist
-    - BHS Community 
-
 ## Bot Commands
 
 ### HELP
@@ -26,62 +19,59 @@ python3 -m pip install -U fuzzywuzzy
 !help                               basic user functions
 ```
 
-### INVADER 
-```
-!invader list                   invader names and turret count
-!invader help                   invader help
-!invader invader <name>         named invader HP stats for all affinities
-!invader affinity <affinity>    all invaders HP that match the affinity
-!invader terse <affinity>       (terse) all invaders HP that match the affinity
-```
-
-### PRICE 
-```
-!price weapon                   upgrade price of weapon levels (list)
-!price aura                     upgrade price of aura levels (list)
-!price zen                      upgrade price of zen levels (list)
-!price apex                     price of apex brackets (list)
-```
-
 ### SHIP 
 ```
-!ship info <ship>               basic ship info
-#!ship detail <ship>            detailed ship info
-!ship aura                      list of Auras
-!ship aura <aura>               list of ships with an aura
-!ship zen                       list of Zens
-!ship zen <zen>                 list of ships with zen name
 !ship affinity                  list of Affinities 
 !ship affinity <affinity>       list of ships with specified weapon type 
+!ship all                       list all ships
+!ship aura                      list of Auras
+!ship aura <aura>               list of ships with an aura
+!ship detail <ship>             detailed ship info
 !ship dmg                       list of Damage brackets
 !ship dmg <dmg>                 list of ships with Damage inc type
-#!ship random <n>               print random number of ships, default 10
-#!ship help                     ship help
-```
-
-### MISSION modulo
-```
-!mission help                   mission help
-!mission -r --rotation          mission rotation
-!mission -c --current           current mission
-```
-
-### APEX
-```
-!apex help                      apex help
-!apex weapon                    list of weapon apex
-!apex aura                      list of aura apexs
-!apex zen                       list of zen apexs
-!apex ship <ship>               apexs the ship has
-!apex description <apex_name>   apex Description
-!apex find <apex_name>          list ships with <apex_name>, 
-                                include cost, apex_type (weapon/aura/zen)
-!apex rank <apex_rank>          list of ships matching apex rank
+!ship info <ship>               basic ship info
+!ship rand <n>                  print random number of ships, default 10
+!ship rarity                    list of rarities 
+!ship rarity <rarity>           list ships in a rarity
+!ship zen                       list of Zens
+!ship zen <zen>                 list of ships with zen name
+!ship help                     ship help
 ```
 
 ### SOURCE
 ```
 !source                         link to github repo
+```
+
+## Command Todos
+
+### INVADER 
+```
+#!invader affinity <affinity>    all invaders HP that match the affinity
+#!invader help                   invader help
+#!invader invader <name>         named invader HP stats for all affinities
+#!invader list                   invader names and turret count
+```
+
+### PRICE 
+```
+#!price weapon                   upgrade price of weapon levels (list)
+#!price aura                     upgrade price of aura levels (list)
+#!price zen                      upgrade price of zen levels (list)
+#!price apex                     price of apex brackets (list)
+```
+
+### APEX
+```
+#!apex help                      apex help
+#!apex weapon                    list of weapon apex
+#!apex aura                      list of aura apexs
+#!apex zen                       list of zen apexs
+#!apex ship <ship>               apexs the ship has
+#!apex description <apex_name>   apex Description
+#!apex find <apex_name>          list ships with <apex_name>, 
+                                include cost, apex_type (weapon/aura/zen)
+#!apex rank <apex_rank>          list of ships matching apex rank
 ```
 
 ## Mentions
