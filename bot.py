@@ -7,7 +7,8 @@ import discord.ext.commands
 from discord.ext import commands
 from discord.utils import get
 import settings
-from ship import *
+from ship import generic_ship_command_embed, damagelisting, auralisting, zenlisting, raritylisting, affinitylisting, affinity_search, bot, random_ship_command_embed, all_ship_command_embed, ship_search, info_embed, find_number, detail_embed
+
 
 
 logging.basicConfig(level=logging.INFO)
@@ -28,7 +29,7 @@ async def source(ctx):
     await ctx.send(src)
 
 
-@bot.group()
+@bot.group(aliases=['ships'])
 async def ship(ctx):
     if ctx.invoked_subcommand is None:
         await ctx.send('Invalid ship command passed.')
@@ -97,7 +98,6 @@ async def all(ctx, *, arg1=None):
         await all_ship_command_embed(ctx)
     else:
         await ctx.send("Command limited to <#378546862627749908>.")
-
 
 # Sub command to the @bot.group() decorator ship function.
 # Intended that for use in high traffic channels, the output size is intential 
