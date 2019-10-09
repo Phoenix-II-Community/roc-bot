@@ -15,22 +15,21 @@ import discord.ext.commands
 from discord.ext import commands
 from discord.utils import get
 import settings
+import os
 
 bot = commands.Bot(command_prefix="!")
 
 
 # Open the required json files and assign it to a variable foo_data
-home_dir = Path.home()
+cwd = os.getcwd()
 
-invaders_json = open(('{hd}/scripts/apex-bot/res/invaders.json').format(hd=home_dir))
-invaders_data = json.load(invaders_json)
-ships_json = open(('{hd}/scripts/apex-bot/res/ships.json').format(hd=home_dir))
+ships_json = open(('{cwd}/res/ships.json').format(cwd=cwd))
 ships_data = json.load(ships_json)
-shortcuts_json = open(('{hd}/scripts/apex-bot/res/shortcuts.json').format(hd=home_dir))
+shortcuts_json = open(('{cwd}/res/shortcuts.json').format(cwd=cwd))
 shortcuts_data = json.load(shortcuts_json)
-auras_json = open(('{hd}/scripts/apex-bot/res/auras.json').format(hd=home_dir))
+auras_json = open(('{cwd}/res/auras.json').format(cwd=cwd))
 auras_data = json.load(auras_json)
-zens_json = open(('{hd}/scripts/apex-bot/res/zens.json').format(hd=home_dir))
+zens_json = open(('{cwd}/res/zens.json').format(cwd=cwd))
 zens_data = json.load(zens_json)
 
 

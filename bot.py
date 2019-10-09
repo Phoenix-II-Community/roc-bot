@@ -8,8 +8,14 @@ from discord.ext import commands
 from discord.utils import get
 import settings
 from ship import generic_ship_command_embed, damagelisting, auralisting, zenlisting, raritylisting, affinitylisting, affinity_search, bot, random_ship_command_embed, all_ship_command_embed, ship_search, info_embed, find_number, detail_embed
+import os 
+from pathlib import Path
+import json
 
-
+# Open the required json files and assign it to a variable foo_data
+cwd = os.getcwd()
+invaders_json = open(('{cwd}/res/invaders.json').format(cwd=cwd))
+invaders_data = json.load(invaders_json)
 
 logging.basicConfig(level=logging.INFO)
 
@@ -37,7 +43,6 @@ async def ship(ctx):
 
 @ship.command()
 async def dmg(ctx, *, arg1=None):
-    print(type(ctx))
     sub_command = ctx.subcommand_passed
     if arg1 == None:
         await ctx.send(embed=damagelisting(sub_command))
@@ -129,6 +134,50 @@ async def shutdown(ctx):
     if ctx.author.id == 330274890802266112:    
         await ctx.send("Goodbye")
         await ctx.bot.logout()
+
+def get_invader_list(sub_command):
+    invader_dict = invaders_data[sub_command]
+    list1 = []
+    for k, v in invader_dict.items():
+        list1.append(("{key} {value}").format(key=k, value=v))
+    return '\n'.join(list1)
+
+def invader_embed(sub_command):
+    ship_embed_title = "Hacky title fix me"
+    ship_embed_description = get_invader_list(sub_command)
+    embed = discord.Embed(  title=ship_embed_title, 
+                            description=ship_embed_description)
+    return embed
+
+@bot.group(aliases=['invaders'])
+async def invader(ctx):
+    if ctx.invoked_subcommand is None:
+        await ctx.send('Invalid invader command passed.')
+
+@invader.command()
+async def turrets(ctx, *, arg1=None):
+    sub_command = ctx.subcommand_passed
+    await ctx.send(embed=invader_embed(sub_command))
+
+@invader.command()
+async def unprotected(ctx, *, arg1=None):
+    sub_command = ctx.subcommand_passed
+    await ctx.send(embed=invader_embed(sub_command))
+
+@invader.command()
+async def armored(ctx, *, arg1=None):
+    sub_command = ctx.subcommand_passed
+    await ctx.send(embed=invader_embed(sub_command))
+
+@invader.command()
+async def shielded(ctx, *, arg1=None):
+    sub_command = ctx.subcommand_passed
+    await ctx.send(embed=invader_embed(sub_command))
+
+@invader.command()
+async def hullshield(ctx, *, arg1=None):
+    sub_command = ctx.subcommand_passed
+    await ctx.send(embed=invader_embed(sub_command))
 
 # If a message receives the :el: emoji, then the bot should add it's own :el: reaction
 @bot.event
