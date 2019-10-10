@@ -8,7 +8,7 @@
         "condor":   6,
         "roc":      10
     },
-    "hull": {
+    "unprotected": {
         "sparrow":  5,
         "raven":    27,
         "heron":    63,
@@ -17,7 +17,7 @@
         "condor":   450,
         "roc":      810
     },
-    "armor": {
+    "armored": {
         "sparrow":  4,
         "raven":    24,
         "heron":    56,
@@ -26,7 +26,7 @@
         "condor":   405,
         "roc":      729
     },
-    "shield_total": {
+    "shielded": {
         "sparrow":  5,
         "raven":    31,
         "heron":    73,
@@ -35,7 +35,7 @@
         "condor":   525,
         "roc":      945
     },
-    "hull_shield": {
+    "hullshield": {
         "sparrow":  [3,2],
         "raven":    [18,13],
         "heron":    [42,31],
