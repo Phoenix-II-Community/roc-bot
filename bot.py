@@ -14,7 +14,7 @@ import json
 
 # Open the required json files and assign it to a variable foo_data
 cwd = os.getcwd()
-invaders_json = open(('{cwd}/res/invaders.json').format(cwd=cwd))
+invaders_json = open(f'{cwd}/res/invaders.json')
 invaders_data = json.load(invaders_json)
 
 logging.basicConfig(level=logging.INFO)

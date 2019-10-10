@@ -22,14 +22,13 @@ bot = commands.Bot(command_prefix="!")
 
 # Open the required json files and assign it to a variable foo_data
 cwd = os.getcwd()
-
-ships_json = open(('{cwd}/res/ships.json').format(cwd=cwd))
+ships_json = open(f'{cwd}/res/ships.json')
 ships_data = json.load(ships_json)
-shortcuts_json = open(('{cwd}/res/shortcuts.json').format(cwd=cwd))
+shortcuts_json = open(f'{cwd}/res/shortcuts.json')
 shortcuts_data = json.load(shortcuts_json)
-auras_json = open(('{cwd}/res/auras.json').format(cwd=cwd))
+auras_json = open(f'{cwd}/res/auras.json')
 auras_data = json.load(auras_json)
-zens_json = open(('{cwd}/res/zens.json').format(cwd=cwd))
+zens_json = open(f'{cwd}/res/zens.json')
 zens_data = json.load(zens_json)
 
 
