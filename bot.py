@@ -7,7 +7,7 @@ import discord.ext.commands
 from discord.ext import commands
 from discord.utils import get
 import settings
-from ship import generic_ship_command_embed, damagelisting, auralisting, zenlisting, raritylisting, affinitylisting, affinity_search, bot, random_ship_command_embed, all_ship_command_embed, ship_search, info_embed, find_number, detail_embed
+from ship import generic_ship_command_embed, damagelisting, auralisting, zenlisting, raritylisting, affinitylisting, affinity_search, bot, random_ship_command_embed, all_ship_command_embed, ship_search, info_embed, find_number, detail_embed, customemoji, sanitise_input
 import os 
 from pathlib import Path
 import json
@@ -135,6 +135,16 @@ async def shutdown(ctx):
         await ctx.send("Goodbye")
         await ctx.bot.logout()
 
+def invader_title(sub_command):
+    if sub_command == "invsplit":
+        var_title = ("{invsplit} Shield and Unprotected HP Split").format(invsplit=customemoji("invsplit"))
+    else:
+        var_title = ("{emoji} {context} Invaders").format(emoji=customemoji(sub_command), \
+            context=sub_command.capitalize())
+    return var_title
+
+
+
 def get_invader_list(sub_command):
     invader_dict = invaders_data[sub_command]
     list1 = []
@@ -143,7 +153,7 @@ def get_invader_list(sub_command):
     return '\n'.join(list1)
 
 def invader_embed(sub_command):
-    ship_embed_title = "Hacky title fix me"
+    ship_embed_title = invader_title(sub_command)
     ship_embed_description = get_invader_list(sub_command)
     embed = discord.Embed(  title=ship_embed_title, 
                             description=ship_embed_description)
@@ -175,7 +185,7 @@ async def shielded(ctx, *, arg1=None):
     await ctx.send(embed=invader_embed(sub_command))
 
 @invader.command()
-async def hullshield(ctx, *, arg1=None):
+async def invsplit(ctx, *, arg1=None):
     sub_command = ctx.subcommand_passed
     await ctx.send(embed=invader_embed(sub_command))
 
