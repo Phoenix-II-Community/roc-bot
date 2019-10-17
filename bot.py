@@ -189,6 +189,11 @@ async def invsplit(ctx, *, arg1=None):
     sub_command = ctx.subcommand_passed
     await ctx.send(embed=invader_embed(sub_command))
 
+@invader.command()
+async def name(ctx, *, arg1=None):
+    sub_command = ctx.subcommand_passed
+    await ctx.send(embed=invader_embed(sub_command))
+
 # If a message receives the :el: emoji, then the bot should add it's own :el: reaction
 @bot.event
 async def on_reaction_add(reaction, user):
@@ -209,6 +214,17 @@ async def on_message(message):
         return
     if ':el:' in message.content:
         emoji = get(bot.emojis, name='el')
+        await message.add_reaction(emoji)
+        return
+
+@bot.event
+async def on_message(message):
+    await bot.process_commands(message)
+    # we do not want the bot to reply to itself
+    if message.author == bot.user:
+        return
+    if 'ogon is fine' in message.content:
+        emoji = get(bot.emojis, name='ogonisfine')
         await message.add_reaction(emoji)
         return
 
