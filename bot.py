@@ -11,13 +11,22 @@ from ship import generic_ship_command_embed, damagelisting, auralisting, zenlist
 import os 
 from pathlib import Path
 import json
+from fuzzywuzzy import process, fuzz
+import re
 
 # Open the required json files and assign it to a variable foo_data
 cwd = os.getcwd()
 invaders_json = open(f'{cwd}/res/invaders.json')
 invaders_data = json.load(invaders_json)
+imgsrch_json = open(f'{cwd}/res/imgsrch.json')
+imgsrch_data = json.load(imgsrch_json)
+ships_json = open(f'{cwd}/res/ships.json')
+ships_data = json.load(ships_json)
+
 
 logging.basicConfig(level=logging.INFO)
+
+invaders = {"sparrow", "raven", "heron", "eagle", "vulture", "condor", "roc"}
 
 @bot.event
 async def on_ready():
@@ -143,6 +152,22 @@ def invader_title(sub_command):
             context=sub_command.capitalize())
     return var_title
 
+def invder_search(find_this):
+    found_this = process.extractOne(find_this, invaders)
+    invader_name = found_this[0]
+    return invader_name
+
+
+def invader_type_list(arg1):
+    list1 = []
+    found_this = invder_search(arg1)
+    for k, v in invaders_data.items():
+        for kv in v.items():
+            if kv[0] == found_this:
+                    list1.append(("{invader} {stat}").format(invader=kv[0], stat=kv[1]))
+    return '\n'.join(list1)
+
+
 
 
 def get_invader_list(sub_command):
@@ -153,16 +178,25 @@ def get_invader_list(sub_command):
     return '\n'.join(list1)
 
 def invader_embed(sub_command):
-    ship_embed_title = invader_title(sub_command)
-    ship_embed_description = get_invader_list(sub_command)
-    embed = discord.Embed(  title=ship_embed_title, 
-                            description=ship_embed_description)
+    invader_embed_title = invader_title(sub_command)
+    invader_embed_description = get_invader_list(sub_command)
+    embed = discord.Embed(  title=invader_embed_title, 
+                            description=invader_embed_description)
     return embed
+
 
 @bot.group(aliases=['invaders'])
 async def invader(ctx):
     if ctx.invoked_subcommand is None:
         await ctx.send('Invalid invader command passed.')
+
+@invader.command()
+async def name(ctx, *, arg1=None):
+    invader_embed_title = "Invader stats"
+    invader_embed_description = invader_type_list(arg1)
+    embed = discord.Embed(title=invader_embed_title, description=invader_embed_description)
+    await ctx.send(embed=embed)
+
 
 @invader.command()
 async def turrets(ctx, *, arg1=None):
@@ -189,10 +223,32 @@ async def invsplit(ctx, *, arg1=None):
     sub_command = ctx.subcommand_passed
     await ctx.send(embed=invader_embed(sub_command))
 
-@invader.command()
-async def name(ctx, *, arg1=None):
-    sub_command = ctx.subcommand_passed
-    await ctx.send(embed=invader_embed(sub_command))
+def img_ship_search(find_this):
+    found_this = process.extractOne(find_this, imgsrch_data, scorer=fuzz.token_sort_ratio)
+    ship_name = found_this[0]
+    return ship_name
+
+def img_get_ship_title(ship_name):
+    base_ship_name = re.sub( r"([A-Z])", r"", ship_name)
+    ship_dict = ships_data[base_ship_name]
+    ship_title = ("{rarityemoji} {nameofship}").format(\
+        rarityemoji=customemoji(ship_dict["rarity"]), 
+        nameofship=re.sub( r"([A-Z]+)", r" \1", ship_name))
+    return ship_title
+
+from ship import get_ship_title, get_em_colour, get_ship_image
+
+@bot.group(aliases=['image'])
+async def img(ctx, arg1):
+    ship_name = img_ship_search(arg1)
+    base_ship_name = re.sub( r"([A-Z])", r"", ship_name)
+    ship_embed_title = img_get_ship_title(ship_name)
+    embed_colour = get_em_colour(base_ship_name)
+    embed = discord.Embed(title=ship_embed_title
+    , colour=embed_colour)
+    embed.set_image(url=get_ship_image(ship_name))
+    await ctx.send(embed=embed)
+
 
 # If a message receives the :el: emoji, then the bot should add it's own :el: reaction
 @bot.event
