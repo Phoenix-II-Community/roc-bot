@@ -35,13 +35,13 @@
         "condor":   525,
         "roc":      945
     },
-    "hullshield": {
-        "sparrow":  [3,2],
-        "raven":    [18,13],
-        "heron":    [42,31],
-        "eagle":    [73,55],
-        "vulture":  [180,135],
-        "condor":   [300,225],
-        "roc":      [540,405]
+    "invsplit": {
+        "sparrow":  [2,3],
+        "raven":    [13,18],
+        "heron":    [31,42],
+        "eagle":    [55,73],
+        "vulture":  [135,180],
+        "condor":   [225,300],
+        "roc":      [405,540]
     }
 }
