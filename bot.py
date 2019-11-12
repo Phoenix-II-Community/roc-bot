@@ -224,7 +224,9 @@ async def invsplit(ctx, *, arg1=None):
     await ctx.send(embed=invader_embed(sub_command))
 
 def img_ship_search(find_this):
+    print(type(find_this))
     found_this = process.extractOne(find_this, imgsrch_data, scorer=fuzz.token_sort_ratio)
+    print(found_this)
     ship_name = found_this[0]
     return ship_name
 
@@ -239,9 +241,12 @@ def img_get_ship_title(ship_name):
 from ship import get_ship_title, get_em_colour, get_ship_image
 
 @bot.group(aliases=['image'])
-async def img(ctx, arg1):
-    ship_name = img_ship_search(arg1)
+async def img(ctx, *, arg1):
+    print(arg1)
+    ship_name = img_ship_search(re.sub(r' ','', arg1))
+    print(ship_name)
     base_ship_name = re.sub( r"([A-Z])", r"", ship_name)
+    print(base_ship_name)
     ship_embed_title = img_get_ship_title(ship_name)
     embed_colour = get_em_colour(base_ship_name)
     embed = discord.Embed(title=ship_embed_title
