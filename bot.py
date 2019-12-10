@@ -8,16 +8,7 @@ from discord.ext import commands
 from discord.utils import get
 import settings
 import os 
-from pathlib import Path
-import json
-import re
 import sys, traceback
-
-# Open the required json files and assign it to a variable foo_data
-cwd = os.getcwd()
-ships_json = open(f'{cwd}/res/ships.json')
-ships_data = json.load(ships_json)
-
 
 logging.basicConfig(level=logging.INFO)
 
@@ -30,10 +21,15 @@ def get_prefix(bot, message):
 
 initial_extensions = ['cogs.simple',
                       'cogs.invader',
+                      #'cogs.owner',
                       'cogs.img',
                       'cogs.ship']
 
-bot = commands.Bot(command_prefix=get_prefix, description='A Rewrite Cog Example')
+bot = commands.Bot(
+    command_prefix=get_prefix, 
+    description='Phoenix 2 iOS inforamtion bot',
+    # my current ID, change to yours when running
+    owner_id=330274890802266112)
 
 
 # Here we load our extensions(cogs) listed above in [initial_extensions].
@@ -60,20 +56,18 @@ async def on_ready():
 ####                      Bot commands                      ####
 ################################################################
 
-@bot.group()
-async def shutdown(ctx):
-    if ctx.author.id == 330274890802266112:    
-        await ctx.send("Goodbye")
-        await ctx.bot.logout()
-
 # If a message receives the :el: emoji, then the bot should add it's own :el: reaction
 @bot.event
 async def on_reaction_add(reaction, user):
     # we do not want the bot to react to its own reaction
     if user == bot.user:
         return
-    if str(reaction.emoji) == "<:el:373097097727049728>":
+    elif str(reaction.emoji) == "<:el:373097097727049728>":
         emoji = get(bot.emojis, name='el')
+        await reaction.message.add_reaction(emoji)
+        return
+    elif str(reaction.emoji) == "<:ogonisfine:583241232768303105>":
+        emoji = get(bot.emojis, name='ogonisfine')
         await reaction.message.add_reaction(emoji)
         return
 
@@ -87,17 +81,8 @@ async def on_message(message):
     if ':el:' in message.content:
         emoji = get(bot.emojis, name='el')
         await message.add_reaction(emoji)
-        return
-
-@bot.event
-async def on_message(message):
-    await bot.process_commands(message)
-    # we do not want the bot to reply to itself
-    if message.author == bot.user:
-        return
-    if 'ogon is fine' in message.content:
+    elif 'ogon is fine' in message.content:
         emoji = get(bot.emojis, name='ogonisfine')
         await message.add_reaction(emoji)
         return
-
 bot.run(settings.discordkey)
