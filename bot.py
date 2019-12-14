@@ -27,7 +27,7 @@ initial_extensions = ['cogs.simple',
 
 bot = commands.Bot(
     command_prefix=get_prefix, 
-    description='Phoenix 2 iOS inforamtion bot',
+    description='Phoenix 2 iOS information bot',
     # my current ID, change to yours when running
     owner_id=330274890802266112)
 
