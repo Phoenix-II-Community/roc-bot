@@ -5,6 +5,7 @@ import sqlite3
 from fuzzywuzzy import process
 import unicodedata
 import re
+import discord.ext.commands
 
 # Connect to the local sqlite database `rocbot.sqlite` and generate a list of 
 # ship names from the `ship` table
@@ -35,10 +36,10 @@ def ship_search(find_this):
     return ship_name
 
 # strip all non lete
-def sanitise_input(self, input_string):
+def sanitise_input(input_string):
     words_only = re.sub(r'\W+','', input_string)
     return unicodedata.normalize('NFKD', words_only).encode('ascii', 'ignore').decode('utf8')
 
 def customemoji(self, find_this):
-    find_sanitised = self.sanitise_input(find_this.lower())
+    find_sanitised = sanitise_input(find_this.lower())
     return discord.utils.get(self.bot.emojis, name = find_sanitised)
