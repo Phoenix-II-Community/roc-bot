@@ -54,10 +54,10 @@ class Ship(Bot):
 
 # create a discod embed object. Using the Ship class to collection the required
 def info_embed(bot_self, find_this):
-    thing = Ship(bot_self, find_this)
-    title = thing.get_ship_title()
-    desc = thing.get_ship_description_info()
-    col = int(thing.s_obj['colour'], 16)
+    info = Ship(bot_self, find_this)
+    title = info.get_ship_title()
+    desc = info.get_ship_description_info()
+    col = int(info.s_obj['colour'], 16)
     return discord.Embed(title=title, 
-    description=desc, colour=col).set_thumbnail(url=thing.img_url)
+    description=desc, colour=col).set_thumbnail(url=info.img_url)
 
