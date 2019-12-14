@@ -4,7 +4,7 @@
 import discord
 from discord.ext import commands
 from ship_func import generic_ship_command_embed, damagelisting, auralisting, zenlisting, raritylisting, affinitylisting, affinity_search, random_ship_command_embed, all_ship_command_embed, ship_search, info_embed, find_number, detail_embed, customemoji, sanitise_input
-
+from ship_class import info_embed
 
 class ShipCog(commands.Cog, name="Ship Commands"):
     """ShipCog"""
@@ -95,8 +95,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     @ship.command(name='info')
     @commands.guild_only()
     async def info(self, ctx, *, arg1):
-        ship_name = ship_search(arg1)
-        await ctx.send(embed=info_embed(self, ship_name))
+        await ctx.send(embed=info_embed(self, arg1))
 
     @ship.command(name='number')
     @commands.guild_only()
@@ -113,7 +112,9 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     async def detail(self, ctx, *, arg1):
         if ctx.channel.id == 378546862627749908:
             ship_name = ship_search(arg1)
-            await ctx.send(embed=detail_embed(self, ship_name))
+            b = detail_embed(self, ship_name)
+            print(type)
+            await ctx.send(embed=b)
         else:
             await ctx.send("Command limited to <#378546862627749908>.")
 

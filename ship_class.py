@@ -8,8 +8,17 @@ import discord.ext.commands
 from discord.ext.commands import Bot
 import urllib.parse
 
-# This replaces the old ship.py 
-class Ship(Bot):
+# This class connects to rocbot.sqlite and uses a view to query. The returned 
+# data is put into an object where methods run uses this info to generate a
+# title, image url, and description which contains emojis. The emoji function 
+# uses the Bot instance to perform a lookup which is why it's passed through.
+# Because Discord doesn't allow non alpha characters in emojis there's a 
+# santise function that strips unwanted characters which is also used on the 
+# url formatting function. That's technical debt from when this was orignally
+# using json files instead of sqlite and the sub context of the query and name 
+# was used as the name to find image files so they had to match. This isn't the 
+# case anymore and might be better to edit the image names now. 
+class Ship():
     def __init__(self, bot_self, find_this):
         self.bot_self = bot_self
         self.ship_name = ship_search(find_this)
@@ -52,7 +61,7 @@ class Ship(Bot):
         img_url = (f"{urlgit}{sanitise_input(self.ship_name.lower())}.png")
         return img_url
 
-# create a discod embed object. Using the Ship class to collection the required
+# create a discod embed object. Using the Ship class to collect the required data
 def info_embed(bot_self, find_this):
     info = Ship(bot_self, find_this)
     title = info.get_ship_title()

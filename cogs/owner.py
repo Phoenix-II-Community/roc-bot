@@ -3,8 +3,7 @@
 
 from discord.ext import commands
 
-
-class OwnerCog(commands.Cog):
+class OwnersCog(commands.Cog, name="Owner Commands"):
 
     def __init__(self, bot):
         self.bot = bot
@@ -50,6 +49,18 @@ class OwnerCog(commands.Cog):
         else:
             await ctx.send('**`SUCCESS`**')
 
+    @commands.command(name='shutdown', hidden=True)
+    @commands.is_owner()
+    async def shutdown(self, ctx):
+        await ctx.send("Goodbye")
+        await ctx.bot.logout()
+
+    @commands.command(name='me')
+    @commands.is_owner()
+    async def only_me(self, ctx):
+        """A simple command which only responds to the owner of the bot."""
+
+        await ctx.send(f'Hello {ctx.author.mention}. This command can only be used by you!!')
 
 def setup(bot):
-    bot.add_cog(OwnerCog(bot))
+    bot.add_cog(OwnersCog(bot))

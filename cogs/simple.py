@@ -20,23 +20,16 @@ class SimpleCog(commands.Cog, name="Simple Commands"):
 
         await ctx.send(our_input)
 
-    @commands.command(name='ping')
-    @commands.guild_only()
-    async def ping(self, ctx):
-        await ctx.send(f"pong! {round(client.latency * 1000)}ms")
+    #@commands.command(name='ping')
+    #@commands.guild_only()
+    #async def ping(self, ctx):
+    #    await ctx.send(f"pong! {round(self.bot.discord.client.latency * 1000)}ms")
 
     @commands.command(name='source')
     @commands.guild_only()
     async def source(self, ctx):
         src = "https://github.com/Phoenix-II-Community/apex-bot"
         await ctx.send(src)
-
-    @commands.command(name='me')
-    @commands.is_owner()
-    async def only_me(self, ctx):
-        """A simple command which only responds to the owner of the bot."""
-
-        await ctx.send(f'Hello {ctx.author.mention}. This command can only be used by you!!')
 
 # The setup fucntion below is neccesarry. Remember we give bot.add_cog() the name of the class in this case SimpleCog.
 # When we load the cog, we use the name of the file.
