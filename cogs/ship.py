@@ -4,7 +4,7 @@
 import discord
 from discord.ext import commands
 from ship_func import generic_ship_command_embed, damagelisting, auralisting, zenlisting, raritylisting, affinitylisting, affinity_search, random_ship_command_embed, all_ship_command_embed, ship_search, info_embed, find_number, detail_embed, customemoji, sanitise_input
-from ship_class import info_embed
+from ship_class import Ship
 
 class ShipCog(commands.Cog, name="Ship Commands"):
     """ShipCog"""
@@ -95,7 +95,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     @ship.command(name='info')
     @commands.guild_only()
     async def info(self, ctx, *, arg1):
-        await ctx.send(embed=info_embed(self, arg1))
+        await ctx.send(embed=Ship(self, arg1).embed_info)
 
     @ship.command(name='number')
     @commands.guild_only()

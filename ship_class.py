@@ -24,7 +24,8 @@ class Ship():
         self.ship_name = ship_search(find_this)
         self.s_obj = self.sql_ship_obj()
         self.img_url = self.get_ship_image()
-
+        self.embed_info = self.info_embed(bot_self, find_this)
+        
     def sql_ship_obj(self):
         # connect to the sqlite database
         conn = sqlite3.connect('rocbot.sqlite')
@@ -47,7 +48,14 @@ class Ship():
         embed_title = (
             f"{customemoji(self.bot_self, self.s_obj['rarity'])} {self.s_obj['name']}")
         return embed_title
-    
+
+    # The embed is made up of two sections of content the title and this section
+    # the descriotion. The description contains weapon, aura and zen info using 
+    # an emoji followed by the relevant name of the section. 
+    #
+    # The description previously used format() instead f strings bceause at the 
+    # time I didn't see how f strings were suited to json and dicts however 
+    # since using a class that's changed and f strings seemed clearer to read. 
     def get_ship_description_info(self):
         embed_description = (
             f"{customemoji(self.bot_self, 'dps')} {self.s_obj['dmg']}\n"
@@ -60,13 +68,17 @@ class Ship():
         urlgit = "https://github.com/Phoenix-II-Community/apex-bot/raw/master/img/"
         img_url = (f"{urlgit}{sanitise_input(self.ship_name.lower())}.png")
         return img_url
+        
+    # create a discod embed object. Using the Ship class to collect the required 
+    # data. The embed includes a title as a ship emoji and the ship name queried
+    # The description is a combination of weapon, aura and zen names with emojis
+    # to suit. weapon zen gets a generic dps emoji and zen|aura get the specific 
+    # emoji 
+    def info_embed(self, bot_self, find_this):
+        title = self.get_ship_title()
+        desc = self.get_ship_description_info()
+        col = int(self.s_obj['colour'], 16)
+        return discord.Embed(title=title, 
+        description=desc, colour=col).set_thumbnail(url=self.img_url)
 
-# create a discod embed object. Using the Ship class to collect the required data
-def info_embed(bot_self, find_this):
-    info = Ship(bot_self, find_this)
-    title = info.get_ship_title()
-    desc = info.get_ship_description_info()
-    col = int(info.s_obj['colour'], 16)
-    return discord.Embed(title=title, 
-    description=desc, colour=col).set_thumbnail(url=info.img_url)
 
