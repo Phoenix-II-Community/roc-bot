@@ -25,7 +25,8 @@ class Data():
         self.s_obj = self.sql_ship_obj()
         self.img_url = self.get_ship_image()
         self.embed_info = self.info_embed(bot_self, find_this)
-        
+        self.embed_detail = self.detail_embed(bot_self, find_this)
+
     def sql_ship_obj(self):
         # connect to the sqlite database
         conn = sqlite3.connect('rocbot.sqlite')
@@ -34,7 +35,7 @@ class Data():
         # make an sqlite connection object
         c = conn.cursor()
         # using a defined view s_info find the ship 
-        c.execute('select * from s_info where name = ?', [self.ship_name])
+        c.execute('select * from s_info where name = ?', (self.ship_name,))
         # return the ship object including the required elemnts
         s_obj = c.fetchone()
         # close the databse connection
@@ -64,6 +65,12 @@ class Data():
             f"{customemoji(self.bot_self, self.s_obj['zen'])} {self.s_obj['zen']}")
         return embed_description
     
+    def get_ship_description_detail(self):
+        embed_description = (
+            f"{customemoji(self.bot_self, 'dps')} {self.s_obj['dmg']}\n"
+            f"{customemoji(self.bot_self, self.s_obj['affinity'])} {self.s_obj['weapon_name']}")
+        return embed_description
+
     def get_ship_image(self):
         urlgit = "https://github.com/Phoenix-II-Community/apex-bot/raw/master/img/"
         img_url = (f"{urlgit}{sanitise_input(self.ship_name.lower())}.png")
@@ -82,3 +89,22 @@ class Data():
         description=desc, colour=col).set_thumbnail(url=self.img_url)
 
 
+    def detail_embed(self, bot_self, ship_name):
+        title = self.get_ship_title()
+        desc = self.get_ship_description_detail()
+        col = int(self.s_obj['colour'], 16)
+        embed = discord.Embed(title=title, description=desc, colour=col)
+        embed.add_field(
+            name=f"{customemoji(self.bot_self, self.s_obj['aura'])} {self.s_obj['aura']}",
+            value=f"{self.s_obj['aura_desc']}", 
+            inline=False)
+        embed.add_field(
+            name=f"{customemoji(self.bot_self, self.s_obj['zen'])} {self.s_obj['zen']}",
+            value=f"{self.s_obj['zen_desc']}", 
+            inline=False)
+        embed.add_field(
+            name=f"{customemoji(self.bot_self, 'apex')} Apexs",
+            value=f"{self.s_obj['zen_desc']}", 
+            inline=False)
+        embed.set_thumbnail(url=self.img_url)
+        return embed

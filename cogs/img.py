@@ -17,13 +17,19 @@ class ImgageCog(commands.Cog, name="Imgage Commands"):
 
     @commands.command(name='img')
     @commands.guild_only()
+    # arg1 is everthing after the command
     async def img(self, ctx, *, arg1):
-        print(arg1)
+        # The img_ship_search function compares against a JSON file 
+        # the file has all ship names with base name in lowercase and apex in 
+        # all uppercase. We're using fuzzywuzzy to find the best match but 
+        # before finding it, we remove all white space from the string. 
         ship_name = img_ship_search(re.sub(r' ','', arg1))
-        print(ship_name)
+        # For the formatting reasons we need the base ship name so we can search
+        # against other JSON files. This strips all upper case letters which
+        # will be the apex name. 
         base_ship_name = re.sub( r"([A-Z])", r"", ship_name)
-        print(base_ship_name)
-        ship_embed_title = img_get_ship_title(ship_name)
+        
+        ship_embed_title = img_get_ship_title(self, ship_name)
         embed_colour = get_em_colour(base_ship_name)
         embed = discord.Embed(title=ship_embed_title
         , colour=embed_colour)
