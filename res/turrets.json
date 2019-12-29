@@ -1,7 +1,6 @@
 {
   "Pellet Fixed":{
-    "Description:":"Turret(s) fires a single bullet in the direction it's facing",
-    "Bullet count:":1,
+    "Description:":"Turret(s) fires bullet(s) in the direction it's facing",
     "Bullet speed:":"Slow",
     "Turret/spread count": [1,2,5,7],
     "Turret type:":"Single shot",
@@ -12,7 +11,6 @@
   },
   "Pellet spinner":{
     "Description:":"Turret(s) fires a certain number of pellets in all directions for variable amounts of time",
-    "Bullet count":1,
     "Bullet speed:":"Slow",
     "Turret/spread count": [30,35,50,72],
     "Turret type:":"Multi-shot spinner",
@@ -23,7 +21,6 @@
   },
   "Laser Fixed":{
     "Description:":"Turret(s) fires lasers in a single direction that lasts about 2 seconds",
-    "Bullet count:":1,
     "Bullet speed:":"Instant",
     "Turret/spread count": [3,5,7,9],
     "Turret type:":"Spinner",
@@ -34,7 +31,6 @@
   },
   "Laser Tracker":{
     "Description:":"Turret(s) fires a laser(s) in a single direction that lasts about 2 seconds",
-    "Bullet count:":1,
     "Bullet speed:":"Instant",
     "Turret/spread count": [1,2,3],
     "Turret type:":"Tracking, laser",
@@ -45,7 +41,6 @@
   },
   "Dart Tracker":{
     "Description:":"Turret(s) fires a dart(s) in a single direction",
-    "Bullet count:":"Unknown",
     "Bullet speed:":"Medium",
     "Turret/spread count": [1,2,5,7],
     "Turret type:":"Multi-shot tracking",
@@ -56,7 +51,6 @@
   },
     "Dart Spinner":{
     "Description:":"Turret(s) fires darts in all directions for certain amounts of time",
-    "Bullet count:":1,
     "Bullet speed:":"Medium, fast",
     "Turret/spread count": [8,10,24,40],
     "Turret type:":"Stream spinner",
@@ -67,7 +61,6 @@
   },
       "Boomerang(s)":{
     "Description:":"Turret(s) fires a tracking boomerang at the player's ship",
-    "Bullet count:":1,
     "Bullet speed:":"Medium, fast",
     "Turret/spread count:":"1x1, 2x1, 2x2, 2x3",
     "Turret type:":"Tracking",
@@ -78,7 +71,6 @@
   },
       "Shuriken Tracker":{
     "Description:":"Turret(s) fires shurikens at the player's ship",
-    "Bullet count:":1,
     "Bullet speed:":"Slow",
     "Turret/spread count": [1,2,4],
     "Turret type:":"Tracking",
@@ -89,7 +81,6 @@
   },
       "Shuriken Spinner":{
     "Description:":"Turrets fires shurikens in patterns",
-    "Bullet count:":"Unknown",
     "Bullet speed:":"Slow",
     "Turret/spread count:":"1x5, 1x9, 1x13, 5x(unknown)",
     "Turret type:":"Spinner",
@@ -100,7 +91,6 @@
   },
       "MIRV Launcher":{
     "Description:":"Turret(s) fires a danger circle(s) in the direction it's facing. When the player gets close to it, the danger circle expands into an unknown amount of pellets",
-    "Bullet count:":1,
     "Bullet speed:":"Slow",
     "Turret/spread count": [1,2,4,6],
     "Turret type:":"MIRV",
@@ -111,7 +101,6 @@
   },
       "MIRV Bloomer":{
     "Description:":"Turret(s) fires danger circles in all directions. When the player gets close to it, the danger circle expands into an unknown amount of pellets",
-    "Bullet count:":1,
     "Bullet speed:":"Bullet speed",
     "Turret/spread count": [8,12,20,30],
     "Turret type:":"MIRV bloomer",
