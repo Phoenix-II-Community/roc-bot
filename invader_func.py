@@ -4,7 +4,7 @@
 import discord
 from discord.ext import commands
 from fuzzywuzzy import process
-from ship_func import customemoji
+from common import customemoji
 import os 
 from pathlib import Path
 import json
