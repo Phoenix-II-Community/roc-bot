@@ -4,7 +4,6 @@
 ################################################################
 ####                    !ship Functions                     ####
 ################################################################
-from fuzzywuzzy import process
 from pathlib import Path
 import json
 import re
@@ -174,6 +173,9 @@ def ship_command_common_title(self, found_this, sub_command):
     return var_title
 
 
+
+
+
 def ship_command_common_list(self, found_this, sub_command):
     list1 = []
     for elements in ships_data.values():
@@ -263,7 +265,6 @@ def sanitise_input(input_string):
 def customemoji(self, find_this):
     find_sanitised = sanitise_input(find_this.lower())
     return discord.utils.get(self.bot.emojis, name = find_sanitised)
-
 
 #def auralisting(self, sub_command):
 #    list1 = []

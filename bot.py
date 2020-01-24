@@ -19,11 +19,12 @@ def get_prefix(bot, message):
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
 
-initial_extensions = ['cogs.simple',
-                      'cogs.invader',
-                      'cogs.daily',
-                      'cogs.img',
-                      'cogs.ship']
+initial_extensions = [#'cogs.simple',
+                      #'cogs.invader',
+                      'cogs.daily'
+                      #'cogs.img',
+                      #'cogs.ship'
+                      ]
 
 bot = commands.Bot(
     command_prefix=get_prefix, 

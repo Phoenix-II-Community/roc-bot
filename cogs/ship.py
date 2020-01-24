@@ -4,7 +4,7 @@
 import discord
 from discord.ext import commands
 from ship_func import generic_ship_command_embed, affinity_search, random_ship_command_embed, all_ship_command_embed, ship_search, info_embed, find_number, detail_embed, customemoji, sanitise_input
-from data import ShipData, CategoryLister
+from data import ShipData, CategoryLister, ShipLister
 
 class ShipCog(commands.Cog, name="Ship Commands"):
     """ShipCog"""
@@ -52,7 +52,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
         if arg1 == None:
             await ctx.send(embed=CategoryLister(self, sub_command).embed_list)
         else:
-            await generic_ship_command_embed(self, ctx, arg1, sub_command)
+            await ShipLister(self, ctx, arg1, sub_command).create_emebed()
 
     @ship.command(name='aura')
     @commands.guild_only()
@@ -61,7 +61,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
         if arg1 == None:
             await ctx.send(embed=CategoryLister(self, sub_command).embed_list)
         else:
-            await generic_ship_command_embed(self, ctx, arg1, sub_command)
+            await ShipLister(self, ctx, arg1, sub_command).create_emebed()
 
 
     @ship.command(name='zen')
@@ -71,7 +71,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
         if arg1 == None:
             await ctx.send(embed=CategoryLister(self, sub_command).embed_list)
         else:
-            await generic_ship_command_embed(self, ctx, arg1, sub_command)
+            await ShipLister(self, ctx, arg1, sub_command).create_emebed()
 
     @ship.command(name='rarity')
     @commands.guild_only()
@@ -81,7 +81,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
             if arg1 == None:
                 await ctx.send(embed=CategoryLister(self, sub_command).embed_list)
             else:
-                await generic_ship_command_embed(self, ctx, arg1, sub_command)
+                await ShipLister(self, ctx, arg1, sub_command).create_emebed()
         else:
             await ctx.send("Command limited to <#378546862627749908>.")
 
@@ -93,7 +93,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
         if arg1 == None:
             await ctx.send(embed=CategoryLister(self, sub_command).embed_list)
         else:
-            await ctx.send(embed=affinity_search(self, arg1, sub_command))
+            await ShipLister(self, ctx, arg1, sub_command).create_emebed()
 
     @ship.command(name='rand')
     @commands.guild_only()
