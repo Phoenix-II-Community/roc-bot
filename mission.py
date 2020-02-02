@@ -41,7 +41,7 @@ class Mission():
         desc = self.get_daily_description_info()
         col = int(self.d_obj['colour'], 16)
         embed = discord.Embed(title=title, description=desc, colour=col)
-        embed.set_footer(text=f"Day {self.day_number()}") 
+        embed.set_footer(text=f"Day {self.d_obj['id']}") 
         embed.set_thumbnail(url=self.thumb_url)
         return embed
 
@@ -70,6 +70,8 @@ class Mission():
     def day_number(self):
         if self.sub_com == 'next':
             day = int((datetime.now(timezone.utc) - datetime(2019,8,18,0,0,0, tzinfo=timezone.utc)).days) + 1
+            print(day % 21)
             return day % 21
         else:
+            print((datetime.now(timezone.utc) - datetime(2019,8,18,0,0,0, tzinfo=timezone.utc)).days % 21)
             return (datetime.now(timezone.utc) - datetime(2019,8,18,0,0,0, tzinfo=timezone.utc)).days % 21
