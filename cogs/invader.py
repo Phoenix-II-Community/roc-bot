@@ -6,6 +6,7 @@ import discord.ext.commands
 from discord.ext import commands
 from discord.utils import get
 from invader_func import invader_type_list, invader_embed
+from invader_class import invader_type
 
 class InvaderCog(commands.Cog, name="Invader Commands"):
     """InvaderCog"""
@@ -13,44 +14,39 @@ class InvaderCog(commands.Cog, name="Invader Commands"):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.group(aliases=['invaders'])
+    @commands.group(invoke_without_command=True, aliases=['invaders'])
     @commands.guild_only()
-    async def invader(self, ctx):
-        if ctx.invoked_subcommand is None:
+    async def invader(self, ctx, *, arg1=None):
+        sc = ctx.subcommand_passed
+        if ctx.invoked_subcommand is None and arg1 is None:
             await ctx.send('Invalid invader command passed.')
-
-    @invader.command()
-    async def name(self, ctx, *, arg1=None):
-        invader_embed_title = "Invader stats"
-        invader_embed_description = invader_type_list(arg1)
-        embed = discord.Embed(title=invader_embed_title, description=invader_embed_description)
-        await ctx.send(embed=embed)
-
+        else:
+            await ctx.send(embed=invader_type(ctx, sc, arg1).i_embed)
 
     @invader.command()
     async def turrets(self, ctx, *, arg1=None):
-        sub_command = ctx.subcommand_passed
-        await ctx.send(embed=invader_embed(sub_command))
+        sc = ctx.subcommand_passed
+        await ctx.send(embed=invader_type(ctx, sc, arg1).i_embed)
 
     @invader.command()
     async def unprotected(self, ctx, *, arg1=None):
-        sub_command = ctx.subcommand_passed
-        await ctx.send(embed=invader_embed(sub_command))
+        sc = ctx.subcommand_passed
+        await ctx.send(embed=invader_type(ctx, sc, arg1).i_embed)
 
     @invader.command()
     async def armored(self, ctx, *, arg1=None):
-        sub_command = ctx.subcommand_passed
-        await ctx.send(embed=invader_embed(sub_command))
+        sc = ctx.subcommand_passed
+        await ctx.send(embed=invader_type(ctx, sc, arg1).i_embed)
 
     @invader.command()
     async def shielded(self, ctx, *, arg1=None):
-        sub_command = ctx.subcommand_passed
-        await ctx.send(embed=invader_embed(sub_command))
+        sc = ctx.subcommand_passed
+        await ctx.send(embed=invader_type(ctx, sc, arg1).i_embed)
 
     @invader.command()
-    async def invsplit(self, ctx, *, arg1=None):
-        sub_command = ctx.subcommand_passed
-        await ctx.send(embed=invader_embed(sub_command))
+    async def split(self, ctx, *, arg1=None):
+        sc = ctx.subcommand_passed
+        await ctx.send(embed=invader_type(ctx, sc, arg1).i_embed)
 
 def setup(bot):
     bot.add_cog(InvaderCog(bot))

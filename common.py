@@ -35,6 +35,35 @@ def ship_search(find_this):
     # return the ship name as a string
     return ship_name
 
+# Connect to the local sqlite database `rocbot.sqlite` and generate a list of 
+# invader names from the invaders table
+def get_invaders():
+    # connect to the sqlite database
+    conn = sqlite3.connect('rocbot.sqlite')
+    # Return a list of items instead of 1 item tuples 
+    conn.row_factory = lambda cursor, row: row[0]
+    # make an sqlite connection object
+    c = conn.cursor()
+    # creates a variable and assigns the list of ship names to it
+    invader_list = c.execute('''SELECT name FROM invaders''').fetchall()
+    # close the databse connection
+    conn.close()
+    # return a list of ship names
+    return invader_list
+
+def invader_search(find_this):
+    if find_this != None:
+        # using the class initiated list ship_list find one ship name that 
+        # matches the given string as close as possible
+        found_this = process.extractOne(find_this, get_invaders())
+        # fuzzywuzzy returns the name and the ratio so strip the ratio and keep 
+        # the ship name
+        invader_name = found_this[0]
+        # return the ship name as a string
+        return invader_name
+    else:
+        pass
+
 # strip all non lete
 def sanitise_input(input_string):
     words_only = re.sub(r'\W+','', input_string)
@@ -49,3 +78,19 @@ def ship_command_embed_pager(self, found_this, sub_command):
     for ship_line in ship_command_common_list(self, found_this, sub_command):
         paginator.add_line(ship_line)
     return paginator.pages
+
+def shortcut_obj():
+    # connect to the sqlite database
+    conn = sqlite3.connect('rocbot.sqlite')
+    # return a class sqlite3.row object which requires a tuple input query
+    conn.row_factory = sqlite3.Row
+    # make an sqlite connection object
+    c = conn.cursor()
+    # using a defined view shortcut collect all table info 
+    c.execute('select * from shortcut')
+    # return the shortcut object including the required elemnts
+    sc_obj = c.fetchall()
+    # close the databse connection
+    conn.close()
+    # return the sqlite3.cursor object
+    return sc_obj
