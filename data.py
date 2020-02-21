@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from common import customemoji, ship_search, sanitise_input
+from common import customemoji, ship_search, sanitise_input, sql_ship_obj
 import sqlite3 
 import discord.ext.commands
 from discord.ext.commands import Bot
+from discord.ext import commands
+from discord.utils import get
 import urllib.parse
+from fuzzywuzzy import process
+
 
 # This class connects to rocbot.sqlite and uses a view to query. The returned 
 # data is put into an object where methods run uses this info to generate a
@@ -104,69 +108,154 @@ class ShipData():
         return embed
 
 class ShipLister():
-    def __init__(self, bot_self, find_this, sub_command):
-        self.s_obj = self.sql_ship_obj()
+    if __name__ == "__main__":
+        asyncio.run(main())
 
-    def sql_ship_obj(self):
+    def __init__(self, ship_cog, bot_self, arg1, sub_command):
+        self.bot_self = bot_self
+        self.sub_command = sub_command
+        self.argument = arg1
+        self.sc_obj = self.shortcut_obj()
+        self.s_obj = sql_ship_obj()
+        self.affinity = self.shortcuts()
+        self.embed_list = self.create_emebed()
+        
+    def shortcut_obj(self):
         # connect to the sqlite database
         conn = sqlite3.connect('rocbot.sqlite')
         # return a class sqlite3.row object which requires a tuple input query
         conn.row_factory = sqlite3.Row
         # make an sqlite connection object
         c = conn.cursor()
-        # using a defined view s_info collect all table info 
-        c.execute('select * from s_info')
-        # return the ship object including the required elemnts
-        s_obj = c.fetchall()
+        # using a defined view shortcut collect all table info 
+        c.execute('select * from shortcut')
+        # return the shortcut object including the required elemnts
+        sc_obj = c.fetchall()
         # close the databse connection
         conn.close()
         # return the sqlite3.cursor object
-        return s_obj
+        return sc_obj
 
+    def shortcuts(self):
+        if len(self.argument) <= 4:
+            for i in self.sc_obj:
+                if i['shortcut'] == self.argument.lower():
+                    print("--------------------------------")
+                    print(i['shortcut'])
+                    print(i['name'])
+                    print("--------------------------------")
+                    return (i['name'])
+        else:
+            print("--------------------------------")
+            print('shortcut else used')
+            print("--------------------------------")
+            return self.argument
+
+    def create_set(self):
+        new_set = set({})
+        for i in self.s_obj:
+            new_set.add(i[self.sub_command])
+        return new_set
+
+    def finder(self):
+        return process.extractOne(self.shortcuts(), self.create_set())[0]
+
+    def create_list(self):
+        list1 = []
+        # the damage brackets are integers or floats and also don't have emojis 
+        # so the if statement accodmodates the different is data sets 
+        if self.sub_command == "affinity":
+            for i in sorted(self.s_obj, key=lambda k: k['number']):
+                if i[self.sub_command] == self.finder():
+                    list1.append(f"{customemoji(self.bot_self, i['name'])} {i['name']}")
+            return list1
+        else:
+            for i in sorted(self.s_obj, key=lambda k: k['number']):
+                if i[self.sub_command] == self.finder():
+                    list1.append(f"{customemoji(self.bot_self, i['affinity'])} {customemoji(self.bot_self, i['name'])} {i['name']}")
+            return list1
+
+    def affinity_col(self):
+        print('#########      affinity col')
+        for i in self.sc_obj:
+            if self.shortcuts() == self.affinity:
+                return int(i['name'], 16)
+
+    def make_pages(self):
+        paginator = commands.Paginator(prefix='', suffix='', max_size=2000)
+        for ship_line in self.create_list():
+            paginator.add_line(ship_line)
+        return paginator.pages
+
+    async def create_emebed(self):
+        print('#########      create embed')
+        if self.sub_command == "affinity":
+            for page in self.make_pages():
+                await self.bot_self.send(
+                    embed=discord.Embed(title=self.ship_title(), 
+                    description=page, 
+                    colour=self.affinity_col()))
+        else:
+            for page in self.make_pages():
+                await self.bot_self.send(
+                    embed=discord.Embed(title=self.cat_title(), 
+                    description=page))
+
+    def cat_title(self):
+        if self.sub_command == "affinity":
+            return f"{customemoji(self.bot_self, 'damage')} {self.affinity} Ships"
+        elif self.sub_command == "dmg":
+            return f"{customemoji(self.bot_self, 'damage')} Damage Brackets"
+        elif self.sub_command == "aura":
+            return f"{customemoji(self.bot_self, 'aura')} {self.finder()} Ships"
+        elif self.sub_command == "zen":
+            return f"{customemoji(self.bot_self, 'zen')} {self.finder()} Ships"
+        elif self.sub_command == "rarity":
+            return f"{customemoji(self.bot_self, 'vegemite')} Rarities"
+        else:
+            pass
+
+    def ship_title(self):
+        if self.sub_command == "affinity":
+            return f"{customemoji(self.bot_self, 'damage')} Main Weapon Affinities"
+        elif self.sub_command == "dmg":
+            return f"{customemoji(self.bot_self, 'damage')} Damage Brackets"
+        elif self.sub_command == "aura":
+            return f"{customemoji(self.bot_self, 'aura')} {self.finder()} Ships"
+        elif self.sub_command == "zen":
+            return f"{customemoji(self.bot_self, 'zen')} {self.finder()} Ships"
+        elif self.sub_command == "rarity":
+            return f"{customemoji(self.bot_self, 'vegemite')} Rarities"
+        else:
+            pass
 
 class CategoryLister():
     def __init__(self, bot_self, sub_command):
         self.bot_self = bot_self
         self.sub_command = sub_command
-        self.s_obj = self.sql_ship_obj()
+        self.s_obj = sql_ship_obj()
         self.embed_list = self.create_list()
 
-    def sql_ship_obj(self):
-        # connect to the sqlite database
-        conn = sqlite3.connect('rocbot.sqlite')
-        # return a class sqlite3.row object which requires a tuple input query
-        conn.row_factory = sqlite3.Row
-        # make an sqlite connection object
-        c = conn.cursor()
-        # using a defined view s_info collect all table info 
-        c.execute('select * from s_info')
-        # return the ship object including the required elemnts
-        s_obj = c.fetchall()
-        # close the databse connection
-        conn.close()
-        # return the sqlite3.cursor object
-        return s_obj
-
-    def create_list(self):
+    def create_set(self):
         new_set = set({})
-        list1 = []
         for i in self.s_obj:
             new_set.add(i[self.sub_command])
-        if self.sub_command == 'dmg':
-            for i in sorted(new_set):
-                list1.append(f"{i}")
-            description = '\n'.join(list1)
-        else:
-            for i in sorted(new_set):
-                list1.append(f"{customemoji(self.bot_self, i)} {i}")
-            description = '\n'.join(list1)
+        return new_set
+
+    def create_list(self):
+        list1 = []
+        # the damage brackets are integers or floats and also don't have emojis 
+        # so the if statement accodmodates the different is data sets 
+        for i in sorted(self.create_set()):
+            list1.append(f"{customemoji(self.bot_self, i)} {i}")
+        description = '\n'.join(list1)
         return discord.Embed(title=self.title(), description=description)
 
     def title(self):
         if self.sub_command == "affinity":
-            return f"{customemoji(self.bot_self, 'affinity')} Main Weapon Affinities"
+            return f"{customemoji(self.bot_self, 'damage')} Main Weapon Affinities"
         elif self.sub_command == "dmg":
-            return f"{customemoji(self.bot_self, 'dps')} Damage Brackets"
+            return f"{customemoji(self.bot_self, 'damage')} Damage Brackets"
         elif self.sub_command == "aura":
             return f"{customemoji(self.bot_self, 'aura')} Auras"
         elif self.sub_command == "zen":

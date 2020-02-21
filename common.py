@@ -70,8 +70,36 @@ def sanitise_input(input_string):
     return unicodedata.normalize('NFKD', words_only).encode('ascii', 'ignore').decode('utf8')
 
 def customemoji(self, find_this):
-    find_sanitised = sanitise_input(find_this.lower())
-    return discord.utils.get(self.bot.emojis, name = find_sanitised)
+    print(f"{find_this}   ------------------------")
+    if isinstance(find_this, str):
+        find_sanitised = sanitise_input(find_this.lower())
+        return discord.utils.get(self.bot.emojis, name = find_sanitised)
+    else:
+        return discord.utils.get(self.bot.emojis, name = "dps")
+#def ship_command_embed_pager(self, found_this, sub_command):
+#    paginator = commands.Paginator(prefix='', suffix='', max_size=2000)
+#    for ship_line in ship_command_common_list(self, found_this, sub_command):
+#        paginator.add_line(ship_line)
+#    return paginator.pages
+#
+#def element_finder(find_this, sub_command):
+#    return process.extractOne(shortcuts(find_this), make_element_set(sub_command))[0]
+
+def sql_ship_obj():
+    # connect to the sqlite database
+    conn = sqlite3.connect('rocbot.sqlite')
+    # return a class sqlite3.row object which requires a tuple input query
+    conn.row_factory = sqlite3.Row
+    # make an sqlite connection object
+    c = conn.cursor()
+    # using a defined view s_info collect all table info 
+    c.execute('select * from s_info')
+    # return the ship object including the required elemnts
+    s_obj = c.fetchall()
+    # close the databse connection
+    conn.close()
+    # return the sqlite3.cursor object
+    return s_obj
 
 def ship_command_embed_pager(self, found_this, sub_command):
     paginator = commands.Paginator(prefix='', suffix='', max_size=2000)
