@@ -49,8 +49,6 @@ class invader_type():
         # return the sqlite3.cursor object
         return i_obj
 
-
-
     def get_sql_obj(self):
         if self.sc == self.type:
             i_obj = self.sql_i_name_obj()
@@ -61,9 +59,6 @@ class invader_type():
 
     def get_description(self):
         list1 = []
-        print('1'*50)
-        print(self.type)
-        print(self.sc)
         if self.sc == self.type:
             for i in self.i_obj:
                 list1.append(f"{customemoji(self.bot_self, i['type'])} {i['hp']}")
@@ -74,9 +69,6 @@ class invader_type():
             return '\n'.join(list1)
 
     def get_title(self):
-        print('2'*50)
-        print(self.type)
-        print(self.sc)
         if self.sc == self.type:
             return f"{customemoji(self.bot_self, self.i_name)} {self.i_name.capitalize()} HP"
         else:
@@ -91,7 +83,3 @@ class invader_type():
         else:
             col = em_col.get(self.sc) 
             return discord.Embed(title=title, description=desc, colour=col)
-
-
-
-#class invader_name():

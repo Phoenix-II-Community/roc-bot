@@ -5,7 +5,6 @@ import discord
 import discord.ext.commands
 from discord.ext import commands
 from discord.utils import get
-from invader_func import invader_type_list, invader_embed
 from invader_class import invader_type
 
 class InvaderCog(commands.Cog, name="Invader Commands"):
