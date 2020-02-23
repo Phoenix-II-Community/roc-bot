@@ -48,40 +48,40 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     @ship.command(name='dmg')
     @commands.guild_only()
     async def dmg(self, ctx, *, arg1=None):
-        sub_command = ctx.subcommand_passed
+        sc = ctx.subcommand_passed
         if arg1 == None:
-            await ctx.send(embed=CategoryLister(self, sub_command).embed_list)
+            await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
-            await ShipLister(self, ctx, arg1, sub_command).create_emebed()
+            await ctx.send(embed=ShipLister(self, arg1, sc).emebed)
 
     @ship.command(name='aura')
     @commands.guild_only()
     async def aura(self, ctx, *, arg1=None):
-        sub_command = ctx.subcommand_passed
+        sc = ctx.subcommand_passed
         if arg1 == None:
-            await ctx.send(embed=CategoryLister(self, sub_command).embed_list)
+            await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
-            await ShipLister(self, ctx, arg1, sub_command).create_emebed()
+            await ctx.send(embed=ShipLister(self, arg1, sc).emebed)
 
 
     @ship.command(name='zen')
     @commands.guild_only()
     async def zen(self, ctx, *, arg1=None):
-        sub_command = ctx.subcommand_passed
+        sc = ctx.subcommand_passed
         if arg1 == None:
-            await ctx.send(embed=CategoryLister(self, sub_command).embed_list)
+            await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
-            await ShipLister(self, ctx, arg1, sub_command).create_emebed()
+            await ctx.send(embed=ShipLister(self, arg1, sc).emebed)
 
     @ship.command(name='rarity')
     @commands.guild_only()
     async def rarity(self, ctx, *, arg1=None):
-        sub_command = ctx.subcommand_passed
+        sc = ctx.subcommand_passed
         if ctx.channel.id == 378546862627749908:
             if arg1 == None:
-                await ctx.send(embed=CategoryLister(self, sub_command).embed_list)
+                await ctx.send(embed=CategoryLister(self, sc).embed_list)
             else:
-                await ShipLister(self, ctx, arg1, sub_command).create_emebed()
+                await ctx.send(embed=ShipLister(self, arg1, sc).emebed)
         else:
             await ctx.send("Command limited to <#378546862627749908>.")
 
@@ -89,11 +89,11 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     @ship.command(name='affinity')
     @commands.guild_only()
     async def affinity(self, ctx, *, arg1=None):
-        sub_command = ctx.subcommand_passed
+        sc = ctx.subcommand_passed
         if arg1 == None:
-            await ctx.send(embed=CategoryLister(self, sub_command).embed_list)
+            await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
-            await ShipLister(self, ctx, arg1, sub_command).create_emebed()
+            await ctx.send(embed=ShipLister(self, arg1, sc).emebed)
 
     @ship.command(name='rand')
     @commands.guild_only()

@@ -79,7 +79,7 @@ def ship_command_embed_pager(self, found_this, sub_command):
         paginator.add_line(ship_line)
     return paginator.pages
 
-def shortcut_obj():
+def shortcut_obj(arg1):
     # connect to the sqlite database
     conn = sqlite3.connect('rocbot.sqlite')
     # return a class sqlite3.row object which requires a tuple input query
@@ -87,10 +87,71 @@ def shortcut_obj():
     # make an sqlite connection object
     c = conn.cursor()
     # using a defined view shortcut collect all table info 
-    c.execute('select * from shortcut')
+    c.execute('select * from shortcut where shortcut =?', (arg1,))
     # return the shortcut object including the required elemnts
-    sc_obj = c.fetchall()
+    # using shortc instead of sc so not to be confused with 
+    # sub command abbrehviations 
+    shortc_obj = c.fetchall()
     # close the databse connection
     conn.close()
     # return the sqlite3.cursor object
-    return sc_obj
+    return shortc_obj
+
+def sql_dmg_brackets():
+    # connect to the sqlite database
+    conn = sqlite3.connect('rocbot.sqlite')
+    # Return a list of items instead of 1 item tuples 
+    conn.row_factory = lambda cursor, row: row[0]
+    # make an sqlite connection object
+    c = conn.cursor()
+    # creates a variable and assigns the list of ship names to it
+    dmg_obj = c.execute('''SELECT amount FROM ship_damage''').fetchall()
+    # close the databse connection
+    conn.close()
+    # return a list of ship names
+    return dmg_obj
+
+def dmg_bracket_list():
+    dmg_list = []
+    for i in sql_dmg_brackets():
+        dmg_list.append(i)
+    return dmg_list
+
+
+
+
+33234234234
+
+def sql_arg_list():
+    # connect to the sqlite database
+    conn = sqlite3.connect('rocbot.sqlite')
+    # Return a list of items instead of 1 item tuples 
+    conn.row_factory = lambda cursor, row: row[0]
+    # make an sqlite connection object
+    c = conn.cursor()
+    # creates a variable and assigns the list of ship names to it
+    dmg_obj = c.execute('''SELECT name FROM shortcut''').fetchall()
+    # close the databse connection
+    conn.close()
+    # return a list of ship names
+    return dmg_obj
+
+def arg_parse_list():
+    dmg_list = []
+    for i in sql_arg_list():
+        dmg_list.append(i)
+    return dmg_list
+
+def argument_parser(sc, arg1):
+    clean_arg1 = sanitise_input(arg1)
+    if sc == 'dmg':
+        dmg_bracket = process.extractOne(clean_arg1, dmg_bracket_list())
+        return dmg_bracket[0]
+    else:
+        if len(clean_arg1) <= 4:
+            shortcut = shortcut_obj(clean_arg1.lower())
+            if len(shortcut) > 0:
+                return shortcut[0]['name']
+        else:
+            arg_found = process.extractOne(clean_arg1, arg_parse_list())
+            return arg_found[0]
