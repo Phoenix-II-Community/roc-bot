@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from common import customemoji, ship_search, sanitise_input, argument_parser
+from common import customemoji, ship_search, sanitise_input, argument_parser, get_em_colour
 import sqlite3 
 import discord.ext.commands
 from discord.ext.commands import Bot
@@ -130,11 +130,6 @@ class ShipLister():
         conn.close()
         return s_obj
 
-    def get_em_colour(self):
-        embed_colours = {"Shield Breaker": 0x3a77f9, "High Impact": 0xee4529, "Armor Piercing": 0xffb820}
-        em_colour = embed_colours[self.arg1]
-        return em_colour
-
     def create_list(self):
         list1 = []
         if self.sub_command == 'dmg':
@@ -146,7 +141,7 @@ class ShipLister():
             for i in self.s_obj:
                 list1.append(f"{customemoji(self.bot_self, i['name'])} {i['name']}")
             description = '\n'.join(list1)
-            return discord.Embed(title=self.title(), description=description, color=self.get_em_colour())
+            return discord.Embed(title=self.title(), description=description, color=get_em_colour(self.arg1))
         else:
             for i in self.s_obj:
                 list1.append(f"{customemoji(self.bot_self, i['affinity'])} {customemoji(self.bot_self, i['name'])} {i['name']}")

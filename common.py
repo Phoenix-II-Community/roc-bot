@@ -155,3 +155,8 @@ def argument_parser(sc, arg1):
         else:
             arg_found = process.extractOne(clean_arg1, arg_parse_list())
             return arg_found[0]
+
+def get_em_colour(arg1):
+    embed_colours = {"Shield Breaker": 0x3a77f9, "High Impact": 0xee4529, "Armor Piercing": 0xffb820}
+    return embed_colours[arg1]
+    
