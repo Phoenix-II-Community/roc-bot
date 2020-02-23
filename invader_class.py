@@ -4,16 +4,46 @@ import sqlite3
 import discord.ext.commands
 from discord.ext import commands
 from discord.utils import get
-from common import customemoji, invader_search
+from common import customemoji
+from fuzzywuzzy import process
 
 class invader_type():
     def __init__(self, bot_self, sub_command, arg1):
         self.sc = sub_command
         self.bot_self = bot_self
         self.type = arg1
-        self.i_name = invader_search(arg1)
+        self.i_name = self.invader_search(arg1)
         self.i_obj = self.get_sql_obj()
         self.i_embed = self.get_i_embed()
+
+    # Connect to the local sqlite database `rocbot.sqlite` and generate a list of 
+    # invader names from the invaders table
+    def get_invaders(self):
+        # connect to the sqlite database
+        conn = sqlite3.connect('rocbot.sqlite')
+        # Return a list of items instead of 1 item tuples 
+        conn.row_factory = lambda cursor, row: row[0]
+        # make an sqlite connection object
+        c = conn.cursor()
+        # creates a variable and assigns the list of ship names to it
+        invader_list = c.execute('''SELECT name FROM invaders''').fetchall()
+        # close the databse connection
+        conn.close()
+        # return a list of ship names
+        return invader_list
+
+    def invader_search(self, find_this):
+        if find_this != None:
+            # using the class initiated list ship_list find one ship name that 
+            # matches the given string as close as possible
+            found_this = process.extractOne(find_this, self.get_invaders())
+            # fuzzywuzzy returns the name and the ratio so strip the ratio and keep 
+            # the ship name
+            invader_name = found_this[0]
+            # return the ship name as a string
+            return invader_name
+        else:
+            pass
 
     # Grab the Invader stats for a specific ship from the SQL view 
     def sql_i_name_obj(self):

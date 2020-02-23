@@ -3,7 +3,7 @@
 
 import discord
 from discord.ext import commands
-from ship_func import generic_ship_command_embed, affinity_search, random_ship_command_embed, all_ship_command_embed, ship_search, info_embed, find_number, detail_embed, customemoji, sanitise_input
+from ship_func import random_ship_command_embed, all_ship_command_embed
 from data import ShipData, CategoryLister, ShipLister
 
 class ShipCog(commands.Cog, name="Ship Commands"):

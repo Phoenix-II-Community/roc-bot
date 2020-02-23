@@ -10,7 +10,11 @@ import settings
 import os 
 import sys, traceback
 
-logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('discord')
+logger.setLevel(logging.DEBUG)
+handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)
 
 def get_prefix(bot, message):
     """A callable Prefix for our bot. This could be edited to allow per server prefixes."""
@@ -19,11 +23,11 @@ def get_prefix(bot, message):
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
 
-initial_extensions = [#'cogs.simple',
-                      #'cogs.invader',
-                      'cogs.daily'
-                      #'cogs.img',
-                      #'cogs.ship'
+initial_extensions = ['cogs.simple',
+                      'cogs.invader',
+                      'cogs.daily',
+                      'cogs.img',
+                      'cogs.ship'
                       ]
 
 bot = commands.Bot(

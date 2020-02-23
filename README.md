@@ -43,15 +43,15 @@ python3 -m pip install -U fuzzywuzzy
 !source                         link to github repo
 ```
 
-## Command Todos
-
 #### INVADER 
 ```
-#!invader affinity <affinity>    all invaders HP that match the affinity
-#!invader help                   invader help
-#!invader invader <name>         named invader HP stats for all affinities
-#!invader list                   invader names and turret count
+!invader affinity <affinity>    all invaders HP that match the affinity
+!invader help                   invader help
+!invader invader <name>         named invader HP stats for all affinities
+!invader list                   invader names and turret count
 ```
+
+## Command Todos
 
 #### PRICE 
 ```
