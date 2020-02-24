@@ -27,7 +27,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     async def info(self, ctx, *, arg1):
         await ctx.send(embed=ShipData(self, arg1).embed_info)
 
-    # Returns the ship in game sequence number. For example Shinova is number 1.  
+    # Returns the ship in game sequence number. For example Shinova is number 1.
     @ship.command(name='number')
     @commands.guild_only()
     async def number(self, ctx, *, arg1):
