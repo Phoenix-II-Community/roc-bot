@@ -52,7 +52,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
         if arg1 == None:
             await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
-            await ctx.send(embed=ShipLister(self, arg1, sc).emebed)
+            await ShipLister(self, ctx, arg1, sc).create_embed()
 
     @ship.command(name='aura')
     @commands.guild_only()
@@ -61,7 +61,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
         if arg1 == None:
             await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
-            await ctx.send(embed=ShipLister(self, arg1, sc).emebed)
+            await ShipLister(self, ctx, arg1, sc).create_embed()
 
 
     @ship.command(name='zen')
@@ -71,7 +71,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
         if arg1 == None:
             await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
-            await ctx.send(embed=ShipLister(self, arg1, sc).emebed)
+            await ShipLister(self, ctx, arg1, sc).create_embed()
 
     @ship.command(name='rarity')
     @commands.guild_only()
@@ -81,7 +81,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
             if arg1 == None:
                 await ctx.send(embed=CategoryLister(self, sc).embed_list)
             else:
-                await ctx.send(embed=ShipLister(self, arg1, sc).emebed)
+                await ShipLister(self, ctx, arg1, sc).create_embed()
         else:
             await ctx.send("Command limited to <#378546862627749908>.")
 
@@ -93,7 +93,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
         if arg1 == None:
             await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
-            await ctx.send(embed=ShipLister(self, arg1, sc).emebed)
+            await ShipLister(self, ctx, arg1, sc).create_embed()
 
     @ship.command(name='rand')
     @commands.guild_only()

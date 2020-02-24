@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from common import customemoji, ship_search, sanitise_input, argument_parser, get_em_colour
+from common import customemoji, ship_search, sanitise_input, argument_parser, get_em_colour, embed_pagination
 import sqlite3 
 import discord.ext.commands
 from discord.ext.commands import Bot
@@ -104,13 +104,13 @@ class ShipData():
         return embed
 
 class ShipLister():
-    def __init__(self, bot_self, arg1, sc):
+    def __init__(self, bot_self, ctx, arg1, sc):
         self.bot_self = bot_self
+        self.ctx = ctx
         self.arg1 = argument_parser(sc, arg1)
         self.sub_command = sc
+        self.embed_title = self.title()
         self.s_obj = self.sql_ship_obj()
-        self.emebed = self.create_list()
-
 
     def sql_ship_obj(self):
         conn = sqlite3.connect('rocbot.sqlite')
@@ -130,23 +130,43 @@ class ShipLister():
         conn.close()
         return s_obj
 
-    def create_list(self):
-        list1 = []
+    def create_description(self):
+        description = []
         if self.sub_command == 'dmg':
             for i in self.s_obj:
-                list1.append(f"{customemoji(self.bot_self, i['affinity'])} {customemoji(self.bot_self, i['name'])} {i['name']}")
-            description = '\n'.join(list1)
-            return discord.Embed(title=self.title(), description=description)
+                description.append(
+                    f"{customemoji(self.bot_self, i['affinity'])} "
+                    f"{customemoji(self.bot_self, i['name'])} "
+                    f"{i['name']}")
+            return embed_pagination(description)
         elif self.sub_command == 'affinity':
             for i in self.s_obj:
-                list1.append(f"{customemoji(self.bot_self, i['name'])} {i['name']}")
-            description = '\n'.join(list1)
-            return discord.Embed(title=self.title(), description=description, color=get_em_colour(self.arg1))
+                description.append(
+                    f"{customemoji(self.bot_self, i['name'])} "
+                    f"{i['name']}")
+            return embed_pagination(description)
         else:
             for i in self.s_obj:
-                list1.append(f"{customemoji(self.bot_self, i['affinity'])} {customemoji(self.bot_self, i['name'])} {i['name']}")
-            description = '\n'.join(list1)
-            return discord.Embed(title=self.title(), description=description)
+                description.append(
+                    f"{customemoji(self.bot_self, i['affinity'])} "
+                    f"{customemoji(self.bot_self, i['name'])} "
+                    f"{i['name']}")
+            return embed_pagination(description)
+
+    async def create_embed(self):
+        ctx = self.ctx
+        if self.sub_command == 'affinity':
+            colour = get_em_colour(self.arg1)
+            for page in self.create_description():
+                await ctx.send(embed=discord.Embed(
+                    title=self.embed_title, 
+                    description=page, 
+                    color=colour))
+        else:
+            for page in self.create_description():
+                await ctx.send(embed=discord.Embed(
+                    title=self.embed_title, 
+                    description=page))
 
     def title(self):
         if self.sub_command == "dmg":

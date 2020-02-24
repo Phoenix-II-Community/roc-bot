@@ -6,6 +6,7 @@ from fuzzywuzzy import process
 import unicodedata
 import re
 import discord.ext.commands
+from discord.ext import commands
 
 # Connect to the local sqlite database `rocbot.sqlite` and generate a list of 
 # ship names from the `ship` table
@@ -73,9 +74,9 @@ def customemoji(self, find_this):
     find_sanitised = sanitise_input(find_this.lower())
     return discord.utils.get(self.bot.emojis, name = find_sanitised)
 
-def ship_command_embed_pager(self, found_this, sub_command):
+def embed_pagination(description):
     paginator = commands.Paginator(prefix='', suffix='', max_size=2000)
-    for ship_line in ship_command_common_list(self, found_this, sub_command):
+    for ship_line in description:
         paginator.add_line(ship_line)
     return paginator.pages
 
