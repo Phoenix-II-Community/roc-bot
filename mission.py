@@ -46,10 +46,14 @@ class Mission():
         return embed
 
     def get_daily_description_info(self):
+        turrets = self.d_obj['emoji']
+        t_list = turrets.split()
+        emoji = [str(customemoji(self.bot_self, x)) for x in t_list]
         embed_description = (
             f"Daily Mission #{self.mission_number()}\n"
             f"Invaders: {self.d_obj['inavders'].title()} {customemoji(self.bot_self, self.d_obj['inavders'])}\n"
-            f"Turrets: {self.d_obj['turrets']}"
+            f"Turrets: {' '.join(emoji)}\n"
+            f"Description: {self.d_obj['turrets']}"
         )
         return embed_description
 
