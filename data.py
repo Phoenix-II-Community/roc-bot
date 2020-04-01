@@ -116,16 +116,7 @@ class ShipLister():
         conn = sqlite3.connect('rocbot.sqlite')
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
-        if self.sub_command == "affinity":
-            c.execute("select * from s_info where affinity = ?", (self.arg1,))
-        elif self.sub_command == "dmg":
-            c.execute("select * from s_info where dmg = ?", (self.arg1,))
-        elif self.sub_command == "aura":
-            c.execute("select * from s_info where aura = ?", (self.arg1,))
-        elif self.sub_command == "zen":
-            c.execute("select * from s_info where zen = ?", (self.arg1,))
-        elif self.sub_command == "rarity":
-            c.execute("select * from s_info where rarity = ?", (self.arg1,))
+        c.execute(f"select * from s_info where {self.sub_command} = ?", (self.arg1,))
         s_obj = c.fetchall()
         conn.close()
         return s_obj

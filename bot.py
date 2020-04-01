@@ -26,6 +26,7 @@ def get_prefix(bot, message):
 initial_extensions = ['cogs.simple',
                       'cogs.invader',
                       'cogs.daily',
+                      'cogs.apex',
                       'cogs.img',
                       'cogs.ship'
                       ]
