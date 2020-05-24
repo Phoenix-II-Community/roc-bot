@@ -98,20 +98,22 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     @ship.command(name='rand')
     @commands.guild_only()
     async def rand(self, ctx, *, arg1=None):
+        sc = ctx.subcommand_passed
         if ctx.channel.id == 378546862627749908:
             if arg1 == None:
                 arg1 = 10
-                await random_ship_command_embed(self, ctx, arg1)
+                await ShipLister(self, ctx, arg1, sc).create_embed()
             else:
-                await random_ship_command_embed(self, ctx, arg1)
+                await ShipLister(self, ctx, arg1, sc).create_embed()
         else:
             await ctx.send("Command limited to <#378546862627749908>.")
 
     @ship.command(name='all')
     @commands.guild_only()
     async def all(self, ctx, *, arg1=None):
-        if ctx.channel.id == 378546862627749908:
-            await all_ship_command_embed(self, ctx)
+        sc = ctx.subcommand_passed
+        if ctx.channel.id in (378546862627749908,596343881705062417):
+            await ShipLister(self, ctx, arg1, sc).create_embed()
         else:
             await ctx.send("Command limited to <#378546862627749908>.")
 

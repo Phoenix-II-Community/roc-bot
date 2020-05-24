@@ -67,7 +67,10 @@ def invader_search(find_this):
 
 # strip all non lete
 def sanitise_input(input_string):
-    words_only = re.sub(r'\W+','', input_string)
+    # \W+ matches any non-word character (equal to [^a-zA-Z0-9_])
+    # + Quantifier — Matches between one and unlimited times, as many times as 
+    # possible, giving back as needed (greedy)
+    words_only = re.sub(r'\W+','', str(input_string))
     return unicodedata.normalize('NFKD', words_only).encode('ascii', 'ignore').decode('utf8')
 
 def customemoji(self, find_this):
@@ -148,6 +151,15 @@ def argument_parser(sc, arg1):
     if sc == 'dmg':
         dmg_bracket = process.extractOne(clean_arg1, dmg_bracket_list())
         return dmg_bracket[0]
+    elif sc == 'rand':
+        try:
+            int(arg1)
+        except ValueError:
+            return 10
+        except TypeError:
+            return 10
+        else:
+            return arg1
     else:
         if len(clean_arg1) <= 4:
             shortcut = shortcut_obj(clean_arg1.lower())

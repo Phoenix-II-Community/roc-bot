@@ -6,6 +6,8 @@ import sqlite3
 import discord.ext.commands
 from discord.ext.commands import Bot
 import urllib.parse
+import random
+
 
 # This class connects to rocbot.sqlite and uses a view to query. The returned 
 # data is put into an object where methods run uses this info to generate a
@@ -116,7 +118,10 @@ class ShipLister():
         conn = sqlite3.connect('rocbot.sqlite')
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
-        c.execute(f"select * from s_info where {self.sub_command} = ?", (self.arg1,))
+        if self.sub_command in ('all', 'rand'):
+            c.execute("select * from s_info")
+        else:
+            c.execute(f"select * from s_info where {self.sub_command} = ?", (self.arg1,))
         s_obj = c.fetchall()
         conn.close()
         return s_obj
@@ -136,6 +141,14 @@ class ShipLister():
                     f"{customemoji(self.bot_self, i['name'])} "
                     f"{i['name']}")
             return embed_pagination(description)
+        elif self.sub_command == 'rand':
+            for i in self.s_obj:
+                description.append(
+                    f"{customemoji(self.bot_self, i['affinity'])} "
+                    f"{customemoji(self.bot_self, i['name'])} "
+                    f"{i['name']}")
+            return embed_pagination(random.sample(description, int(self.arg1)))
+        # having an else without knowing what uses it sucks
         else:
             for i in self.s_obj:
                 description.append(
@@ -162,6 +175,10 @@ class ShipLister():
     def title(self):
         if self.sub_command == "dmg":
             return f"{customemoji(self.bot_self, 'dps')} {self.arg1} DPS Ships"
+        if self.sub_command == "all":
+            return "All Ship Listing"
+        if self.sub_command == "rand":
+            return f"Random list of {self.arg1} ships"
         else:
             return f"{customemoji(self.bot_self, self.arg1)} {self.arg1} Ships"
 
@@ -216,3 +233,5 @@ class CategoryLister():
             return f"{customemoji(self.bot_self, 'vegemite')} Rarities"
         else:
             pass
+
+
