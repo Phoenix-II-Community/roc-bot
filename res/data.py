@@ -73,9 +73,9 @@ class ShipData():
         return embed_description
     
     def get_ship_image(self):
-        urlgit = "https://github.com/Phoenix-II-Community/apex-bot/raw/master/img/"
-        img_url = (f"{urlgit}{sanitise_input(self.ship_name.lower())}.png")
-        return img_url
+        urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/apex-bot/master/ships/"
+        url = f"{urlgit}ship_{self.s_obj['number']}.png"
+        return url
         
     # create a discod embed object. Using the Ship class to collect the required 
     # data. The embed includes a title as a ship emoji and the ship name queried

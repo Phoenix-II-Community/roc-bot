@@ -91,7 +91,7 @@ class ImgageCog(commands.Cog, name="Imgage Commands"):
                     embed = discord.Embed(title=ship_embed_title, colour=col)
                     embed.set_image(url=get_ship_image(f"{i['id']}_apex_{i['apex_num']}"))
                     embed.set_footer(text=f"Ship {s_obj['number']}")
-            await ctx.send(embed=embed)
+                    await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(ImgageCog(bot))
