@@ -5,7 +5,7 @@ import discord
 import discord.ext.commands
 from discord.ext import commands
 from discord.utils import get
-from mission import Mission
+from res.mission import Mission
 
 
 class DailyCog(commands.Cog, name="Daily Commands"):

@@ -53,7 +53,7 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
 
     # Changes our bots Playing Status. type=1(streaming) for a standard game you could remove type and url.
-    game = discord.Game("Testing Cogs")
+    game = discord.Game("Flying Centurion")
     await bot.change_presence(status=discord.Status.online, activity=game)
     print(f'Successfully logged in and booted...!')
 

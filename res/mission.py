@@ -7,7 +7,7 @@ import discord.ext.commands
 from discord.ext.commands import Bot
 import urllib.parse
 from datetime import datetime, timezone
-from common import customemoji, ship_search, sanitise_input
+from res.common import customemoji, ship_search, sanitise_input
 
 
 class Mission():

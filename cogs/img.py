@@ -7,9 +7,9 @@ import sqlite3
 from discord.ext import commands
 from discord.utils import get
 from fuzzywuzzy import process, fuzz
-from common import sanitise_input, ship_search, customemoji
-from data import ShipData
 import re
+from res.common import sanitise_input, ship_search, customemoji
+from res.data import ShipData
 
 
 def sql_apex_num_obj():
@@ -55,7 +55,7 @@ def sql_rank_obj():
     return r_obj
 
 def get_ship_image(ship_name):
-    urlgit = "https://github.com/Phoenix-II-Community/apex-bot/blob/master/ships/"
+    urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/apex-bot/master/ships/"
     url = f"{urlgit}ship_{ship_name}.png"
     return url
 
