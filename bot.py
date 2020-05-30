@@ -50,7 +50,7 @@ if __name__ == '__main__':
 async def on_ready():
     """http://discordpy.readthedocs.io/en/rewrite/api.html#discord.on_ready"""
 
-    print('We have logged in as {0.user}'.format(bot))
+    print(f'We have logged in as {bot.user}')
 
     # Changes our bots Playing Status. type=1(streaming) for a standard game you could remove type and url.
     game = discord.Game("Flying Centurion")
