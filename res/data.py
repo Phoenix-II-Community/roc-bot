@@ -47,9 +47,7 @@ class ShipData():
     # Creates the title of the discord emebed consisting of the rarity emoji 
     # the ship name.
     def get_ship_title(self):
-        embed_title = (
-            f"{customemoji(self.bot_self, self.s_obj['rarity'])} {self.s_obj['name']}")
-        return embed_title
+        return f"{customemoji(self.bot_self, self.s_obj['rarity'])} {self.s_obj['name']}"
     
     # The embed is made up of two sections of content the title and this section
     # the descriotion. The description contains weapon, aura and zen info using 
@@ -74,8 +72,7 @@ class ShipData():
     
     def get_ship_image(self):
         urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/apex-bot/master/ships/"
-        url = f"{urlgit}ship_{self.s_obj['number']}.png"
-        return url
+        return f"{urlgit}ship_{self.s_obj['number']}.png"
         
     # create a discod embed object. Using the Ship class to collect the required 
     # data. The embed includes a title as a ship emoji and the ship name queried
@@ -210,14 +207,12 @@ class CategoryLister():
         list1 = []
         for i in self.s_obj:
             new_set.add(i[self.sub_command])
-        if self.sub_command == 'dmg':
-            for i in sorted(new_set):
+        for i in sorted(new_set):
+            if self.sub_command == 'dmg':
                 list1.append(f"{i}")
-            description = '\n'.join(list1)
-        else:
-            for i in sorted(new_set):
+            else:
                 list1.append(f"{customemoji(self.bot_self, i)} {i}")
-            description = '\n'.join(list1)
+        description = '\n'.join(list1)
         return discord.Embed(title=self.title(), description=description)
 
     def title(self):
@@ -231,7 +226,5 @@ class CategoryLister():
             return f"{customemoji(self.bot_self, 'zen')} Zens"
         elif self.sub_command == "rarity":
             return f"{customemoji(self.bot_self, 'vegemite')} Rarities"
-        else:
-            pass
 
 

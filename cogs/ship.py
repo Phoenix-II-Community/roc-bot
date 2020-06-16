@@ -48,7 +48,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     @commands.guild_only()
     async def dmg(self, ctx, *, arg1=None):
         sc = ctx.subcommand_passed
-        if arg1 == None:
+        if arg1 is None:
             await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
             await ShipLister(self, ctx, arg1, sc).create_embed()
@@ -57,7 +57,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     @commands.guild_only()
     async def aura(self, ctx, *, arg1=None):
         sc = ctx.subcommand_passed
-        if arg1 == None:
+        if arg1 is None:
             await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
             await ShipLister(self, ctx, arg1, sc).create_embed()
@@ -67,7 +67,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     @commands.guild_only()
     async def zen(self, ctx, *, arg1=None):
         sc = ctx.subcommand_passed
-        if arg1 == None:
+        if arg1 is None:
             await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
             await ShipLister(self, ctx, arg1, sc).create_embed()
@@ -77,7 +77,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     async def rarity(self, ctx, *, arg1=None):
         sc = ctx.subcommand_passed
         if ctx.channel.id == 378546862627749908:
-            if arg1 == None:
+            if arg1 is None:
                 await ctx.send(embed=CategoryLister(self, sc).embed_list)
             else:
                 await ShipLister(self, ctx, arg1, sc).create_embed()
@@ -89,7 +89,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     @commands.guild_only()
     async def affinity(self, ctx, *, arg1=None):
         sc = ctx.subcommand_passed
-        if arg1 == None:
+        if arg1 is None:
             await ctx.send(embed=CategoryLister(self, sc).embed_list)
         else:
             await ShipLister(self, ctx, arg1, sc).create_embed()
@@ -99,11 +99,9 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     async def rand(self, ctx, *, arg1=None):
         sc = ctx.subcommand_passed
         if ctx.channel.id == 378546862627749908:
-            if arg1 == None:
+            if arg1 is None:
                 arg1 = 10
-                await ShipLister(self, ctx, arg1, sc).create_embed()
-            else:
-                await ShipLister(self, ctx, arg1, sc).create_embed()
+            await ShipLister(self, ctx, arg1, sc).create_embed()
         else:
             await ctx.send("Command limited to <#378546862627749908>.")
 

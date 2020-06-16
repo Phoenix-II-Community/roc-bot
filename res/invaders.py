@@ -82,21 +82,19 @@ class invader_type():
     def get_sql_obj(self):
         if self.sc == self.type:
             i_obj = self.sql_i_name_obj()
-            return i_obj
         else:
             i_obj = self.sql_i_type_obj()
-            return i_obj
+
+        return i_obj
 
     def get_description(self):
         list1 = []
-        if self.sc == self.type:
-            for i in self.i_obj:
+        for i in self.i_obj:
+            if self.sc == self.type:
                 list1.append(f"{customemoji(self.bot_self, i['type'])} {i['hp']}")
-            return '\n'.join(list1)
-        else:
-            for i in self.i_obj:
+            else:
                 list1.append(f"{customemoji(self.bot_self, i['name'])} {i['hp']}")
-            return '\n'.join(list1)
+        return '\n'.join(list1)
 
     def get_title(self):
         if self.sc == self.type:
