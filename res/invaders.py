@@ -5,7 +5,7 @@ import discord.ext.commands
 from discord.ext import commands
 from discord.utils import get
 from res.common import customemoji
-from fuzzywuzzy import process
+from rapidfuzz import process
 
 class invader_type():
     def __init__(self, bot_self, sub_command, arg1):
@@ -37,7 +37,7 @@ class invader_type():
             # using the class initiated list ship_list find one ship name that 
             # matches the given string as close as possible
             found_this = process.extractOne(find_this, self.get_invaders())
-            # fuzzywuzzy returns the name and the ratio so strip the ratio and keep 
+            # rapidfuzz returns the name and the ratio so strip the ratio and keep 
             # the ship name
             invader_name = found_this[0]
             # return the ship name as a string
