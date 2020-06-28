@@ -137,7 +137,7 @@ def get_ship_title(self, ship_name):
     return ship_title
 
 def get_ship_image(ship_name):
-    urlgit = "https://raw.githubusercontent.com/ewong18/roc-bot/ewong18/ships/"
+    urlgit = "https://raw.githubusercontent.com/ewong18/Roc-Bot/master/ships/"
     url = ("{giturl}ship_{shipnumber}.png").format(giturl=urlgit, shipnumber=number)
     print (url)
     #url = ("{giturl}{shipname}.png").format(giturl=urlgit, shipname=ship_name)

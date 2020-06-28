@@ -55,8 +55,7 @@ def sql_rank_obj():
     return r_obj
 
 def get_ship_image(ship_name):
-    urlgit =    "https://raw.githubusercontent.com/ewong18/roc-bot/ewong18/ships/"
-        #"https://raw.githubusercontent.com/Phoenix-II-Community/apex-bot/cogs_rewrite/ships/"
+    urlgit =    "https://raw.githubusercontent.com/ewong18/Roc-Bot/master/ships/"
     url = f"{urlgit}ship_{ship_name}.png"
     return url
 

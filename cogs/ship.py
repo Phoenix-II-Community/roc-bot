@@ -3,7 +3,7 @@
 
 import discord
 from discord.ext import commands
-from ship_func import random_ship_command_embed, all_ship_command_embed
+#from ship_func import random_ship_command_embed, all_ship_command_embed
 from data import ShipData, CategoryLister, ShipLister
 
 class ShipCog(commands.Cog, name="Ship Commands"):
@@ -112,7 +112,7 @@ class ShipCog(commands.Cog, name="Ship Commands"):
     @commands.guild_only()
     async def all(self, ctx, *, arg1=None):
         sc = ctx.subcommand_passed
-        if ctx.channel.id in (378546862627749908,596343881705062417):
+        if ctx.channel.id in (378546862627749908,722494845305749524):
             await ShipLister(self, ctx, arg1, sc).create_embed()
         else:
             await ctx.send("Command limited to <#378546862627749908>.")
