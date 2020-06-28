@@ -6,7 +6,7 @@ import discord.ext.commands
 import sqlite3
 from discord.ext import commands
 from discord.utils import get
-from fuzzywuzzy import process, fuzz
+from rapidfuzz import process, fuzz
 from common import sanitise_input, ship_search, customemoji
 from data import ShipData
 import re

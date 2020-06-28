@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from fuzzywuzzy import process
+from rapidfuzz import process
 from pathlib import Path
 import json
 import re

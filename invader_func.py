@@ -3,7 +3,7 @@
 
 import discord
 from discord.ext import commands
-from fuzzywuzzy import process
+from rapidfuzz import process
 from ship_func import customemoji
 import os 
 from pathlib import Path

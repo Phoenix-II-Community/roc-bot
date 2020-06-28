@@ -73,7 +73,7 @@ class ShipData():
         return embed_description
     
     def get_ship_image(self):
-        urlgit = "https://raw.githubusercontent.com/ewong18/roc-bot/ewong18/ships/"
+        urlgit = "https://raw.githubusercontent.com/ewong18/Roc-Bot/master/ships/"
         img_url = ("{giturl}ship_{shipnumber}.png").format(giturl=urlgit, shipnumber=self.s_obj['number'])
         return img_url
         

@@ -8,7 +8,7 @@ from discord.utils import get
 from invader_func import invader_type_list, invader_embed
 from ship_func import get_ship_title, get_em_colour, get_ship_image
 from common import customemoji
-from fuzzywuzzy import process, fuzz
+from rapidfuzz import process, fuzz
 import re
 import os
 import json

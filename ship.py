@@ -4,7 +4,7 @@
 ################################################################
 ####                    !ship Functions                     ####
 ################################################################
-from fuzzywuzzy import process
+from rapidfuzz import process
 from pathlib import Path
 import json
 import re

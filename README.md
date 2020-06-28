@@ -9,7 +9,7 @@ Dependancies
 
 ```
 python3 -m pip install -U discord.py
-python3 -m pip install -U fuzzywuzzy
+python3 -m pip install -U rapidfuzz
 ```
 
 ## Bot Commands
