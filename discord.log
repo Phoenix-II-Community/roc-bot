@@ -160,3 +160,73 @@
 2020-06-27 20:43:02,824:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 32, 'op': 0, 'd': {'user': {'id': '431847948049973268'}, 'status': 'offline', 'roles': ['333903322358743041', '374559069807312898', '380521938117984256', '412374349501169665', '423357969892376586', '455962360163860481', '456974175106760747', '457068066866462730', '457621833437544448', '465921269913616394', '481847850246864897', '500730677290074113', '507370972337274904', '540914932120813579', '543576618069917699', '558494893907902474', '581639191490985984', '585605145987907595', '588344245610479674', '588363709072670721', '589111879306051585', '597169735578157097', '597559798350872576', '604854371104063488', '607580391158841364', '614976381134307362', '654284054312648724'], 'premium_since': '2019-08-11T18:28:52.214000+00:00', 'nick': 'Papa Bo Zack', 'guild_id': '325430508379176961', 'game': None, 'client_status': {}, 'activities': []}}
 2020-06-27 20:43:02,824:DEBUG:discord.client: Dispatching event socket_response
 2020-06-27 20:43:02,825:DEBUG:discord.client: Dispatching event member_update
+2020-06-27 20:43:06,113:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:06,114:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 33, 'op': 0, 'd': {'user': {'id': '185165472382058497'}, 'status': 'online', 'roles': ['374559069807312898', '423357969892376586'], 'guild_id': '325430508379176961', 'game': {'type': 4, 'name': 'Custom Status', 'id': 'custom', 'emoji': {'name': '🎴'}, 'created_at': 1593308585720}, 'client_status': {'desktop': 'online'}, 'activities': [{'type': 4, 'name': 'Custom Status', 'id': 'custom', 'emoji': {'name': '🎴'}, 'created_at': 1593308585720}]}}
+2020-06-27 20:43:06,114:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:06,125:DEBUG:discord.client: Dispatching event member_update
+2020-06-27 20:43:09,397:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:09,397:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 34, 'op': 0, 'd': {'user': {'id': '151185056130531328'}, 'status': 'online', 'roles': ['325437432642142218'], 'guild_id': '325430508379176961', 'game': {'type': 0, 'timestamps': {'start': 1593297466288}, 'name': 'Google Chrome', 'id': '10a3af77348a698a', 'created_at': 1593297466477}, 'client_status': {'desktop': 'online'}, 'activities': [{'type': 0, 'timestamps': {'start': 1593297466288}, 'name': 'Google Chrome', 'id': '10a3af77348a698a', 'created_at': 1593297466477}]}}
+2020-06-27 20:43:09,397:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:09,397:DEBUG:discord.client: Dispatching event member_update
+2020-06-27 20:43:10,217:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:10,217:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 35, 'op': 0, 'd': {'user': {'id': '164099431753318400'}, 'status': 'offline', 'roles': ['465921269913616394', '507370972337274904', '604854371104063488', '607578136330240020', '622546136753766421'], 'guild_id': '325430508379176961', 'game': None, 'client_status': {}, 'activities': []}}
+2020-06-27 20:43:10,218:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:10,218:DEBUG:discord.client: Dispatching event member_update
+2020-06-27 20:43:12,644:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:12,644:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 36, 'op': 0, 'd': {'user': {'id': '438760307720978433'}, 'status': 'offline', 'roles': ['325437432642142218', '457068995443425310', '465921269913616394', '539060584193327109', '588363709072670721', '622546136753766421'], 'guild_id': '325430508379176961', 'game': None, 'client_status': {}, 'activities': []}}
+2020-06-27 20:43:12,646:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:12,647:DEBUG:discord.client: Dispatching event member_update
+2020-06-27 20:43:14,717:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:14,717:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 37, 'op': 0, 'd': {'user': {'username': '_rice🅱um', 'id': '489860331628134415', 'discriminator': '5718', 'avatar': '48b281e506f249980aa0baaf61687a24'}, 'status': 'online', 'roles': ['325437432642142218'], 'guild_id': '325430508379176961', 'game': None, 'client_status': {'mobile': 'online'}, 'activities': []}}
+2020-06-27 20:43:14,718:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:14,718:DEBUG:discord.client: Dispatching event member_update
+2020-06-27 20:43:15,575:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:15,575:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 38, 'op': 0, 'd': {'user': {'id': '216629227003314176'}, 'status': 'offline', 'roles': ['374559069807312898', '387471710867161098', '455960372717944862', '455961089923088394', '455961469121462274', '460910225042571284', '464439417700876307', '465921269913616394', '500730677290074113', '531101954412249109', '558494893907902474', '588344245610479674', '597169735578157097', '607579248567386122'], 'nick': '< AYBABTU >', 'guild_id': '325430508379176961', 'game': None, 'client_status': {}, 'activities': []}}
+2020-06-27 20:43:15,575:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:15,576:DEBUG:discord.client: Dispatching event member_update
+2020-06-27 20:43:16,511:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:16,511:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 39, 'op': 0, 'd': {'user': {'id': '118934082653519872'}, 'status': 'offline', 'roles': ['607566698094002176', '455962360163860481', '497805875528859649', '588363709072670721', '465921269913616394', '325437432642142218', '455962703555461130', '607578136330240020'], 'premium_since': None, 'nick': None, 'guild_id': '325430508379176961', 'game': None, 'client_status': {}, 'activities': []}}
+2020-06-27 20:43:16,512:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:16,512:DEBUG:discord.client: Dispatching event member_update
+2020-06-27 20:43:17,488:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:17,488:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 40, 'op': 0, 'd': {'user': {'username': 'Avalon', 'public_flags': 64, 'id': '444098013053583363', 'discriminator': '9344', 'avatar': '85db844f57bc6e9950e4cb223b0fd10b'}, 'status': 'dnd', 'roles': ['325437432642142218', '455960372717944862', '455961469121462274', '455961709199491074', '457068832108838912', '457988884219822090', '465921269913616394', '576102862803959819', '588363709072670721', '622546136753766421'], 'premium_since': None, 'nick': None, 'guild_id': '325430508379176961', 'game': {'type': 4, 'state': 'Дpyr', 'name': 'Custom Status', 'id': 'custom', 'created_at': 1593308597311}, 'client_status': {'mobile': 'dnd'}, 'activities': [{'type': 4, 'state': 'Дpyr', 'name': 'Custom Status', 'id': 'custom', 'created_at': 1593308597311}]}}
+2020-06-27 20:43:17,488:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:17,489:DEBUG:discord.client: Dispatching event member_update
+2020-06-27 20:43:17,871:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:17,871:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 41, 'op': 0, 'd': {'user': {'id': '418791184241131522'}, 'status': 'idle', 'roles': ['325437432642142218', '456974175106760747', '588363709072670721', '604854371104063488', '622546136753766421'], 'guild_id': '325430508379176961', 'game': {'type': 2, 'timestamps': {'start': 1593308596917, 'end': 1593308802809}, 'sync_id': '2oYd0u6g7OZ5wTTUYMXYhX', 'state': 'Dima Lancaster; Broken', 'session_id': 'b9ec8a2bc7cab87025713ea92c26b0e4', 'party': {'id': 'spotify:418791184241131522'}, 'name': 'Spotify', 'id': 'spotify:1', 'flags': 48, 'details': 'Gospel of the Throttle', 'created_at': 1593308597820, 'assets': {'large_text': 'Gospel of the Throttle', 'large_image': 'spotify:ab67616d0000b273fcb399c8f7b4c7c5d19d1e74'}}, 'client_status': {'desktop': 'idle'}, 'activities': [{'type': 2, 'timestamps': {'start': 1593308596917, 'end': 1593308802809}, 'sync_id': '2oYd0u6g7OZ5wTTUYMXYhX', 'state': 'Dima Lancaster; Broken', 'session_id': 'b9ec8a2bc7cab87025713ea92c26b0e4', 'party': {'id': 'spotify:418791184241131522'}, 'name': 'Spotify', 'id': 'spotify:1', 'flags': 48, 'details': 'Gospel of the Throttle', 'created_at': 1593308597820, 'assets': {'large_text': 'Gospel of the Throttle', 'large_image': 'spotify:ab67616d0000b273fcb399c8f7b4c7c5d19d1e74'}}, {'type': 0, 'timestamps': {'start': 1593294265664}, 'name': 'Path of Exile', 'id': '1e9292890f4340a0', 'created_at': 1593294266076, 'application_id': '356888453796986880'}]}}
+2020-06-27 20:43:17,871:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:17,871:DEBUG:discord.client: Dispatching event member_update
+2020-06-27 20:43:32,695:DEBUG:discord.gateway: Keeping websocket alive with sequence 41.
+2020-06-27 20:43:32,696:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-06-27 20:43:32,754:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:32,754:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2020-06-27 20:43:32,754:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:33,340:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:33,340:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 42, 'op': 0, 'd': {'user': {'id': '231999682119729152'}, 'status': 'offline', 'roles': ['325437432642142218', '491231818155032586', '588363709072670721', '622546136753766421'], 'guild_id': '325430508379176961', 'game': None, 'client_status': {}, 'activities': []}}
+2020-06-27 20:43:33,340:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:33,340:DEBUG:discord.client: Dispatching event member_update
+2020-06-27 20:43:42,161:INFO:discord.gateway: Websocket closed with 4003 (Not authenticated.), attempting a reconnect.
+2020-06-27 20:43:42,161:INFO:discord.client: Got a request to RESUME the websocket.
+2020-06-27 20:43:42,162:DEBUG:discord.client: Dispatching event disconnect
+2020-06-27 20:43:42,221:DEBUG:discord.http: GET https://discordapp.com/api/v7/gateway with None has returned 200
+2020-06-27 20:43:42,221:DEBUG:discord.http: GET https://discordapp.com/api/v7/gateway has received {'url': 'wss://gateway.discord.gg'}
+2020-06-27 20:43:42,369:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
+2020-06-27 20:43:42,370:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:42,370:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 10, 'd': {'heartbeat_interval': 41250, '_trace': ['["gateway-prd-main-9pvt",{"micros":0.0}]']}}
+2020-06-27 20:43:42,370:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:42,370:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-06-27 20:43:42,370:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-06-27 20:43:42,371:INFO:discord.gateway: Shard ID None has sent the RESUME payload.
+2020-06-27 20:43:42,427:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:42,428:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2020-06-27 20:43:42,428:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:42,428:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-06-27 20:43:42,428:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 9, 'd': False}
+2020-06-27 20:43:42,428:DEBUG:discord.client: Dispatching event socket_response
+2020-06-27 20:43:42,428:INFO:discord.gateway: Shard ID None session has been invalidated.
+2020-06-27 20:43:47,433:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-06-27 20:43:47,433:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
+2020-06-27 20:43:47,515:INFO:discord.gateway: Websocket closed with 4004 (Authentication failed.), cannot reconnect.
+2020-06-27 20:43:47,515:DEBUG:discord.client: Dispatching event disconnect
+2020-06-27 20:43:47,519:INFO:discord.client: Cleaning up tasks.
+2020-06-27 20:43:47,520:INFO:discord.client: Closing the event loop.
