@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		55DCC09024A825F9007EEE16 /* settings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = settings.py; sourceTree = "<group>"; };
 		55DCC09224A825F9007EEE16 /* testing.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = testing.py; sourceTree = "<group>"; };
 		55DCC09324A825F9007EEE16 /* cogs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cogs; sourceTree = "<group>"; };
 		55DCC09424A825F9007EEE16 /* data.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = data.py; sourceTree = "<group>"; };
@@ -45,7 +44,6 @@
 				55DCC0A424A82600007EEE16 /* res */,
 				55DCC09D24A825FD007EEE16 /* rocbot.db */,
 				55DCC0A724A82601007EEE16 /* rocbot.sqlite */,
-				55DCC09024A825F9007EEE16 /* settings.py */,
 				55DCC0A824A82601007EEE16 /* ship_func.py */,
 				55DCC0A124A82600007EEE16 /* ships */,
 				55DCC09224A825F9007EEE16 /* testing.py */,

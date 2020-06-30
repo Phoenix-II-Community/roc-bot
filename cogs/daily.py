@@ -25,6 +25,11 @@ class DailyCog(commands.Cog, name="Daily Commands"):
     async def next(self, ctx, *, arg1=None):
         sub_command = ctx.subcommand_passed
         await ctx.send(embed=Mission(self, sub_command).embed_daily)
+    
+    @daily.command()
+    async def all(self, ctx, *, arg1=None):
+        sub_command = ctx.subcommand_passed
+        await ctx.send(embed=Mission(self, sub_command).embed_d_list)
 
 def setup(bot):
     bot.add_cog(DailyCog(bot))
