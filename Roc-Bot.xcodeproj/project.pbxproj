@@ -22,7 +22,6 @@
 		55DCC0A524A82601007EEE16 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		55DCC0A624A82601007EEE16 /* __pycache__ */ = {isa = PBXFileReference; lastKnownFileType = folder; path = __pycache__; sourceTree = "<group>"; };
 		55DCC0A724A82601007EEE16 /* rocbot.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = rocbot.sqlite; sourceTree = "<group>"; };
-		55DCC0A824A82601007EEE16 /* ship_func.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = ship_func.py; sourceTree = "<group>"; };
 		55DCC0AA24A826F9007EEE16 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,7 +43,6 @@
 				55DCC0A424A82600007EEE16 /* res */,
 				55DCC09D24A825FD007EEE16 /* rocbot.db */,
 				55DCC0A724A82601007EEE16 /* rocbot.sqlite */,
-				55DCC0A824A82601007EEE16 /* ship_func.py */,
 				55DCC0A124A82600007EEE16 /* ships */,
 				55DCC09224A825F9007EEE16 /* testing.py */,
 			);
