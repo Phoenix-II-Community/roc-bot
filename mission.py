@@ -11,8 +11,9 @@ from common import customemoji, ship_search, sanitise_input
 
 
 class Mission():
-    def __init__(self, bot_self, sub_command):
+    def __init__(self, bot_self, sub_command, d_num = None):
         self.sub_com = sub_command
+        self.day_num = d_num
         self.bot_self = bot_self
         self.mission_epoch = 1326
         self.thumb_url = 'https://cdn.discordapp.com/attachments/340802325277048832/573289243229552640/praise.png'
@@ -80,6 +81,8 @@ class Mission():
     def mission_number(self):
         if self.sub_com == 'next':
             return (self.mission_epoch + 1) + (datetime.now(timezone.utc) - datetime(2019,8,19,0,0,0, tzinfo=timezone.utc)).days
+        elif self.day_num != None:
+            return 'n/a'
         else:
             return self.mission_epoch + (datetime.now(timezone.utc) - datetime(2019,8,19,0,0,0, tzinfo=timezone.utc)).days
 
@@ -91,10 +94,10 @@ class Mission():
     def day_number(self):
         if self.sub_com == 'next':
             day = int((datetime.now(timezone.utc) - datetime(2019,8,18,0,0,0, tzinfo=timezone.utc)).days) + 1
-            #print(day % 21)
             return day % 21
+        elif self.day_num != None:
+            return self.day_num % 21
         else:
-            #print((datetime.now(timezone.utc) - datetime(2019,8,18,0,0,0, tzinfo=timezone.utc)).days % 21)
             return (datetime.now(timezone.utc) - datetime(2019,8,18,0,0,0, tzinfo=timezone.utc)).days % 21
 
     def d_list_embed(self):
