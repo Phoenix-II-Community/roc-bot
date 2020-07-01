@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from common import customemoji, ship_search, sanitise_input, argument_parser, get_em_colour, embed_pagination
+from res.common import customemoji, ship_search, sanitise_input, argument_parser, get_em_colour, embed_pagination
 import sqlite3 
 import discord.ext.commands
 from discord.ext.commands import Bot

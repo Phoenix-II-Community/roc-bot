@@ -9,13 +9,9 @@
 /* Begin PBXFileReference section */
 		55DCC09224A825F9007EEE16 /* testing.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = testing.py; sourceTree = "<group>"; };
 		55DCC09324A825F9007EEE16 /* cogs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cogs; sourceTree = "<group>"; };
-		55DCC09424A825F9007EEE16 /* data.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = data.py; sourceTree = "<group>"; };
-		55DCC09724A825FC007EEE16 /* invader_class.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = invader_class.py; sourceTree = "<group>"; };
 		55DCC09924A825FD007EEE16 /* bot.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = bot.py; sourceTree = "<group>"; };
-		55DCC09A24A825FD007EEE16 /* mission.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mission.py; sourceTree = "<group>"; };
 		55DCC09B24A825FD007EEE16 /* emojirename.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = emojirename.py; sourceTree = "<group>"; };
 		55DCC09D24A825FD007EEE16 /* rocbot.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = rocbot.db; sourceTree = "<group>"; };
-		55DCC09E24A825FD007EEE16 /* common.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = common.py; sourceTree = "<group>"; };
 		55DCC09F24A825FD007EEE16 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		55DCC0A124A82600007EEE16 /* ships */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ships; sourceTree = "<group>"; };
 		55DCC0A424A82600007EEE16 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
@@ -33,12 +29,8 @@
 				55DCC0A624A82601007EEE16 /* __pycache__ */,
 				55DCC09924A825FD007EEE16 /* bot.py */,
 				55DCC09324A825F9007EEE16 /* cogs */,
-				55DCC09E24A825FD007EEE16 /* common.py */,
-				55DCC09424A825F9007EEE16 /* data.py */,
 				55DCC09B24A825FD007EEE16 /* emojirename.py */,
-				55DCC09724A825FC007EEE16 /* invader_class.py */,
 				55DCC09F24A825FD007EEE16 /* LICENSE */,
-				55DCC09A24A825FD007EEE16 /* mission.py */,
 				55DCC0A524A82601007EEE16 /* README.md */,
 				55DCC0A424A82600007EEE16 /* res */,
 				55DCC09D24A825FD007EEE16 /* rocbot.db */,

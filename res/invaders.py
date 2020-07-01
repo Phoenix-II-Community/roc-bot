@@ -4,7 +4,7 @@ import sqlite3
 import discord.ext.commands
 from discord.ext import commands
 from discord.utils import get
-from common import customemoji
+from res.common import customemoji
 from rapidfuzz import process
 
 class invader_type():
