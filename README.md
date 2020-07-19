@@ -3,7 +3,7 @@
 Information bot for the community Phoenix II discord server. 
 
 ## Installation 
-`git clone git@github.com:Phoenix-II-Community/apex-bot.git`
+`git clone git@github.com:Phoenix-II-Community/roc-bot.git`
 
 Dependancies
 

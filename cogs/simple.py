@@ -28,7 +28,7 @@ class SimpleCog(commands.Cog, name="Simple Commands"):
     @commands.command(name='source')
     @commands.guild_only()
     async def source(self, ctx):
-        src = "https://github.com/Phoenix-II-Community/apex-bot"
+        src = "https://github.com/Phoenix-II-Community/roc-bot"
         await ctx.send(src)
 
 # The setup fucntion below is neccesarry. Remember we give bot.add_cog() the name of the class in this case SimpleCog.
