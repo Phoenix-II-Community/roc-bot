@@ -1,4 +1,4 @@
-# apex-bot
+# roc-bot
 
 Information bot for the community Phoenix II discord server. 
 
