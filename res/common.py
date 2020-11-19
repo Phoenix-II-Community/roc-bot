@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3
-from fuzzywuzzy import process
+from rapidfuzz import process
 import unicodedata
 import re
 import discord.ext.commands
@@ -30,7 +30,7 @@ def ship_search(find_this):
     # using the class initiated list ship_list find one ship name that 
     # matches the given string as close as possible
     found_this = process.extractOne(find_this, get_ships())
-    # fuzzywuzzy returns the name and the ratio so strip the ratio and keep 
+    # rapidfuzz returns the name and the ratio so strip the ratio and keep
     # the ship name
     ship_name = found_this[0]
     # return the ship name as a string
@@ -57,7 +57,7 @@ def invader_search(find_this):
         # using the class initiated list ship_list find one ship name that 
         # matches the given string as close as possible
         found_this = process.extractOne(find_this, get_invaders())
-        # fuzzywuzzy returns the name and the ratio so strip the ratio and keep 
+        # rapidfuzz returns the name and the ratio so strip the ratio and keep
         # the ship name
         invader_name = found_this[0]
         # return the ship name as a string

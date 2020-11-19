@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from common import customemoji, ship_search, sanitise_input
+from res.common import customemoji, ship_search, sanitise_input, argument_parser, get_em_colour, embed_pagination
 import sqlite3 
 import discord.ext.commands
 from discord.ext.commands import Bot
 import urllib.parse
+import random
+
 
 # This class connects to rocbot.sqlite and uses a view to query. The returned 
 # data is put into an object where methods run uses this info to generate a
@@ -71,8 +73,8 @@ class ShipData():
         return embed_description
     
     def get_ship_image(self):
-        urlgit = "https://github.com/Phoenix-II-Community/apex-bot/raw/master/img/"
-        img_url = (f"{urlgit}{sanitise_input(self.ship_name.lower())}.png")
+        urlgit = "https://raw.githubusercontent.com/ewong18/Roc-Bot/master/ships/"
+        img_url = ("{giturl}ship_{shipnumber}.png").format(giturl=urlgit, shipnumber=self.s_obj['number'])
         return img_url
         
     # create a discod embed object. Using the Ship class to collect the required 
@@ -104,25 +106,81 @@ class ShipData():
         return embed
 
 class ShipLister():
-    def __init__(self, bot_self, find_this, sub_command):
+    def __init__(self, bot_self, ctx, arg1, sc):
+        self.bot_self = bot_self
+        self.ctx = ctx
+        self.arg1 = argument_parser(sc, arg1)
+        self.sub_command = sc
+        self.embed_title = self.title()
         self.s_obj = self.sql_ship_obj()
 
     def sql_ship_obj(self):
-        # connect to the sqlite database
         conn = sqlite3.connect('rocbot.sqlite')
-        # return a class sqlite3.row object which requires a tuple input query
         conn.row_factory = sqlite3.Row
-        # make an sqlite connection object
         c = conn.cursor()
-        # using a defined view s_info collect all table info 
-        c.execute('select * from s_info')
-        # return the ship object including the required elemnts
+        if self.sub_command in ('all', 'rand'):
+            c.execute("select * from s_info")
+        else:
+            c.execute(f"select * from s_info where {self.sub_command} = ?", (self.arg1,))
         s_obj = c.fetchall()
-        # close the databse connection
         conn.close()
-        # return the sqlite3.cursor object
         return s_obj
 
+    def create_description(self):
+        description = []
+        if self.sub_command == 'dmg':
+            for i in self.s_obj:
+                description.append(
+                    f"{customemoji(self.bot_self, i['affinity'])} "
+                    f"{customemoji(self.bot_self, i['name'])} "
+                    f"{i['name']}")
+            return embed_pagination(description)
+        elif self.sub_command == 'affinity':
+            for i in self.s_obj:
+                description.append(
+                    f"{customemoji(self.bot_self, i['name'])} "
+                    f"{i['name']}")
+            return embed_pagination(description)
+        elif self.sub_command == 'rand':
+            for i in self.s_obj:
+                description.append(
+                    f"{customemoji(self.bot_self, i['affinity'])} "
+                    f"{customemoji(self.bot_self, i['name'])} "
+                    f"{i['name']}")
+            return embed_pagination(random.sample(description, int(self.arg1)))
+        # having an else without knowing what uses it sucks
+        else:
+            for i in self.s_obj:
+                description.append(
+                    f"{customemoji(self.bot_self, i['affinity'])} "
+                    f"{customemoji(self.bot_self, i['name'])} "
+                    f"{i['name']}")
+            return embed_pagination(description)
+
+    async def create_embed(self):
+        ctx = self.ctx
+        if self.sub_command == 'affinity':
+            colour = get_em_colour(self.arg1)
+            for page in self.create_description():
+                await ctx.send(embed=discord.Embed(
+                    title=self.embed_title, 
+                    description=page, 
+                    color=colour))
+        else:
+            for page in self.create_description():
+                await ctx.send(embed=discord.Embed(
+                    title=self.embed_title, 
+                    description=page))
+
+    def title(self):
+        if self.sub_command == "dmg":
+            return f"{customemoji(self.bot_self, 'dps')} {self.arg1} DPS Ships"
+        if self.sub_command == "all":
+            return "All Ship Listing"
+        if self.sub_command == "rand":
+            return f"Random list of {self.arg1} ships"
+        else:
+            return f"{customemoji(self.bot_self, self.arg1)} {self.arg1} Ships"
 
 class CategoryLister():
     def __init__(self, bot_self, sub_command):
@@ -164,7 +222,7 @@ class CategoryLister():
 
     def title(self):
         if self.sub_command == "affinity":
-            return f"{customemoji(self.bot_self, 'affinity')} Main Weapon Affinities"
+            return f"{customemoji(self.bot_self, 'damage')} Main Weapon Affinities"
         elif self.sub_command == "dmg":
             return f"{customemoji(self.bot_self, 'dps')} Damage Brackets"
         elif self.sub_command == "aura":
@@ -172,6 +230,8 @@ class CategoryLister():
         elif self.sub_command == "zen":
             return f"{customemoji(self.bot_self, 'zen')} Zens"
         elif self.sub_command == "rarity":
-            return f"{customemoji(self.bot_self, 'vegemite')} Rarities"
+            return f"{customemoji(self.bot_self, 'pinchallenge')} Rarities"
         else:
             pass
+
+
