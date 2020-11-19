@@ -1,14 +1,20 @@
 {
   "Pellet Fixed":{
+<<<<<<< HEAD
     "Description:":"Turret fires a single bullet in the direction it's facing",
     "Bullet count:":1,
     "Bullet type:":"Pellet",
+=======
+    "Description:":"Turret(s) fires a single bullet in the direction it's facing",
+    "Bullet count:":1,
+>>>>>>> local/master
     "Bullet speed:":"Slow",
     "Turret/spread count": [1,2,5,7],
     "Turret type:":"Single shot",
     "Tracking:":"No",
     "Tracking rate:":"N/A",
     "Rotating:":"No",
+<<<<<<< HEAD
     "Fire rate:":"Slow, medium, fast",
   },
   "Pellet spinner":{
@@ -16,6 +22,14 @@
     "Bullet count":1,
     "Bullet speed:":"Slow",
     "Bullet type:":"Pellet",
+=======
+    "Fire rate:":"Slow, medium",
+  },
+  "Pellet spinner":{
+    "Description:":"Turret(s) fires a certain number of pellets in all directions for variable amounts of time",
+    "Bullet count":1,
+    "Bullet speed:":"Slow",
+>>>>>>> local/master
     "Turret/spread count": [30,35,50,72],
     "Turret type:":"Multi-shot spinner",
     "Tracking:":"No",
@@ -24,10 +38,16 @@
     "Fire rate:":"Slow, medium, fast",
   },
   "Laser Fixed":{
+<<<<<<< HEAD
     "Description:":"Turret fires lasers in a single direction that lasts 1 second",
     "Bullet count:":1,
     "Bullet speed:":"Instant",
     "Bullet type:":"Laser",
+=======
+    "Description:":"Turret(s) fires lasers in a single direction that lasts about 2 seconds",
+    "Bullet count:":1,
+    "Bullet speed:":"Instant",
+>>>>>>> local/master
     "Turret/spread count": [3,5,7,9],
     "Turret type:":"Spinner",
     "Tracking:":"No",
@@ -36,22 +56,36 @@
     "Fire rate:":"Random",
   },
   "Laser Tracker":{
+<<<<<<< HEAD
     "Description:":"Turret fires laser(s) in the direction of the player's ship for 1 second",
     "Bullet count:":1,
     "Bullet speed:":"Instant",
     "Bullet type:":"Laser",
     "Turret/spread count": [1, 2, 3],
     "Turret type:":"Tracking laser",
+=======
+    "Description:":"Turret(s) fires a laser(s) in a single direction that lasts about 2 seconds",
+    "Bullet count:":1,
+    "Bullet speed:":"Instant",
+    "Turret/spread count": [1,2,3],
+    "Turret type:":"Tracking, laser",
+>>>>>>> local/master
     "Tracking:":"Yes",
     "Tracking rate:":"Slow, medium, fast",
     "Rotating:":"No",
     "Fire rate:":"Random",
   },
   "Dart Tracker":{
+<<<<<<< HEAD
     "Description:":"Turret fires streams of darts in a direction",
     "Bullet count:":"Unknown",
     "Bullet speed:":"Medium",
     "Bullet type:":"Dart",
+=======
+    "Description:":"Turret(s) fires a dart(s) in a single direction",
+    "Bullet count:":"Unknown",
+    "Bullet speed:":"Medium",
+>>>>>>> local/master
     "Turret/spread count": [1,2,5,7],
     "Turret type:":"Multi-shot tracking",
     "Tracking:":"Yes",
@@ -60,10 +94,16 @@
     "Fire rate:":"Medium, fast",
   },
     "Dart Spinner":{
+<<<<<<< HEAD
     "Description:":"Turret fires darts in all directions for a certain amount of time",
     "Bullet count:":1,
     "Bullet speed:":"Medium, fast",
     "Bullet type:":"Dart",
+=======
+    "Description:":"Turret(s) fires darts in all directions for certain amounts of time",
+    "Bullet count:":1,
+    "Bullet speed:":"Medium, fast",
+>>>>>>> local/master
     "Turret/spread count": [8,10,24,40],
     "Turret type:":"Stream spinner",
     "Tracking:":"No",
@@ -71,11 +111,18 @@
     "Rotating:":"Yes",
     "Fire rate:":"Fast",
   },
+<<<<<<< HEAD
       "Boomerang":{
     "Description:":"Turret fires tracking boomerangs at the player's ship",
     "Bullet count:":1,
     "Bullet speed:":"Medium, fast",
     "Bullet type:":"Boomerang"
+=======
+      "Boomerang(s)":{
+    "Description:":"Turret(s) fires a tracking boomerang at the player's ship",
+    "Bullet count:":1,
+    "Bullet speed:":"Medium, fast",
+>>>>>>> local/master
     "Turret/spread count:":"1x1, 2x1, 2x2, 2x3",
     "Turret type:":"Tracking",
     "Tracking:":"Yes",
@@ -84,12 +131,20 @@
     "Fire rate:":"Slow, medium",
   },
       "Shuriken Tracker":{
+<<<<<<< HEAD
     "Description:":"Turret fires shurikens at the player's ship",
     "Bullet count:":1,
     "Bullet speed:":"Slow",
     "Bullet type:":"Shuriken",
     "Turret/spread count": [1,2,4],
     "Turret type:":"Tracking, shuriken",
+=======
+    "Description:":"Turret(s) fires shurikens at the player's ship",
+    "Bullet count:":1,
+    "Bullet speed:":"Slow",
+    "Turret/spread count": [1,2,4],
+    "Turret type:":"Tracking",
+>>>>>>> local/master
     "Tracking:":"Yes",
     "Tracking rate:":"Slow, medium",
     "Rotating:":"No",
@@ -98,8 +153,12 @@
       "Shuriken Spinner":{
     "Description:":"Turrets fires shurikens in patterns",
     "Bullet count:":"Unknown",
+<<<<<<< HEAD
     "Bullet speed:":"Slow, medium",
     "Bullet type:":"Shuriken",
+=======
+    "Bullet speed:":"Slow",
+>>>>>>> local/master
     "Turret/spread count:":"1x5, 1x9, 1x13, 5x(unknown)",
     "Turret type:":"Spinner",
     "Tracking:":"No",
@@ -108,10 +167,16 @@
     "Fire rate:":"Variable",
   },
       "MIRV Launcher":{
+<<<<<<< HEAD
     "Description:":"Turret fires MIRVs in the direction it's facing"
     "Bullet count:":1,
     "Bullet speed:":"Slow",
     "Bullet type:":"Pellet(x30), laser(x5, x7)",
+=======
+    "Description:":"Turret(s) fires a danger circle(s) in the direction it's facing. When the player gets close to it, the danger circle expands into an unknown amount of pellets",
+    "Bullet count:":1,
+    "Bullet speed:":"Slow",
+>>>>>>> local/master
     "Turret/spread count": [1,2,4,6],
     "Turret type:":"MIRV",
     "Tracking:":"No",
@@ -120,10 +185,16 @@
     "Fire rate:":"Slow, medium, fast",
   },
       "MIRV Bloomer":{
+<<<<<<< HEAD
     "Description:":"Turret fires MIRVs in all directions"
     "Bullet count:":1,
     "Bullet speed:":"Slow",
     "Bullet type:":"Pellet(x30), Laser(x5, x7)",
+=======
+    "Description:":"Turret(s) fires danger circles in all directions. When the player gets close to it, the danger circle expands into an unknown amount of pellets",
+    "Bullet count:":1,
+    "Bullet speed:":"Bullet speed",
+>>>>>>> local/master
     "Turret/spread count": [8,12,20,30],
     "Turret type:":"MIRV bloomer",
     "Tracking:":"No",

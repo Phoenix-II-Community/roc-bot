@@ -7,9 +7,15 @@ import sqlite3
 from discord.ext import commands
 from discord.utils import get
 from rapidfuzz import process, fuzz
+<<<<<<< HEAD
 import re
 from res.common import sanitise_input, ship_search, customemoji
 from res.data import ShipData
+=======
+from res.common import sanitise_input, ship_search, customemoji
+from res.data import ShipData
+import re
+>>>>>>> local/master
 
 
 def sql_apex_num_obj():
@@ -55,9 +61,16 @@ def sql_rank_obj():
     return r_obj
 
 def get_ship_image(ship_name):
+<<<<<<< HEAD
     urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/apex-bot/master/ships/"
     return f"{urlgit}ship_{ship_name}.png"
 
+=======
+    urlgit =    "https://raw.githubusercontent.com/ewong18/Roc-Bot/master/ships/"
+    return f"{urlgit}ship_{ship_name}.png"
+
+
+>>>>>>> local/master
 class ImgageCog(commands.Cog, name="Imgage Commands"):
     """ImgageCog"""
 
@@ -90,7 +103,11 @@ class ImgageCog(commands.Cog, name="Imgage Commands"):
                     embed = discord.Embed(title=ship_embed_title, colour=col)
                     embed.set_image(url=get_ship_image(f"{i['id']}_apex_{i['apex_num']}"))
                     embed.set_footer(text=f"Ship {s_obj['number']}")
+<<<<<<< HEAD
                     await ctx.send(embed=embed)
+=======
+            await ctx.send(embed=embed)
+>>>>>>> local/master
 
 def setup(bot):
     bot.add_cog(ImgageCog(bot))

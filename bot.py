@@ -27,14 +27,24 @@ initial_extensions = ['cogs.simple',
                       'cogs.invader',
                       'cogs.daily',
                       'cogs.img',
+<<<<<<< HEAD
                       'cogs.ship'
+=======
+                      'cogs.ship',
+                      'cogs.owner'
+>>>>>>> local/master
                       ]
 
 bot = commands.Bot(
     command_prefix=get_prefix, 
     description='Phoenix 2 iOS information bot',
+<<<<<<< HEAD
     # my current ID, change to yours when running
     owner_id=330274890802266112)
+=======
+    # Jinbe current ID, change to yours when running
+    owner_id=197895310108917762)
+>>>>>>> local/master
 
 
 # Here we load our extensions(cogs) listed above in [initial_extensions].
@@ -50,10 +60,17 @@ if __name__ == '__main__':
 async def on_ready():
     """http://discordpy.readthedocs.io/en/rewrite/api.html#discord.on_ready"""
 
+<<<<<<< HEAD
     print(f'We have logged in as {bot.user}')
 
     # Changes our bots Playing Status. type=1(streaming) for a standard game you could remove type and url.
     game = discord.Game("Flying Centurion")
+=======
+    print('We have logged in as {0.user}'.format(bot))
+
+    # Changes our bots Playing Status. type=1(streaming) for a standard game you could remove type and url.
+    game = discord.Game("Phoenix II")
+>>>>>>> local/master
     await bot.change_presence(status=discord.Status.online, activity=game)
     print(f'Successfully logged in and booted...!')
 
@@ -90,4 +107,8 @@ async def on_message(message):
         emoji = get(bot.emojis, name='ogonisfine')
         await message.add_reaction(emoji)
         return
+<<<<<<< HEAD
 bot.run(settings.discordkey)
+=======
+bot.run(settings.discordkey)
+>>>>>>> local/master

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # apex-bot
 
 Information bot for the community Phoenix II discord server. 
@@ -6,6 +7,17 @@ Information bot for the community Phoenix II discord server.
 `git clone git@github.com:Phoenix-II-Community/apex-bot.git`
 
 Dependancies
+=======
+# roc-bot
+
+Information bot for the community Phoenix II discord server. 
+Original version located at: https://github.com/Phoenix-II-Community/apex-bot/tree/master
+
+## Installation 
+`git clone https://github.com/ewong18/Roc-Bot.git`
+
+Dependencies
+>>>>>>> local/master
 
 ```
 python3 -m pip install -U discord.py
@@ -35,7 +47,11 @@ python3 -m pip install -U rapidfuzz
 !ship rarity <rarity>           list ships in a rarity
 !ship zen                       list of Zens
 !ship zen <zen>                 list of ships with zen name
+<<<<<<< HEAD
 !ship help                     ship help
+=======
+!ship help                      ship help
+>>>>>>> local/master
 ```
 
 #### SOURCE
@@ -43,6 +59,17 @@ python3 -m pip install -U rapidfuzz
 !source                         link to github repo
 ```
 
+<<<<<<< HEAD
+=======
+#### DAILY
+```
+!daily                         current daily briefing
+!daily next                    next daily briefing
+!daily all                     list of full mission rotation
+!daily <n>                     briefing for desired mission rotaion number (1-21)
+```
+
+>>>>>>> local/master
 #### INVADER 
 ```
 !invader affinity <affinity>    all invaders HP that match the affinity
@@ -70,7 +97,11 @@ python3 -m pip install -U rapidfuzz
 #!apex ship <ship>               apexs the ship has
 #!apex description <apex_name>   apex Description
 #!apex find <apex_name>          list ships with <apex_name>, 
+<<<<<<< HEAD
                                 include cost, apex_type (weapon/aura/zen)
+=======
+                                 include cost, apex_type (weapon/aura/zen)
+>>>>>>> local/master
 #!apex rank <apex_rank>          list of ships matching apex rank
 ```
 
@@ -87,4 +118,8 @@ Phoenix II is an arcade Shoot'Em Up developed by Firi Games in 2016. Firi Games 
 ### License
 ----
 
+<<<<<<< HEAD
 Open sourced under the [MIT license].
+=======
+Open sourced under the [MIT license].
+>>>>>>> local/master

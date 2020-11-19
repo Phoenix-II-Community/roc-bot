@@ -47,7 +47,13 @@ class ShipData():
     # Creates the title of the discord emebed consisting of the rarity emoji 
     # the ship name.
     def get_ship_title(self):
+<<<<<<< HEAD
         return f"{customemoji(self.bot_self, self.s_obj['rarity'])} {self.s_obj['name']}"
+=======
+        embed_title = (
+            f"{customemoji(self.bot_self, self.s_obj['rarity'])} {self.s_obj['name']}")
+        return embed_title
+>>>>>>> local/master
     
     # The embed is made up of two sections of content the title and this section
     # the descriotion. The description contains weapon, aura and zen info using 
@@ -71,8 +77,14 @@ class ShipData():
         return embed_description
     
     def get_ship_image(self):
+<<<<<<< HEAD
         urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/apex-bot/master/ships/"
         return f"{urlgit}ship_{self.s_obj['number']}.png"
+=======
+        urlgit = "https://raw.githubusercontent.com/ewong18/Roc-Bot/master/ships/"
+        img_url = ("{giturl}ship_{shipnumber}.png").format(giturl=urlgit, shipnumber=self.s_obj['number'])
+        return img_url
+>>>>>>> local/master
         
     # create a discod embed object. Using the Ship class to collect the required 
     # data. The embed includes a title as a ship emoji and the ship name queried
@@ -207,12 +219,23 @@ class CategoryLister():
         list1 = []
         for i in self.s_obj:
             new_set.add(i[self.sub_command])
+<<<<<<< HEAD
         for i in sorted(new_set):
             if self.sub_command == 'dmg':
                 list1.append(f"{i}")
             else:
                 list1.append(f"{customemoji(self.bot_self, i)} {i}")
         description = '\n'.join(list1)
+=======
+        if self.sub_command == 'dmg':
+            for i in sorted(new_set):
+                list1.append(f"{i}")
+            description = '\n'.join(list1)
+        else:
+            for i in sorted(new_set):
+                list1.append(f"{customemoji(self.bot_self, i)} {i}")
+            description = '\n'.join(list1)
+>>>>>>> local/master
         return discord.Embed(title=self.title(), description=description)
 
     def title(self):
@@ -225,6 +248,12 @@ class CategoryLister():
         elif self.sub_command == "zen":
             return f"{customemoji(self.bot_self, 'zen')} Zens"
         elif self.sub_command == "rarity":
+<<<<<<< HEAD
             return f"{customemoji(self.bot_self, 'vegemite')} Rarities"
+=======
+            return f"{customemoji(self.bot_self, 'pinchallenge')} Rarities"
+        else:
+            pass
+>>>>>>> local/master
 
 
