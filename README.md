@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # apex-bot
 
 Information bot for the community Phoenix II discord server. 
@@ -98,4 +97,4 @@ Phoenix II is an arcade Shoot'Em Up developed by Firi Games in 2016. Firi Games 
 ### License
 ----
 Open sourced under the [MIT license].
->>>>>>> local/master
+
