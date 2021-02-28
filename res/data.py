@@ -73,6 +73,7 @@ class ShipData():
     def get_ship_image(self):
         urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/roc-bot/master/ships/"
         return f"{urlgit}ship_{self.s_obj['number']}.png"
+
         
     # create a discod embed object. Using the Ship class to collect the required 
     # data. The embed includes a title as a ship emoji and the ship name queried
@@ -207,6 +208,7 @@ class CategoryLister():
         list1 = []
         for i in self.s_obj:
             new_set.add(i[self.sub_command])
+            
         for i in sorted(new_set):
             if self.sub_command == 'dmg':
                 list1.append(f"{i}")
@@ -225,6 +227,8 @@ class CategoryLister():
         elif self.sub_command == "zen":
             return f"{customemoji(self.bot_self, 'zen')} Zens"
         elif self.sub_command == "rarity":
-            return f"{customemoji(self.bot_self, 'vegemite')} Rarities"
+            return f"{customemoji(self.bot_self, 'pinchallenge')} Rarities"
+        else:
+            pass
 
 

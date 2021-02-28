@@ -1,0 +1,95 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXFileReference section */
+		55DCC09224A825F9007EEE16 /* testing.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = testing.py; sourceTree = "<group>"; };
+		55DCC09324A825F9007EEE16 /* cogs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cogs; sourceTree = "<group>"; };
+		55DCC09924A825FD007EEE16 /* bot.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = bot.py; sourceTree = "<group>"; };
+		55DCC09B24A825FD007EEE16 /* emojirename.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = emojirename.py; sourceTree = "<group>"; };
+		55DCC09D24A825FD007EEE16 /* rocbot.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = rocbot.db; sourceTree = "<group>"; };
+		55DCC09F24A825FD007EEE16 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		55DCC0A124A82600007EEE16 /* ships */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ships; sourceTree = "<group>"; };
+		55DCC0A424A82600007EEE16 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
+		55DCC0A524A82601007EEE16 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		55DCC0A624A82601007EEE16 /* __pycache__ */ = {isa = PBXFileReference; lastKnownFileType = folder; path = __pycache__; sourceTree = "<group>"; };
+		55DCC0A724A82601007EEE16 /* rocbot.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = rocbot.sqlite; sourceTree = "<group>"; };
+		55DCC0AA24A826F9007EEE16 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		55DCC08924A8257F007EEE16 = {
+			isa = PBXGroup;
+			children = (
+				55DCC0AA24A826F9007EEE16 /* .gitignore */,
+				55DCC0A624A82601007EEE16 /* __pycache__ */,
+				55DCC09924A825FD007EEE16 /* bot.py */,
+				55DCC09324A825F9007EEE16 /* cogs */,
+				55DCC09B24A825FD007EEE16 /* emojirename.py */,
+				55DCC09F24A825FD007EEE16 /* LICENSE */,
+				55DCC0A524A82601007EEE16 /* README.md */,
+				55DCC0A424A82600007EEE16 /* res */,
+				55DCC09D24A825FD007EEE16 /* rocbot.db */,
+				55DCC0A724A82601007EEE16 /* rocbot.sqlite */,
+				55DCC0A124A82600007EEE16 /* ships */,
+				55DCC09224A825F9007EEE16 /* testing.py */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		55DCC08A24A8257F007EEE16 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+			};
+			buildConfigurationList = 55DCC08D24A8257F007EEE16 /* Build configuration list for PBXProject "Roc-Bot" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 55DCC08924A8257F007EEE16;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		55DCC08E24A8257F007EEE16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		55DCC08F24A8257F007EEE16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		55DCC08D24A8257F007EEE16 /* Build configuration list for PBXProject "Roc-Bot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55DCC08E24A8257F007EEE16 /* Debug */,
+				55DCC08F24A8257F007EEE16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 55DCC08A24A8257F007EEE16 /* Project object */;
+}

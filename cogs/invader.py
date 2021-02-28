@@ -22,19 +22,22 @@ class InvaderCog(commands.Cog, name="Invader Commands"):
         else:
             await ctx.send(embed=invader_type(ctx, sc, arg1).i_embed)
 
-    @invader.command()
-    async def turrets(self, ctx, *, arg1=None):
-        sc = ctx.subcommand_passed
-        await ctx.send(embed=invader_type(ctx, sc, arg1).i_embed)
+    #@invader.command()
+    #async def turrets(self, ctx, *, arg1=None):
+    #    sc = ctx.subcommand_passed
+    #    await ctx.send(embed=invader_type(ctx, sc, arg1).i_embed)
+
 
     @invader.command()
     async def unprotected(self, ctx, *, arg1=None):
         sc = ctx.subcommand_passed
         await ctx.send(embed=invader_type(ctx, sc, arg1).i_embed)
 
-    @invader.command()
+    #This is the easiest way to account for difference in spelling, but
+    #It's probably not the best "cog" way
+    @invader.command(aliases=['armoured'])
     async def armored(self, ctx, *, arg1=None):
-        sc = ctx.subcommand_passed
+        sc = 'armored'
         await ctx.send(embed=invader_type(ctx, sc, arg1).i_embed)
 
     @invader.command()

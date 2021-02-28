@@ -11,7 +11,11 @@ class OwnersCog(commands.Cog, name="Owner Commands"):
     # Hidden means it won't show up on the default help.
     @commands.command(name='load', hidden=True)
     @commands.is_owner()
+<<<<<<< HEAD
     async def cog_load(self, ctx, *, cog: str):
+=======
+    async def loag_cog(self, ctx, *, cog: str):
+>>>>>>> local/master
         """Command which Loads a Module.
         Remember to use dot path. e.g: cogs.owner"""
 
@@ -24,7 +28,11 @@ class OwnersCog(commands.Cog, name="Owner Commands"):
 
     @commands.command(name='unload', hidden=True)
     @commands.is_owner()
+<<<<<<< HEAD
     async def cog_unload(self, ctx, *, cog: str):
+=======
+    async def unload_cog(self, ctx, *, cog: str):
+>>>>>>> local/master
         """Command which Unloads a Module.
         Remember to use dot path. e.g: cogs.owner"""
 
@@ -37,7 +45,11 @@ class OwnersCog(commands.Cog, name="Owner Commands"):
 
     @commands.command(name='reload', hidden=True)
     @commands.is_owner()
+<<<<<<< HEAD
     async def cog_reload(self, ctx, *, cog: str):
+=======
+    async def reload_cog(self, ctx, *, cog: str):
+>>>>>>> local/master
         """Command which Reloads a Module.
         Remember to use dot path. e.g: cogs.owner"""
 

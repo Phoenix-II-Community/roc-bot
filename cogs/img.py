@@ -7,10 +7,9 @@ import sqlite3
 from discord.ext import commands
 from discord.utils import get
 from rapidfuzz import process, fuzz
-import re
 from res.common import sanitise_input, ship_search, customemoji
 from res.data import ShipData
-
+import re
 
 def sql_apex_num_obj():
     # connect to the sqlite database
@@ -57,7 +56,7 @@ def sql_rank_obj():
 def get_ship_image(ship_name):
     urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/roc-bot/master/ships/"
     return f"{urlgit}ship_{ship_name}.png"
-
+    
 class ImgageCog(commands.Cog, name="Imgage Commands"):
     """ImgageCog"""
 
@@ -90,7 +89,7 @@ class ImgageCog(commands.Cog, name="Imgage Commands"):
                     embed = discord.Embed(title=ship_embed_title, colour=col)
                     embed.set_image(url=get_ship_image(f"{i['id']}_apex_{i['apex_num']}"))
                     embed.set_footer(text=f"Ship {s_obj['number']}")
-                    await ctx.send(embed=embed)
 
+            await ctx.send(embed=embed)
 def setup(bot):
     bot.add_cog(ImgageCog(bot))

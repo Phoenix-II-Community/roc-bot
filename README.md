@@ -35,12 +35,20 @@ python3 -m pip install -U rapidfuzz
 !ship rarity <rarity>           list ships in a rarity
 !ship zen                       list of Zens
 !ship zen <zen>                 list of ships with zen name
-!ship help                     ship help
+!ship help                      ship help
 ```
 
 #### SOURCE
 ```
 !source                         link to github repo
+```
+
+#### DAILY
+```
+!daily                         current daily briefing
+!daily next                    next daily briefing
+!daily all                     list of full mission rotation
+!daily <n>                     briefing for desired mission rotaion number (1-21)
 ```
 
 #### INVADER 
@@ -70,7 +78,7 @@ python3 -m pip install -U rapidfuzz
 #!apex ship <ship>               apexs the ship has
 #!apex description <apex_name>   apex Description
 #!apex find <apex_name>          list ships with <apex_name>, 
-                                include cost, apex_type (weapon/aura/zen)
+                                 include cost, apex_type (weapon/aura/zen)
 #!apex rank <apex_rank>          list of ships matching apex rank
 ```
 
@@ -86,5 +94,4 @@ Phoenix II is an arcade Shoot'Em Up developed by Firi Games in 2016. Firi Games 
 
 ### License
 ----
-
 Open sourced under the [MIT license].
