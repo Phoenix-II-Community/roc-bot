@@ -14,8 +14,8 @@ import random
 # title, image url, and description which contains emojis. The emoji function
 # uses the Bot instance to perform a lookup which is why it's passed through.
 # Because Discord doesn't allow non alpha characters in emojis there's a
-# santise function that strips unwanted characters which is also used on the
-# url formatting function. That's technical debt from when this was orignally
+# sanitise function that strips unwanted characters which is also used on the
+# url formatting function. That's technical debt from when this was originally
 # using json files instead of sqlite and the sub context of the query and name
 # was used as the name to find image files so they had to match. This isn't the
 # case anymore and might be better to edit the image names now.
@@ -50,10 +50,10 @@ class ShipData():
         return f"{customemoji(self.bot_self, self.s_obj['rarity'])} {self.s_obj['name']}"
    
     # The embed is made up of two sections of content the title and this section
-    # the descriotion. The description contains weapon, aura and zen info using
+    # the description. The description contains weapon, aura and zen info using
     # an emoji followed by the relevant name of the section.
     #
-    # The description previously used format() instead f strings bceause at the
+    # The description previously used format() instead f strings because at the
     # time I didn't see how f strings were suited to json and dicts however
     # since using a class that's changed and f strings seemed clearer to read.
     def get_ship_description_info(self):
