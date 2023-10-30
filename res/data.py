@@ -101,7 +101,6 @@ class ShipData():
             inline=False)
         embed.set_thumbnail(url=self.img_url)
         return embed
-
 class ShipLister():
     def __init__(self, bot_self, ctx, arg1, sc):
         self.bot_self = bot_self
@@ -206,6 +205,7 @@ class CategoryLister():
         new_set = set({})
         list1 = []
         for i in self.s_obj:
+            print(f"############# debugging stuff {new_set.add(i[self.sub_command])}")
             new_set.add(i[self.sub_command])
         for i in sorted(new_set):
             if self.sub_command == 'dmg':

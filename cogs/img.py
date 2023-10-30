@@ -64,7 +64,7 @@ class ImgageCog(commands.Cog, name="Imgage Commands"):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='img')
+    @commands.hybrid_command(name='img')
     @commands.guild_only()
     # arg1 is everthing after the command
     async def img(self, ctx, *, arg1):

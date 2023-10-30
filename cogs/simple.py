@@ -1,21 +1,18 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import discord
 from discord.ext import commands
 from discord import app_commands
 from discord import client
 
 
-class SimpleCog(commands.Cog, name="Simple Commands"):
-    """SimpleCog"""
+class SimpleCog(commands.Cog):
     def __init__(self, client):
         self.client = client
+
     @commands.Cog.listener()
     async def on_ready(self):
-        print('Simple loaded...')
+        print('Simple cog loaded...')
 
-    @commands.command(name='repeat', description='Sends what you type', with_app_command=True)
+    @commands.hybrid_command(name='repeat', description='Sends what you type')
     @commands.guild_only()
     async def do_repeat(self, ctx: commands.Context, your_input: str) -> None:
         """A simple command which repeats our input.
@@ -27,7 +24,7 @@ class SimpleCog(commands.Cog, name="Simple Commands"):
     #async def ping(self, ctx):
     #    await ctx.send(f"pong! {round(self.bot.discord.client.latency * 1000)}ms")
 
-    @commands.command(name='source', description='GitHub repository link')
+    @commands.hybrid_command(name='source', description='GitHub repository link')
     @commands.guild_only()
     async def source(self, ctx):
         src = "https://github.com/Phoenix-II-Community/apex-bot"

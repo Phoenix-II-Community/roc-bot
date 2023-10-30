@@ -21,7 +21,7 @@ class DailyCog(commands.Cog, name="Daily Commands"):
             sub_command = ctx.subcommand_passed
             await ctx.send(embed=Mission(self, sub_command).embed_daily)
 
-    @daily.command()
+    @daily.hybrid_command()
     async def next(self, ctx, *, arg1=None):
         sub_command = ctx.subcommand_passed
         await ctx.send(embed=Mission(self, sub_command).embed_daily)
