@@ -5,6 +5,7 @@ import discord
 import discord.ext.commands
 import sqlite3
 from discord.ext import commands
+from discord import app_commands
 from discord.utils import get
 from rapidfuzz import process, fuzz
 import re
@@ -57,12 +58,15 @@ def sql_rank_obj():
 def get_ship_image(ship_name):
     urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/apex-bot/master/ships/"
     return f"{urlgit}ship_{ship_name}.png"
-
-class ImgageCog(commands.Cog, name="Imgage Commands"):
+@app_commands.guild_only()
+class ImageCog(commands.Cog, name="Image Commands"):
     """ImgageCog"""
 
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self, rocbot):
+        self.rocbot = rocbot
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print('Image cog loaded...')
 
     @commands.hybrid_command(name='img')
     @commands.guild_only()
@@ -92,5 +96,5 @@ class ImgageCog(commands.Cog, name="Imgage Commands"):
                     embed.set_footer(text=f"Ship {s_obj['number']}")
                     await ctx.send(embed=embed)
 
-def setup(bot):
-    bot.add_cog(ImgageCog(bot))
+async def setup(rocbot) -> None:
+    await rocbot.add_cog(ImageCog(rocbot))

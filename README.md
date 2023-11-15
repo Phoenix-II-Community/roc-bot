@@ -19,57 +19,55 @@ python3 -m pip install -U rapidfuzz
 /help                      basic user functions
 ```
 
-#### Affinity 
-```
-/affinity                  list of Affinities 
-/affinity <affinity>       list of ships with specified weapon type 
-/affinity help
-```
-
 #### Ship
 ```
-/ship all                  list all ships
-/ship detail <ship>        detailed ship info
-/ship info <ship>          basic ship info
+/ship all                   list all ships
+/ship detail <ship>         detailed ship info
+/ship info <ship>           basic ship info
 /ship help
 ```
 
 #### Aura 
 ```
-/aura                      list of Auras
-/aura <aura>               list of ships with an aura
+/aura                       list of Auras
+/aura <aura>                list of ships with an aura
+/aura detail <aura>         detailed aura info
 /aura help
 ```
 
-#### Damage
+#### Weapon
 ```
-/dmg                       list of Damage brackets
-/dmg <dmg>                 list of ships with Damage inc type
-/dmg help
+/weapon                     list of Damage brackets
+/weapon <dmg>               list of ships with Damage inc type
+/weapon Shield Breaker      list of ships with Shield Breaker affinity type
+/weapon Armor Piercing      list of ships with Armor Piercing affinity type
+/weapon High Impact         list of ships with High Impact affinity type
+/weapon help
 ```
 #### Random
 ```
-/rand <n>                  print random number of ships, default 10
+/rand <n>                   print random number of ships, default 10
 /rand help
 ```
 
 #### Rarity
 ```
-/rarity                    list of rarities 
-/rarity <rarity>           list ships in a rarity
+/rarity                     list of rarities 
+/rarity <rarity>            list ships in a rarity
 /rarity help
 ```
 
 #### Zen
 ```
-/zen                       list of Zens
-/zen <zen>                 list of ships with zen name
+/zen                        list of Zens
+/zen <zen>                  list of ships with zen name
+/zen detail <zen>           detailed zen info
 /zen help
 ```
 
 #### SOURCE
 ```
-/source                    link to github repo
+/source                     link to github repo
 ```
 
 #### INVADER 
@@ -83,7 +81,7 @@ python3 -m pip install -U rapidfuzz
 #### PRICE 
 ```
 /price weapon                   upgrade price of weapon levels (list)
-/price aura                     upgrade price of aura levels (list)
+/price aurfa                    upgrade price of aura levels (list)
 /price zen                      upgrade price of zen levels (list)
 /price apex                     price of apex brackets (list)
 ```
@@ -107,7 +105,7 @@ Phoenix II is an arcade Shoot'Em Up developed by Firi Games in 2016. Firi Games 
 
 - My Phoenix II Community: "Bullet Hellspawn"
 - Phoenix II Reddit: https://www.reddit.com/r/Phoenix_2/
-- Phoenix II Discord Server: https://discord.gg/zCSNnCT
+- Phoenix II Discord Server: https://discord.gg/phoenix2
 - Firi Games Website: https://www.firigames.com/
 - Download Phoenix II: https://itunes.apple.com/au/app/phoenix-ii/id1134895689
 

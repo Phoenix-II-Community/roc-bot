@@ -205,7 +205,6 @@ class CategoryLister():
         new_set = set({})
         list1 = []
         for i in self.s_obj:
-            print(f"############# debugging stuff {new_set.add(i[self.sub_command])}")
             new_set.add(i[self.sub_command])
         for i in sorted(new_set):
             if self.sub_command == 'dmg':

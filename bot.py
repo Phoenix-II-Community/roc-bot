@@ -27,10 +27,13 @@ def get_prefix(client, message):
     return commands.when_mentioned_or(*prefixes)(client, message)
 
 initial_extensions = ['cogs.simple',
-        'cogs.ship'
+        'cogs.aura',
+        'cogs.ship',
         #'cogs.invader',
         #'cogs.daily',
-        #'cogs.img',
+        'cogs.img',
+        'cogs.zen',
+        'cogs.weapon'
         ]
 # Here we load our extensions (cogs) listed above in [initial_extensions].
 async def load():

@@ -6,7 +6,6 @@ from discord.ext import commands
 from discord import app_commands
 from res.data import ShipData, CategoryLister, ShipLister
 
-@app_commands.guild_only()
 class ShipCog(commands.Cog, group_name="ship"):
     """ShipCog"""
 
@@ -16,7 +15,7 @@ class ShipCog(commands.Cog, group_name="ship"):
     async def on_ready(self):
         print('Ship cog loaded...')
 
-    @commands.hybrid_group(aliases=['ships'])
+    @commands.hybrid_group(name="ship")
     @commands.guild_only()
     async def ship(self, ctx):
         if ctx.invoked_subcommand is None:
@@ -44,45 +43,24 @@ class ShipCog(commands.Cog, group_name="ship"):
     @commands.guild_only()
     async def detail(self, ctx, *, arg1: str):
         print(ctx.channel.id)
-        if ctx.channel.id in [378546862627749908,596343881705062417]:
+        if ctx.channel.id in [378546862627749908,596343881705062417,1166027391089512499]:
             await ctx.send(embed=ShipData(self, arg1).embed_detail)
         else:
             await ctx.send("Command limited to <#378546862627749908>.")
 
-    @ship.command(name='dmg')
-    @commands.guild_only()
-    async def dmg(self, ctx, *, arg1=None):
-        sc = ctx.subcommand_passed
-        if arg1 is None:
-            await ctx.send(embed=CategoryLister(self, sc).embed_list)
-        else:
-            await ShipLister(self, ctx, arg1, sc).create_embed()
-
-    @ship.command(name='aura')
-    @commands.guild_only()
-    async def aura(self, ctx, *, arg1=None):
-        sc = ctx.subcommand_passed
-        print(f"######################## {ctx.subcommand_passed}")
-        print(f"######################## {ctx.invoked_subcommand}")
-        if arg1 is None:
-            await ctx.send(embed=CategoryLister(self, sc).embed_list)
-        else:
-            await ShipLister(self, ctx, arg1, sc).create_embed()
-
-
-    @ship.command(name='zen')
-    @commands.guild_only()
-    async def zen(self, ctx, *, arg1=None):
-        sc = ctx.subcommand_passed
-        if arg1 is None:
-            await ctx.send(embed=CategoryLister(self, sc).embed_list)
-        else:
-            await ShipLister(self, ctx, arg1, sc).create_embed()
+    # @ship.command(name='zen')
+    # @commands.guild_only()
+    # async def zen(self, ctx, *, arg1=None):
+    #     sc = ctx.command.name
+    #     if arg1 is None:
+    #         await ctx.send(embed=CategoryLister(self, sc).embed_list)
+    #     else:
+    #         await ShipLister(self, ctx, arg1, sc).create_embed()
 
     @ship.command(name='rarity')
     @commands.guild_only()
     async def rarity(self, ctx, *, arg1=None):
-        sc = ctx.subcommand_passed
+        sc = ctx.command.name
         if ctx.channel.id == 378546862627749908:
             if arg1 is None:
                 await ctx.send(embed=CategoryLister(self, sc).embed_list)
@@ -91,20 +69,10 @@ class ShipCog(commands.Cog, group_name="ship"):
         else:
             await ctx.send("Command limited to <#378546862627749908>.")
 
-
-    @ship.command(name='affinity')
-    @commands.guild_only()
-    async def affinity(self, ctx, *, arg1=None):
-        sc = ctx.subcommand_passed
-        if arg1 is None:
-            await ctx.send(embed=CategoryLister(self, sc).embed_list)
-        else:
-            await ShipLister(self, ctx, arg1, sc).create_embed()
-
     @ship.command(name='rand')
     @commands.guild_only()
     async def rand(self, ctx, *, arg1=None):
-        sc = ctx.subcommand_passed
+        sc = ctx.command.name
         if ctx.channel.id == 378546862627749908:
             if arg1 is None:
                 arg1 = 10
@@ -115,8 +83,8 @@ class ShipCog(commands.Cog, group_name="ship"):
     @ship.command(name='all')
     @commands.guild_only()
     async def all(self, ctx, *, arg1=None):
-        sc = ctx.subcommand_passed
-        if ctx.channel.id in (378546862627749908,596343881705062417):
+        sc = ctx.command.name
+        if ctx.channel.id in (378546862627749908,596343881705062417,1166027391089512499):
             await ShipLister(self, ctx, arg1, sc).create_embed()
         else:
             await ctx.send("Command limited to <#378546862627749908>.")

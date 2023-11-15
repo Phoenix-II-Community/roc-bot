@@ -75,7 +75,7 @@ def sanitise_input(input_string):
 
 def customemoji(self, find_this):
     find_sanitised = sanitise_input(find_this.lower())
-    return discord.utils.get(self.client.emojis, name = find_sanitised)
+    return discord.utils.get(self.client.emojis, name = str(find_sanitised))
 
 def embed_pagination(description):
     paginator = commands.Paginator(prefix='', suffix='', max_size=2000)
