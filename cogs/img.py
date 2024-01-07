@@ -56,45 +56,45 @@ def sql_rank_obj():
     return r_obj
 
 def get_ship_image(ship_name):
-    urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/apex-bot/master/ships/"
+    urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/roc-bot/master/ships/"
     return f"{urlgit}ship_{ship_name}.png"
+
 @app_commands.guild_only()
 class ImageCog(commands.Cog, name="Image Commands"):
     """ImgageCog"""
-
-    def __init__(self, rocbot):
-        self.rocbot = rocbot
+    def __init__(self, client):
+        self.client = client
     @commands.Cog.listener()
     async def on_ready(self):
         print('Image cog loaded...')
 
     @commands.hybrid_command(name='img')
     @commands.guild_only()
-    # arg1 is everthing after the command
-    async def img(self, ctx, *, arg1):
+    # ship_name is everything after the command
+    async def img(self, ctx, *, ship_name):
         rank_list = [i[0] for i in sql_rank_obj()]
-        res = [i for i in rank_list if i.lower() in arg1.lower()] 
-        s_obj = sql_ship_obj()
+        res = [i for i in rank_list if i.lower() in ship_name.lower()]
         if len(res) == 0:
-            s_obj = ShipData(ctx, arg1).s_obj
-            ship_embed_title = f"{customemoji(ctx, s_obj['rarity'])} {s_obj['name']}"
+            s_obj = ShipData(self, ship_name).s_obj
+            ship_embed_title = f"{customemoji(self, s_obj['rarity'])} {s_obj['name']}"
             col = int(s_obj['colour'], 16)
             embed = discord.Embed(
-                title=ship_embed_title, 
+                title=ship_embed_title,
                 colour=col)
             embed.set_image(url=get_ship_image(s_obj['number']))
+            embed.set_footer(text=f"Ship {s_obj['number']}")
             await ctx.send(embed=embed)
         else:
             a_obj = sql_apex_num_obj()
-            s_obj = ShipData(ctx, arg1).s_obj
+            s_obj = ShipData(self, ship_name).s_obj
             for i in a_obj:
                 if i['id'] == s_obj['number'] and i['rank'] == res[0]:
-                    ship_embed_title = f"{customemoji(ctx, s_obj['rarity'])} {s_obj['name']} {res[0]}"
+                    ship_embed_title = f"{customemoji(self, s_obj['rarity'])} {s_obj['name']} {res[0]}"
                     col = int(s_obj['colour'], 16)
                     embed = discord.Embed(title=ship_embed_title, colour=col)
                     embed.set_image(url=get_ship_image(f"{i['id']}_apex_{i['apex_num']}"))
                     embed.set_footer(text=f"Ship {s_obj['number']}")
                     await ctx.send(embed=embed)
 
-async def setup(rocbot) -> None:
-    await rocbot.add_cog(ImageCog(rocbot))
+async def setup(client) -> None:
+    await client.add_cog(ImageCog(client))

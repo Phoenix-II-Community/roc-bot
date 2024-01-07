@@ -29,16 +29,23 @@ python3 -m pip install -U rapidfuzz
 
 #### Aura 
 ```
-/aura                       list of Auras
-/aura <aura>                list of ships with an aura
-/aura detail <aura>         detailed aura info
+/aura all                   All Auras in the game 
+/aura list <aura>           All the ships with that Aura
+/aura info <aura>           info about an aura
+/aura help
+```
+
+#### Zen
+```
+/zen all                    All Zens in the game
+/zen list <zen>             All the ships with that Zen
+/zen info <zen>             Info about a zen
 /aura help
 ```
 
 #### Weapon
 ```
-/weapon                     list of Damage brackets
-/weapon <dmg>               list of ships with Damage inc type
+/weapon damage <damage_amount>        list of ships with Damage inc type
 /weapon Shield Breaker      list of ships with Shield Breaker affinity type
 /weapon Armor Piercing      list of ships with Armor Piercing affinity type
 /weapon High Impact         list of ships with High Impact affinity type
@@ -55,14 +62,6 @@ python3 -m pip install -U rapidfuzz
 /rarity                     list of rarities 
 /rarity <rarity>            list ships in a rarity
 /rarity help
-```
-
-#### Zen
-```
-/zen                        list of Zens
-/zen <zen>                  list of ships with zen name
-/zen detail <zen>           detailed zen info
-/zen help
 ```
 
 #### SOURCE
@@ -88,15 +87,15 @@ python3 -m pip install -U rapidfuzz
 
 #### APEX
 ```
-/apex help                      apex help
-/apex weapon                    list of weapon apex
-/apex aura                      list of aura apexs
-/apex zen                       list of zen apexs
-/apex ship <ship>               apexs the ship has
-/apex description <apex_name>   apex Description
+/apexs weapon                   list of weapon apex
+/apexs aura                     list of aura apexs
+/apexs zen                      list of zen apexs
+
+/apex <ship>                    apexs the ship has
+/apex info <apex_name>          apex info
 /apex find <apex_name>          list ships with <apex_name>, 
-                                include cost, apex_type (weapon/aura/zen)
-#/apex rank <apex_rank>          list of ships matching apex rank
+/apex help                      apex help
+
 ```
 
 ## Mentions

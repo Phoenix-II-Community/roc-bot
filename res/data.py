@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from res.common import customemoji, ship_search, sanitise_input, argument_parser, get_em_colour, embed_pagination
@@ -7,9 +6,9 @@ import discord.ext.commands
 from discord.ext.commands import Bot
 import urllib.parse
 import random
+import res.sqlite_util as sqlite_util
 
-
-# This class connects to rocbot.sqlite and uses a view to query. The returned
+# 2019-12-16 This class connects to rocbot.sqlite and uses a view to query. The returned
 # data is put into an object where methods run uses this info to generate a
 # title, image url, and description which contains emojis. The emoji function
 # uses the Bot instance to perform a lookup which is why it's passed through.
@@ -17,8 +16,55 @@ import random
 # sanitise function that strips unwanted characters which is also used on the
 # url formatting function. That's technical debt from when this was originally
 # using json files instead of sqlite and the sub context of the query and name
-# was used as the name to find image files so they had to match. This isn't the
+# was used as the name to find image files, so they had to match. This isn't the
 # case anymore and might be better to edit the image names now.
+
+# 2024-01-07
+# Before the bot would make one or more sqlite queries per command. As part of
+# breaking out the query functions from the formatting the data that's used for those
+# functions will now live in memory as a python object. There are some draw backs to this.
+# Notably if a change is made to the database the python object will be out of sync so
+# there needs to be manual intervention either via command or restarting the bot to resync things.
+# This may mean queries are returned quicker as we're not going to disk. However, I have no
+# before and after times right now to quantify that nor do I have experience performing
+# accurate measuring of performance.
+# --------------- SQLITE ----------------------------
+# Possible Sqlite views include
+# i_hp; invader hp
+# m_daily; mission daily
+# s_apex; ship apexs
+# s_info; ship info
+# shortcut; list of shortcuts for auras, zens weapon affinity, and rarity
+
+
+ships_all = sqlite_util.sql_ship_info_obj()
+# apexs_all = sqlite_util.sql_ship_info_obj('s_apex')
+# mission_daily = sqlite_util.sql_ship_info_obj('m_daily')
+# invader_stats = sqlite_util.sql_ship_info_obj('i_hp')
+# shortcuts = sqlite_util.sql_ship_info_obj('shortcut')
+
+# Except for the detail command the embeds used have the same basic parts.
+# Title; Top line of embed text that has an emoji followed by text.
+# Description; main section of text like the body of an email.
+# add_field; used to append additional title and descriptions so aura/zen formatting is consistent
+# Color; the left vertical line of the embed
+# Footer; tiny subtext used in almost all roc-bot commands
+# image; large image used with the img command, placed inline
+# thumbnail (small image) that's right aligned used in info and detail
+
+
+def embed_title(self, bot_self, sub_command):
+    if sub_command == "affinity":
+        return f"{customemoji(bot_self, 'damage')} Main Weapon Affinities"
+    elif sub_command == "dmg":
+        return f"{customemoji(bot_self, 'dps')} Damage Brackets"
+    elif sub_command == "aura":
+        return f"{customemoji(bot_self, 'aura')} Auras"
+    elif sub_command == "zen":
+        return f"{customemoji(bot_self, 'zen')} Zens"
+    elif sub_command == "rarity":
+        return f"{customemoji(bot_self, 'vegemite')} Rarities"
+
 class ShipData():
     def __init__(self, bot_self, find_this):
         self.bot_self = bot_self
@@ -83,8 +129,11 @@ class ShipData():
         title = self.get_ship_title()
         desc = self.get_ship_description_info()
         col = int(self.s_obj['colour'], 16)
-        return discord.Embed(title=title,
-        description=desc, colour=col).set_thumbnail(url=self.img_url)
+        embed = discord.Embed(title=title,
+                              description=desc,
+                              colour=col).set_thumbnail(url=self.img_url)
+        embed.set_footer(text=f"Ship {self.s_obj['number']}")
+        return embed
        
     def detail_embed(self, ship_name):
         title = self.get_ship_title()
@@ -100,6 +149,7 @@ class ShipData():
             value=f"{self.s_obj['zen_desc']}",
             inline=False)
         embed.set_thumbnail(url=self.img_url)
+        embed.set_footer(text=f"Ship {self.s_obj['number']}")
         return embed
 class ShipLister():
     def __init__(self, bot_self, ctx, arg1, sc):
@@ -182,24 +232,24 @@ class CategoryLister():
     def __init__(self, bot_self, sub_command):
         self.bot_self = bot_self
         self.sub_command = sub_command
-        self.s_obj = self.sql_ship_obj()
+        self.s_obj = ships_all
         self.embed_list = self.create_list()
 
-    def sql_ship_obj(self):
-        # connect to the sqlite database
-        conn = sqlite3.connect('rocbot.sqlite')
-        # return a class sqlite3.row object which requires a tuple input query
-        conn.row_factory = sqlite3.Row
-        # make an sqlite connection object
-        c = conn.cursor()
-        # using a defined view s_info collect all table info
-        c.execute('select * from s_info')
-        # return the ship object including the required elemnts
-        s_obj = c.fetchall()
-        # close the databse connection
-        conn.close()
-        # return the sqlite3.cursor object
-        return s_obj
+    # def sql_ship_obj(self):
+    #     # connect to the sqlite database
+    #     conn = sqlite3.connect('rocbot.sqlite')
+    #     # return a class sqlite3.row object which requires a tuple input query
+    #     conn.row_factory = sqlite3.Row
+    #     # make a sqlite connection object
+    #     c = conn.cursor()
+    #     # using a defined view s_info collect all table info
+    #     c.execute('select * from s_info')
+    #     # return the ship object including the required elemnts
+    #     s_obj = c.fetchall()
+    #     # close the databse connection
+    #     conn.close()
+    #     # return the sqlite3.cursor object
+    #     return s_obj
 
     def create_list(self):
         new_set = set({})
@@ -212,18 +262,11 @@ class CategoryLister():
             else:
                 list1.append(f"{customemoji(self.bot_self, i)} {i}")
         description = '\n'.join(list1)
-        return discord.Embed(title=self.title(), description=description)
+        embed = discord.Embed(
+            title=embed_title(self, self.bot_self, self.sub_command),
+            description=description)
+        return embed
 
-    def title(self):
-        if self.sub_command == "affinity":
-            return f"{customemoji(self.bot_self, 'damage')} Main Weapon Affinities"
-        elif self.sub_command == "dmg":
-            return f"{customemoji(self.bot_self, 'dps')} Damage Brackets"
-        elif self.sub_command == "aura":
-            return f"{customemoji(self.bot_self, 'aura')} Auras"
-        elif self.sub_command == "zen":
-            return f"{customemoji(self.bot_self, 'zen')} Zens"
-        elif self.sub_command == "rarity":
-            return f"{customemoji(self.bot_self, 'vegemite')} Rarities"
+
 
 

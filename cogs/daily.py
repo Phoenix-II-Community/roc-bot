@@ -11,20 +11,24 @@ from res.mission import Mission
 class DailyCog(commands.Cog, name="Daily Commands"):
     """InvaderCog"""
 
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self, client):
+        self.client = client
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print('Daily cog loaded...')
 
-    @commands.group(aliases=['mission'])
+    @commands.hybrid_command(name='daily', description='guesses the current mission')
     @commands.guild_only()
     async def daily(self, ctx):
         if ctx.invoked_subcommand is None:
             sub_command = ctx.subcommand_passed
             await ctx.send(embed=Mission(self, sub_command).embed_daily)
 
-    @daily.hybrid_command()
+    @commands.hybrid_command(name='next', description='guesses the next mission')
     async def next(self, ctx, *, arg1=None):
         sub_command = ctx.subcommand_passed
         await ctx.send(embed=Mission(self, sub_command).embed_daily)
 
-def setup(bot):
-    bot.add_cog(DailyCog(bot))
+async def setup(client) -> None:
+    await client.add_cog(DailyCog(client))
+

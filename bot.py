@@ -8,7 +8,6 @@ from discord.ext import commands
 from discord.utils import get
 import settings
 from typing import Optional, Literal
-import os
 import sys, traceback
 
 logger = logging.getLogger('discord')
@@ -30,7 +29,7 @@ initial_extensions = ['cogs.simple',
         'cogs.aura',
         'cogs.ship',
         #'cogs.invader',
-        #'cogs.daily',
+        'cogs.daily',
         'cogs.img',
         'cogs.zen',
         'cogs.weapon'
@@ -174,6 +173,7 @@ async def sync(ctx: commands.Context,
         else:
             ret += 1
     await ctx.send(f"Synced the tree to {ret}/{len(guilds)}.")
+
 
 asyncio.run(main())
 #client.run(settings.discordkey)

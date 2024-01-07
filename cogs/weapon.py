@@ -18,6 +18,7 @@ class WeaponCog(commands.Cog, group_name="weapon"):
     async def on_ready(self):
         print('Weapon cog loaded...')
 
+
     @commands.hybrid_group(name="weapon", alias='wpn')
     @commands.guild_only()
     async def weapon(self, ctx):
