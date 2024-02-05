@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from res.common import customemoji, ship_search, sanitise_input, argument_parser, get_em_colour, embed_pagination
-import sqlite3
+from res.common import customemoji, ship_search, argument_parser, get_em_colour, embed_pagination
 import discord.ext.commands
-from discord.ext.commands import Bot
-import urllib.parse
 import random
 import res.sqlite_util as sqlite_util
 
@@ -43,15 +40,16 @@ ships_all = sqlite_util.sql_ship_info_obj()
 # invader_stats = sqlite_util.sql_ship_info_obj('i_hp')
 # shortcuts = sqlite_util.sql_ship_info_obj('shortcut')
 
-# Except for the detail command the embeds used have the same basic parts.
-# Title; Top line of embed text that has an emoji followed by text.
-# Description; main section of text like the body of an email.
-# add_field; used to append additional title and descriptions so aura/zen formatting is consistent
-# Color; the left vertical line of the embed
-# Footer; tiny subtext used in almost all roc-bot commands
-# image; large image used with the img command, placed inline
-# thumbnail (small image) that's right aligned used in info and detail
-
+"""
+Except for the detail command the embeds used have the same basic parts.
+Title; Top line of embed text that has an emoji followed by text.
+Description; main section of text like the body of an email.
+add_field; used to append additional title and descriptions so aura/zen formatting is consistent
+Color; the left vertical line of the embed
+Footer; tiny subtext used in almost all roc-bot commands
+image; large image used with the img command, placed inline
+thumbnail (small image) that's right aligned used in info and detail
+"""
 
 def embed_title(self, bot_self, sub_command):
     if sub_command == "affinity":
@@ -69,26 +67,15 @@ class ShipData():
     def __init__(self, bot_self, find_this):
         self.bot_self = bot_self
         self.ship_name = ship_search(find_this)
-        self.s_obj = self.sql_ship_obj()
+        self.s_obj = self.ship_obj()
         self.img_url = self.get_ship_image()
         self.embed_info = self.info_embed(find_this)
         self.embed_detail = self.detail_embed(find_this)
-       
-    def sql_ship_obj(self):
-        # connect to the sqlite database
-        conn = sqlite3.connect('rocbot.sqlite')
-        # return a class sqlite3.row object which requires a tuple input query
-        conn.row_factory = sqlite3.Row
-        # make an sqlite connection object
-        c = conn.cursor()
-        # using a defined view s_info find the ship
-        c.execute('select * from s_info where name = ?', (self.ship_name,))
-        # return the ship object including the required elemnts
-        s_obj = c.fetchone()
-        # close the databse connection
-        conn.close()
-        # return the sqlite3.cursor object
-        return s_obj
+
+    def ship_obj(self):
+            for s_obj in ships_all:
+                if s_obj['name'] == self.ship_name:
+                    return s_obj
 
     # Creates the title of the discord emebed consisting of the rarity emoji
     # the ship name.
@@ -117,7 +104,7 @@ class ShipData():
         return embed_description
    
     def get_ship_image(self):
-        urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/apex-bot/master/ships/"
+        urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/roc-bot/master/ships/"
         return f"{urlgit}ship_{self.s_obj['number']}.png"
        
     # create a discod embed object. Using the Ship class to collect the required
@@ -132,7 +119,7 @@ class ShipData():
         embed = discord.Embed(title=title,
                               description=desc,
                               colour=col).set_thumbnail(url=self.img_url)
-        embed.set_footer(text=f"Ship {self.s_obj['number']}")
+        embed.set_footer(text=f"Ship {self.s_obj[0]}")
         return embed
        
     def detail_embed(self, ship_name):
@@ -158,18 +145,16 @@ class ShipLister():
         self.arg1 = argument_parser(sc, arg1)
         self.sub_command = sc
         self.embed_title = self.title()
-        self.s_obj = self.sql_ship_obj()
+        self.s_obj = self.ship_obj()
 
-    def sql_ship_obj(self):
-        conn = sqlite3.connect('rocbot.sqlite')
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
+    def ship_obj(self):
         if self.sub_command in ('all', 'rand'):
-            c.execute("select * from s_info")
+            return ships_all
         else:
-            c.execute(f"select * from s_info where {self.sub_command} = ?", (self.arg1,))
-        s_obj = c.fetchall()
-        conn.close()
+            s_obj = []
+            for i in ships_all:
+                if i[self.sub_command] == self.arg1:
+                    s_obj.append(i)
         return s_obj
 
     def create_description(self):
@@ -234,22 +219,6 @@ class CategoryLister():
         self.sub_command = sub_command
         self.s_obj = ships_all
         self.embed_list = self.create_list()
-
-    # def sql_ship_obj(self):
-    #     # connect to the sqlite database
-    #     conn = sqlite3.connect('rocbot.sqlite')
-    #     # return a class sqlite3.row object which requires a tuple input query
-    #     conn.row_factory = sqlite3.Row
-    #     # make a sqlite connection object
-    #     c = conn.cursor()
-    #     # using a defined view s_info collect all table info
-    #     c.execute('select * from s_info')
-    #     # return the ship object including the required elemnts
-    #     s_obj = c.fetchall()
-    #     # close the databse connection
-    #     conn.close()
-    #     # return the sqlite3.cursor object
-    #     return s_obj
 
     def create_list(self):
         new_set = set({})
