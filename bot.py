@@ -28,7 +28,7 @@ def get_prefix(client, message):
 initial_extensions = ['cogs.simple',
         'cogs.aura',
         'cogs.ship',
-        #'cogs.invader',
+        'cogs.invader',
         'cogs.daily',
         'cogs.img',
         'cogs.zen',

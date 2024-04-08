@@ -61,18 +61,7 @@ class ShipCog(commands.Cog, group_name="ship"):
             if rarity_name is None:
                 await ctx.send(embed=CategoryLister(self, sc).embed_list)
             else:
-                await ShipLister(self, ctx, rarity_name, sc).create_embed                                                                                                                                                                                                                                                                                                                                          ()
-        else:
-            await ctx.send("Command limited to <#378546862627749908>.")
-
-    @ship.command(name='random')
-    @commands.guild_only()
-    async def rand(self, ctx, *, qty=None):
-        sc = ctx.command.name
-        if ctx.channel.id in (378546862627749908, 596343881705062417, 1166027391089512499):
-            if qty is None:
-                arg1 = 10
-            await ShipLister(self, ctx, qty, sc).create_embed()
+                await ShipLister(self, ctx, rarity_name, sc).create_embed()
         else:
             await ctx.send("Command limited to <#378546862627749908>.")
 

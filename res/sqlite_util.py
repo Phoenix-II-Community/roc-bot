@@ -44,7 +44,7 @@ import sqlite3
 
 
 # category lister
-def sql_ship_info_obj():
+def sql_ship_info_obj(qry):
     # Possible views include
     # i_hp; inavder hp
     # m_daily; mission daily
@@ -52,13 +52,26 @@ def sql_ship_info_obj():
     # s_info; ship info
     # shortcut; list of shortcuts for auras, zens weapon affinity, and rartity
     # connect to the sqlite database
+
+
+
+    if qry =
     conn = sqlite3.connect('rocbot.sqlite')
     # return a class sqlite3.row object which requires a tuple input query
     conn.row_factory = sqlite3.Row
     # make a sqlite connection object
     c = conn.cursor()
     # using a defined view s_info collect all table info
-    c.execute('select * from s_info')
+    for move in aoc_input:
+        tick = int(move[1])
+        match move:
+            case ["ships", str]:
+                c.execute('select * from s_info')
+            case ["apexs", str]:
+                c.execute('select * from s_apex')
+            case ["invaders", str]:
+                c.execute('select * from i_hp')
+
     # return the ship object including the required elemnts
     s_obj = c.fetchall()
     # close the databse connection

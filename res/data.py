@@ -34,10 +34,10 @@ import res.sqlite_util as sqlite_util
 # shortcut; list of shortcuts for auras, zens weapon affinity, and rarity
 
 
-ships_all = sqlite_util.sql_ship_info_obj()
-# apexs_all = sqlite_util.sql_ship_info_obj('s_apex')
+ships_all = sqlite_util.sql_ship_info_obj('ships')
+apexs_all = sqlite_util.sql_ship_info_obj('s_apex')
 # mission_daily = sqlite_util.sql_ship_info_obj('m_daily')
-# invader_stats = sqlite_util.sql_ship_info_obj('i_hp')
+invader_stats = sqlite_util.sql_ship_info_obj('i_hp')
 # shortcuts = sqlite_util.sql_ship_info_obj('shortcut')
 
 """
@@ -148,12 +148,14 @@ class ShipLister():
         self.s_obj = self.ship_obj()
 
     def ship_obj(self):
+        print(f"{self.sub_command} ## the sub command")
         if self.sub_command in ('all', 'rand'):
             return ships_all
         else:
+            s = self
             s_obj = []
             for i in ships_all:
-                if i[self.sub_command] == self.arg1:
+                if i[s.sub_command] == s.arg1:
                     s_obj.append(i)
         return s_obj
 

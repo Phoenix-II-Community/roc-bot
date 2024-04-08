@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from discord import client
+from res.data import ShipLister
 
 
 class SimpleCog(commands.Cog):
@@ -29,6 +30,23 @@ class SimpleCog(commands.Cog):
     async def source(self, ctx):
         src = "https://github.com/Phoenix-II-Community/apex-bot"
         await ctx.send(src)
+
+
+    @commands.hybrid_command(name='rand', description='lists 10 ships or the number given')
+    @commands.guild_only()
+    async def rand(self, ctx, *, qty=None):
+        """lists 10 ships or the number given.
+        """
+        sc = ctx.command.name
+        if qty is None:
+            qty = 10
+            print(f"{sc} ## the sub command")
+            print(f"{qty} ## the arg1 entry")
+        if ctx.channel.id in (378546862627749908, 596343881705062417, 1166027391089512499):
+            await ShipLister(self, ctx, qty, sc).create_embed()
+        else:
+            await ctx.send("Command limited to <#378546862627749908>.")
+
 
 # The setup fucntion below is neccesarry. Remember we give bot.add_cog() the name of the class in this case SimpleCog.
 # When we load the cog, we use the name of the file.
