@@ -1,10 +1,7 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import discord
 from discord.ext import commands
 from discord import app_commands
-from res.data import ShipData, CategoryLister, ShipLister
+from res.common import ShipData, CategoryLister, ShipLister
 
 # Previously this was under the ship cog and it's a straight copy/paste.
 # There's nothing in game that referred to affinity so that's being renamed and

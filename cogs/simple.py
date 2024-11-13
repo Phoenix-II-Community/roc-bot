@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from discord import client
-from res.data import ShipLister
+from res.common import ShipLister
 
 
 class SimpleCog(commands.Cog):

@@ -4,7 +4,7 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-from res.data import ShipData, CategoryLister, ShipLister
+from res.common import ShipData, CategoryLister, ShipLister
 
 
 #### Zen

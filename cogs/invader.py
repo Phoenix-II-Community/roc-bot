@@ -1,10 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-import discord
-import discord.ext.commands
 from discord.ext import commands
-from discord.utils import get
 from res.invaders import invader_type
 
 class InvaderCog(commands.Cog, group_name="Invader Commands"):

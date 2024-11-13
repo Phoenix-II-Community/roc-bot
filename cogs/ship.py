@@ -1,10 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-import discord
 from discord.ext import commands
-from discord import app_commands
-from res.data import ShipData, CategoryLister, ShipLister
+from res.common import ShipData, CategoryLister, ShipLister
 
 
 class ShipCog(commands.Cog, group_name="ship"):

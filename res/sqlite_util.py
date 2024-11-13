@@ -1,5 +1,5 @@
 import sqlite3
-
+from rapidfuzz import process
 
 # It's 31/12/2023 and Dune Part 2 still hasn't been released, so this module
 # will have all formatting bits stripped leaving the sql client bits. The original bot
@@ -44,7 +44,7 @@ import sqlite3
 
 
 # category lister
-def sql_ship_info_obj(qry):
+def sql_ship_info_obj(aoc_input):
     # Possible views include
     # i_hp; inavder hp
     # m_daily; mission daily
@@ -55,7 +55,6 @@ def sql_ship_info_obj(qry):
 
 
 
-    if qry =
     conn = sqlite3.connect('rocbot.sqlite')
     # return a class sqlite3.row object which requires a tuple input query
     conn.row_factory = sqlite3.Row
@@ -104,7 +103,7 @@ def sql_daily_obj(self):
 # was originally in invaders.py module but got yanked out with the v3 refactor
 ############################################################################
 
-def get_invaders(self):
+def get_invaders():
     # connect to the sqlite database
     conn = sqlite3.connect('rocbot.sqlite')
     # Return a list of items instead of 1 item tuples
@@ -188,17 +187,11 @@ inner join apex_tier on apex_ships.apex_tier = apex_tier.id;
 # Connect to the local sqlite database `rocbot.sqlite` and generate a list of
 # ship names from the `ship` table
 def get_ships():
-    # connect to the sqlite database
     conn = sqlite3.connect('rocbot.sqlite')
-    # Return a list of items instead of 1 item tuples
-    conn.row_factory = lambda cursor, row: row[0]
-    # make an sqlite connection object
+    conn.row_factory = sqlite3.Row
     c = conn.cursor()
-    # creates a variable and assigns the list of ship names to it
-    ship_list = c.execute('''SELECT name FROM ship''').fetchall()
-    # close the databse connection
+    ship_list = c.execute('''select * from s_info''').fetchall()
     conn.close()
-    # return a list of ship names
     return ship_list
 
 # return the ship name from name_list which is a list of ship names
@@ -261,3 +254,47 @@ def sql_dmg_brackets():
     conn.close()
     # return a list of ship names
     return dmg_obj
+
+def sql_arg_list():
+    # connect to the sqlite database
+    conn = sqlite3.connect('rocbot.sqlite')
+    # Return a list of items instead of 1 item tuples
+    conn.row_factory = lambda cursor, row: row[0]
+    # make an sqlite connection object
+    c = conn.cursor()
+    # creates a variable and assigns the list of ship names to it
+    dmg_obj = c.execute('''SELECT name FROM shortcut''').fetchall()
+    # close the databse connection
+    conn.close()
+    # return a list of ship names
+    return dmg_obj
+
+############################################################################
+# was originally in img.py module but got yanked out with the v3 refactor
+############################################################################
+
+def sql_rank_obj():
+    conn = sqlite3.connect('rocbot.sqlite')
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    c.execute('select name from apex_tier')
+    r_obj = c.fetchall()
+    conn.close()
+    return r_obj
+
+def sql_apex_num_obj():
+    conn = sqlite3.connect('rocbot.sqlite')
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    c.execute('''
+select
+    ship.id as id,
+    apex_tier.name as rank,
+    apex_ships.apex_num as apex_num
+from apex_ships inner join ship on apex_ships.ship_name = ship.id
+inner join apexs on apex_ships.apex_id = apexs.id
+inner join apex_tier on apex_ships.apex_tier = apex_tier.id;
+    ''')
+    a_obj = c.fetchall()
+    conn.close()
+    return a_obj
