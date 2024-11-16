@@ -298,3 +298,73 @@ inner join apex_tier on apex_ships.apex_tier = apex_tier.id;
     a_obj = c.fetchall()
     conn.close()
     return a_obj
+
+############################################################################
+# was originally in mission.py module but got yanked out with the v3 refactor
+############################################################################
+
+def sql_daily_obj(day):
+    # connect to the sqlite database
+    conn = sqlite3.connect('rocbot.sqlite')
+    # return a class sqlite3.row object which requires a tuple input query
+    conn.row_factory = sqlite3.Row
+    # make an sqlite connection object
+    c = conn.cursor()
+    # using a defined view s_info find the ship
+    c.execute('select * from m_daily where day = ?', (day,))
+    # return the ship object including the required elemnts
+    m_obj = c.fetchone()
+    # close the databse connection
+    conn.close()
+    # return the sqlite3.cursor object
+    return m_obj
+
+
+############################################################################
+# was originally in invader.py module but got yanked out with the v3 refactor
+############################################################################
+
+
+# Grab the Invader stats for a specific ship from the SQL view
+def sql_i_name_obj(name):
+    # connect to the sqlite database
+    conn = sqlite3.connect('rocbot.sqlite')
+    # return a class sqlite3.row object which requires a tuple input query
+    conn.row_factory = sqlite3.Row
+    # make an sqlite connection object
+    c = conn.cursor()
+    # using a defined view s_info find the ship
+    c.execute('select * from i_hp where name = ?', (name,))
+    # return the ship object including the required elemnts
+    i_obj = c.fetchall()
+    # close the databse connection
+    conn.close()
+    # return the sqlite3.cursor object
+    return i_obj
+
+# Grab the Invader stats for a specific affinity of invader from the SQL view
+def sql_i_type_obj(sc):
+    conn = sqlite3.connect('rocbot.sqlite')
+    # return a class sqlite3.row object which requires a tuple input query
+    conn.row_factory = sqlite3.Row
+    # make an sqlite connection object
+    c = conn.cursor()
+    # using a defined view s_info find the ship
+    c.execute('select * from i_hp where type = ?', (sc,))
+    # return the ship object including the required elemnts
+    i_obj = c.fetchall()
+    # close the databse connection
+    conn.close()
+    # return the sqlite3.cursor object
+    return i_obj
+
+
+# Grab the Invader stats for a specific affinity of invader from the SQL view
+def sql_invader_obj():
+    conn = sqlite3.connect('rocbot.sqlite')
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    c.execute('select * from i_hp')
+    i_obj = c.fetchall()
+    conn.close()
+    return i_obj

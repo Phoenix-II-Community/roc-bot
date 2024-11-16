@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import discord.ext.commands
-import random
 import res.sqlite_util as sqlite_util
 
 # 2019-12-16 This class connects to rocbot.sqlite and uses a view to query. The returned
@@ -41,6 +39,7 @@ invader_stats = sqlite_util.get_invaders()
 apex_tier = sqlite_util.sql_rank_obj()
 apex_num = sqlite_util.sql_apex_num_obj()
 arg_list = [i for i in sqlite_util.sql_arg_list()]
+invader_all = sqlite_util.sql_invader_obj()
 
 """
 Except for the detail command the embeds used have the same basic parts.

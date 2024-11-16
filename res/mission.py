@@ -2,12 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3 
-import re
 import discord.ext.commands
-from discord.ext.commands import Bot
-import urllib.parse
 from datetime import datetime, timezone
-from res.common import customemoji, ship_search, sanitise_input
+from res.common import customemoji
+from res.sqlite_util import sql_daily_obj
 
 
 class Mission():
@@ -16,25 +14,9 @@ class Mission():
         self.bot_self = bot_self
         self.mission_epoch = 1326
         self.thumb_url = 'https://cdn.discordapp.com/attachments/340802325277048832/573289243229552640/praise.png'
-        self.d_obj = self.sql_daily_obj()
+        self.d_obj = sql_daily_obj(self.day_number())
         self.embed_daily = self.daily_embed()
        # self.embed_d_list = self.d_list()
-    
-    def sql_daily_obj(self):
-        # connect to the sqlite database
-        conn = sqlite3.connect('rocbot.sqlite')
-        # return a class sqlite3.row object which requires a tuple input query
-        conn.row_factory = sqlite3.Row
-        # make an sqlite connection object
-        c = conn.cursor()
-        # using a defined view s_info find the ship 
-        c.execute('select * from m_daily where day = ?', (self.day_number(),))
-        # return the ship object including the required elemnts
-        m_obj = c.fetchone()
-        # close the databse connection
-        conn.close()
-        # return the sqlite3.cursor object
-        return m_obj
 
     def daily_embed(self):
         title = self.d_obj['map'].upper()
