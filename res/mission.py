@@ -41,7 +41,7 @@ class Mission():
 
     # daily mission number takes the epoch date 19/aug/2019 and performs a delta
     # against the current UTC time because the game servers change mission
-    # in UTC time. Funcing uses aware values. 
+    # in UTC time. Function uses aware values.
     def mission_number(self):
         if self.sub_com == 'next':
             return (self.mission_epoch + 1) + (datetime.now(timezone.utc) - datetime(2019,8,19,0,0,0, tzinfo=timezone.utc)).days
@@ -52,7 +52,7 @@ class Mission():
     # The game current has a 21 mission rotation. Based on an offset start date 
     # because the first day is indexed (start date is actually 2019/aug/19)
     # This will give us the position of the mission rotation in UTC time 
-    # because that's what the game servers use. Funcing uses aware values.
+    # because that's what the game servers use. Function uses aware values.
     def day_number(self):
         if self.sub_com == 'next':
             day = int((datetime.now(timezone.utc) - datetime(2019,8,18,0,0,0, tzinfo=timezone.utc)).days) + 1

@@ -31,15 +31,28 @@ import res.sqlite_util as sqlite_util
 # shortcut; list of shortcuts for auras, zens weapon affinity, and rarity
 
 
+def dmg_bracket_list():
+    return [i for i in sqlite_util.sql_dmg_brackets()]
+
+
+def invaders_names():
+    names = []
+    for i in invader_all:
+        names.append(i['name'])
+    return names
+
+
 ships_all = sqlite_util.get_ships()
 # apexs_all = sqlite_util.sql_ship_info_obj('s_apex')
 # mission_daily = sqlite_util.sql_ship_info_obj('m_daily')
+damage_brackets = dmg_bracket_list()
 invader_stats = sqlite_util.get_invaders()
-# shortcuts = sqlite_util.sql_ship_info_obj('shortcut')
+# shortcuts = sqlite_util.sql_ship_info_obj()
 apex_tier = sqlite_util.sql_rank_obj()
 apex_num = sqlite_util.sql_apex_num_obj()
 arg_list = [i for i in sqlite_util.sql_arg_list()]
 invader_all = sqlite_util.sql_invader_obj()
+invader_names = invaders_names()
 
 """
 Except for the detail command the embeds used have the same basic parts.

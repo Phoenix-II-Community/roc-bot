@@ -2,11 +2,6 @@ import discord.ext.commands
 from res.common import customemoji
 from res.data import invader_all
 
-def get_invaders():
-    names = []
-    for i in invader_all:
-        names.append(i['name'])
-    return list(set(names))
 
 def get_description(bot_self, sc):
     list1 = []

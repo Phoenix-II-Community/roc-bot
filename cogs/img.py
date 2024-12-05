@@ -1,6 +1,5 @@
 import discord
 import discord.ext.commands
-import sqlite3
 from discord.ext import commands
 from discord import app_commands
 from res.common import sanitise_input, ship_search, customemoji

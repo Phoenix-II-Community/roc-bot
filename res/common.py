@@ -8,60 +8,25 @@ import discord.ext.commands
 from discord.ext import commands
 from res.data import arg_list, ships_all
 import random
+from res.data import damage_brackets, invader_names
+from res.sqlite_util import shortcut_obj
 
-# Connect to the local sqlite database `rocbot.sqlite` and generate a list of 
-# ship names from the `ship` table
 def get_ships():
-    # connect to the sqlite database
-    conn = sqlite3.connect('rocbot.sqlite')
-    # Return a list of items instead of 1 item tuples 
-    conn.row_factory = lambda cursor, row: row[0]
-    # make an sqlite connection object
-    c = conn.cursor()
-    # creates a variable and assigns the list of ship names to it
-    ship_list = c.execute('''SELECT name FROM ship''').fetchall()
-    # close the databse connection
-    conn.close()
-    # return a list of ship names
-    return ship_list
+    names = []
+    for i in ships_all:
+        names.append(i['name'])
+    return names
 
-# return the ship name from name_list which is a list of ship names 
-# extracted from the databases table called ship
 def ship_search(find_this):
-    # using the class initiated list ship_list find one ship name that 
-    # matches the given string as close as possible
     found_this = process.extractOne(find_this, get_ships())
-    # rapidfuzz returns the name and the ratio so strip the ratio and keep 
-    # the ship name
     ship_name = found_this[0]
-    # return the ship name as a string
     return ship_name
 
-# Connect to the local sqlite database `rocbot.sqlite` and generate a list of 
-# invader names from the invaders table
-def get_invaders():
-    # connect to the sqlite database
-    conn = sqlite3.connect('rocbot.sqlite')
-    # Return a list of items instead of 1 item tuples 
-    conn.row_factory = lambda cursor, row: row[0]
-    # make an sqlite connection object
-    c = conn.cursor()
-    # creates a variable and assigns the list of ship names to it
-    invader_list = c.execute('''SELECT name FROM invaders''').fetchall()
-    # close the databse connection
-    conn.close()
-    # return a list of ship names
-    return invader_list
 
 def invader_search(find_this):
     if find_this != None:
-        # using the class initiated list ship_list find one ship name that 
-        # matches the given string as close as possible
-        found_this = process.extractOne(find_this, get_invaders())
-        # rapidfuzz returns the name and the ratio so strip the ratio and keep 
-        # the ship name
+        found_this = process.extractOne(find_this, invader_names)
         invader_name = found_this[0]
-        # return the ship name as a string
         return invader_name
     else:
         pass
@@ -85,40 +50,7 @@ def embed_pagination(description):
         paginator.add_line(ship_line)
     return paginator.pages
 
-def shortcut_obj(arg1):
-    # connect to the sqlite database
-    conn = sqlite3.connect('rocbot.sqlite')
-    # return a class sqlite3.row object which requires a tuple input query
-    conn.row_factory = sqlite3.Row
-    # make an sqlite connection object
-    c = conn.cursor()
-    # using a defined view shortcut collect all table info 
-    c.execute('select * from shortcut where shortcut =?', (arg1,))
-    # return the shortcut object including the required elemnts
-    # using shortc instead of sc so not to be confused with 
-    # sub command abbrehviations 
-    shortc_obj = c.fetchall()
-    # close the databse connection
-    conn.close()
-    # return the sqlite3.cursor object
-    return shortc_obj
 
-def sql_dmg_brackets():
-    # connect to the sqlite database
-    conn = sqlite3.connect('rocbot.sqlite')
-    # Return a list of items instead of 1 item tuples 
-    conn.row_factory = lambda cursor, row: row[0]
-    # make an sqlite connection object
-    c = conn.cursor()
-    # creates a variable and assigns the list of ship names to it
-    dmg_obj = c.execute('''SELECT amount FROM ship_damage''').fetchall()
-    # close the databse connection
-    conn.close()
-    # return a list of ship names
-    return dmg_obj
-
-def dmg_bracket_list():
-    return [i for i in sql_dmg_brackets()]
 
 # def sql_arg_list():
 #     # connect to the sqlite database
@@ -140,7 +72,7 @@ def dmg_bracket_list():
 def argument_parser(sc, arg1):
     clean_arg1 = sanitise_input(arg1)
     if sc == 'dmg':
-        dmg_bracket = process.extractOne(clean_arg1, dmg_bracket_list())
+        dmg_bracket = process.extractOne(clean_arg1, damage_brackets)
         return dmg_bracket[0]
     elif sc == 'rand':
         try:
@@ -286,7 +218,7 @@ class ShipData():
         urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/roc-bot/master/ships/"
         return f"{urlgit}ship_{self.s_obj['number']}.png"
 
-    # create a discod embed object. Using the Ship class to collect the required
+    # create a discord embed object. Using the Ship class to collect the required
     # data. The embed includes a title as a ship emoji and the ship name queried
     # The description is a combination of weapon, aura and zen names with emojis
     # to suit. weapon zen gets a generic dps emoji and zen|aura get the specific

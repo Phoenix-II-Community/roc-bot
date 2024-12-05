@@ -190,7 +190,7 @@ def get_ships():
     conn = sqlite3.connect('rocbot.sqlite')
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
-    ship_list = c.execute('''select * from s_info''').fetchall()
+    ship_list = c.execute('''select * from s_info ORDER BY name''').fetchall()
     conn.close()
     return ship_list
 
@@ -268,6 +268,57 @@ def sql_arg_list():
     conn.close()
     # return a list of ship names
     return dmg_obj
+
+
+
+# Connect to the local sqlite database `rocbot.sqlite` and generate a list of
+# invader names from the invaders table
+def get_invaders():
+    conn = sqlite3.connect('rocbot.sqlite')
+    conn.row_factory = lambda cursor, row: row[0]
+    c = conn.cursor()
+    invader_list = c.execute('''SELECT name FROM invaders''').fetchall()
+    conn.close()
+    return invader_list
+
+
+def shortcut_obj(arg1):
+    conn = sqlite3.connect('rocbot.sqlite')
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    c.execute('select * from shortcut where shortcut =?', (arg1,))
+    shortc_obj = c.fetchall()
+    conn.close()
+    return shortc_obj
+
+def sql_dmg_brackets():
+    conn = sqlite3.connect('rocbot.sqlite')
+    conn.row_factory = lambda cursor, row: row[0]
+    c = conn.cursor()
+    dmg_obj = c.execute('''SELECT amount FROM ship_damage''').fetchall()
+    conn.close()
+    return dmg_obj
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ############################################################################
 # was originally in img.py module but got yanked out with the v3 refactor

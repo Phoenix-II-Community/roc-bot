@@ -10,6 +10,14 @@ import settings
 from typing import Optional, Literal
 import sys, traceback
 
+############################################################################
+# OTEL tracing
+############################################################################
+
+
+############################################################################
+# local logging
+############################################################################
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')

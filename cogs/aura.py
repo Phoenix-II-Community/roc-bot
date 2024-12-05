@@ -38,9 +38,12 @@ class AuraCog(commands.Cog, group_name="aura"):
     @aura.command(name='list', help='list of ships with the aura')
     @commands.guild_only()
     async def list(self, ctx, *, aura_name=None):
-        sc = 'aura'
-        print()
-        await ShipLister(self, ctx, aura_name, sc).create_embed()
+        if aura_name is None:
+            await ctx.send("Specify an Aura Name")
+        else:
+            sc = 'aura'
+            print()
+            await ShipLister(self, ctx, aura_name, sc).create_embed()
 
 
     @aura.command(name='info', help=' info about an aura')
@@ -52,7 +55,7 @@ class AuraCog(commands.Cog, group_name="aura"):
             await ctx.send("coming soon")        #await ctx.send(embed=CategoryLister(self, sc, aura_type).embed_list)
 
 
-# The setup fucntion below is neccesarry. Remember we give client.add_cog() the
+# The setup function below is necessary. Remember we give client.add_cog() the
 # name of the class in this case ShipCog.
 # When we load the cog, we use the name of the file.
 async def setup(client) -> None:

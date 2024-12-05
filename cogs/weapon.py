@@ -45,7 +45,7 @@ class WeaponCog(commands.Cog, group_name="weapon"):
                     help='List ships with High Impact affinity type',
                     aliases=['hi'])
     @commands.guild_only()
-    async def damage(self, ctx, *, arg1='hi'):
+    async def damage(self, ctx):
         sc = 'affinity'
         arg1 = 'hi'
         await ShipLister(self, ctx, arg1, sc).create_embed()
