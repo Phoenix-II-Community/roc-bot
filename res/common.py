@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import sqlite3
 from rapidfuzz import process
 import unicodedata
 import re
@@ -51,24 +50,6 @@ def embed_pagination(description):
     return paginator.pages
 
 
-
-# def sql_arg_list():
-#     # connect to the sqlite database
-#     conn = sqlite3.connect('rocbot.sqlite')
-#     # Return a list of items instead of 1 item tuples
-#     conn.row_factory = lambda cursor, row: row[0]
-#     # make an sqlite connection object
-#     c = conn.cursor()
-#     # creates a variable and assigns the list of ship names to it
-#     dmg_obj = c.execute('''SELECT name FROM shortcut''').fetchall()
-#     # close the databse connection
-#     conn.close()
-#     # return a list of ship names
-#     return dmg_obj
-
-# def arg_parse_list():
-#     return [i for i in sql_arg_list()]
-
 def argument_parser(sc, arg1):
     clean_arg1 = sanitise_input(arg1)
     if sc == 'dmg':
@@ -106,7 +87,6 @@ class ShipLister():
         self.s_obj = self.ship_obj()
 
     def ship_obj(self):
-        print(f"{self.sub_command} ## the sub command")
         if self.sub_command in ('all', 'rand'):
             return ships_all
         else:
