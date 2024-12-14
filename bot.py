@@ -40,6 +40,7 @@ initial_extensions = ['cogs.simple',
         'cogs.daily',
         'cogs.img',
         'cogs.zen',
+        'cogs.price',
         'cogs.weapon'
         ]
 # Here we load our extensions (cogs) listed above in [initial_extensions].
