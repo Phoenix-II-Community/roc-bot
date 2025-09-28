@@ -1,34 +1,35 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sqlite3 
+import sqlite3
 import discord.ext.commands
 from datetime import datetime, timezone
 from res.common import customemoji
 from res.sqlite_util import sql_daily_obj
 
 
-class Mission():
+class Mission:
     def __init__(self, bot_self, sub_command):
         self.sub_com = sub_command
         self.bot_self = bot_self
         self.mission_epoch = 1326
-        self.thumb_url = 'https://cdn.discordapp.com/attachments/340802325277048832/573289243229552640/praise.png'
+        self.thumb_url = "https://cdn.discordapp.com/attachments/340802325277048832/573289243229552640/praise.png"
         self.d_obj = sql_daily_obj(self.day_number())
         self.embed_daily = self.daily_embed()
-       # self.embed_d_list = self.d_list()
+
+    # self.embed_d_list = self.d_list()
 
     def daily_embed(self):
-        title = self.d_obj['map'].upper()
+        title = self.d_obj["map"].upper()
         desc = self.get_daily_description_info()
-        col = int(self.d_obj['colour'], 16)
+        col = int(self.d_obj["colour"], 16)
         embed = discord.Embed(title=title, description=desc, colour=col)
-        embed.set_footer(text=f"Day {self.d_obj['id']}") 
+        embed.set_footer(text=f"Day {self.d_obj['id']}")
         embed.set_thumbnail(url=self.thumb_url)
         return embed
 
     def get_daily_description_info(self):
-        turrets = self.d_obj['emoji']
+        turrets = self.d_obj["emoji"]
         t_list = turrets.split()
         emoji = [str(customemoji(self.bot_self, x)) for x in t_list]
         embed_description = (
@@ -43,21 +44,46 @@ class Mission():
     # against the current UTC time because the game servers change mission
     # in UTC time. Function uses aware values.
     def mission_number(self):
-        if self.sub_com == 'next':
-            return (self.mission_epoch + 1) + (datetime.now(timezone.utc) - datetime(2019,8,19,0,0,0, tzinfo=timezone.utc)).days
+        if self.sub_com == "next":
+            return (self.mission_epoch + 1) + (
+                datetime.now(timezone.utc)
+                - datetime(2019, 8, 19, 0, 0, 0, tzinfo=timezone.utc)
+            ).days
         else:
-            return self.mission_epoch + (datetime.now(timezone.utc) - datetime(2019,8,19,0,0,0, tzinfo=timezone.utc)).days
+            return (
+                self.mission_epoch
+                + (
+                    datetime.now(timezone.utc)
+                    - datetime(2019, 8, 19, 0, 0, 0, tzinfo=timezone.utc)
+                ).days
+            )
 
-
-    # The game current has a 21 mission rotation. Based on an offset start date 
+    # The game current has a 21 mission rotation. Based on an offset start date
     # because the first day is indexed (start date is actually 2019/aug/19)
-    # This will give us the position of the mission rotation in UTC time 
+    # This will give us the position of the mission rotation in UTC time
     # because that's what the game servers use. Function uses aware values.
     def day_number(self):
-        if self.sub_com == 'next':
-            day = int((datetime.now(timezone.utc) - datetime(2019,8,18,0,0,0, tzinfo=timezone.utc)).days) + 1
+        if self.sub_com == "next":
+            day = (
+                int(
+                    (
+                        datetime.now(timezone.utc)
+                        - datetime(2019, 8, 18, 0, 0, 0, tzinfo=timezone.utc)
+                    ).days
+                )
+                + 1
+            )
             print(day % 21)
             return day % 21
         else:
-            print((datetime.now(timezone.utc) - datetime(2019,8,18,0,0,0, tzinfo=timezone.utc)).days % 21)
-            return (datetime.now(timezone.utc) - datetime(2019,8,18,0,0,0, tzinfo=timezone.utc)).days % 21
+            print(
+                (
+                    datetime.now(timezone.utc)
+                    - datetime(2019, 8, 18, 0, 0, 0, tzinfo=timezone.utc)
+                ).days
+                % 21
+            )
+            return (
+                datetime.now(timezone.utc)
+                - datetime(2019, 8, 18, 0, 0, 0, tzinfo=timezone.utc)
+            ).days % 21

@@ -38,7 +38,7 @@ def dmg_bracket_list():
 def invaders_names():
     names = []
     for i in invader_all:
-        names.append(i['name'])
+        names.append(i["name"])
     return names
 
 
@@ -253,6 +253,3 @@ thumbnail (small image) that's right aligned used in info and detail
 #             description=description)
 #         return embed
 #
-
-
-

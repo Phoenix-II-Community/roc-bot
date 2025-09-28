@@ -1,21 +1,23 @@
 from discord.ext import commands
 from res.invaders import get_i_embed
 
+
 class InvaderCog(commands.Cog, group_name="Invader Commands"):
     """InvaderCog"""
+
     def __init__(self, client):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('Invader cog loaded...')
+        print("Invader cog loaded...")
 
-    @commands.hybrid_group(invoke_without_command=True, aliases=['invaders'])
+    @commands.hybrid_group(invoke_without_command=True, aliases=["invaders"])
     @commands.guild_only()
     async def invader(self, ctx):
         sc = ctx.subcommand_passed
         if ctx.invoked_subcommand is None:
-            await ctx.send('Invalid invader command passed.')
+            await ctx.send("Invalid invader command passed.")
 
     ############################################################################
     # invader ship class
@@ -57,7 +59,6 @@ class InvaderCog(commands.Cog, group_name="Invader Commands"):
         sc = ctx.command.name
         await ctx.send(embed=get_i_embed(self, sc))
 
-
     ############################################################################
     # invader build class
     ############################################################################
@@ -88,7 +89,7 @@ class InvaderCog(commands.Cog, group_name="Invader Commands"):
 
     @invader.command()
     async def turrets(self, ctx):
-        await ctx.send('Feature coming soon')
+        await ctx.send("Feature coming soon")
 
 
 async def setup(client) -> None:

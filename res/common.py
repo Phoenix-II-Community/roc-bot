@@ -10,11 +10,13 @@ import random
 from res.data import damage_brackets, invader_names
 from res.sqlite_util import shortcut_obj
 
+
 def get_ships():
     names = []
     for i in ships_all:
-        names.append(i['name'])
+        names.append(i["name"])
     return names
+
 
 def ship_search(find_this):
     found_this = process.extractOne(find_this, get_ships())
@@ -30,21 +32,27 @@ def invader_search(find_this):
     else:
         pass
 
+
 # strip all non lete
 def sanitise_input(input_string):
     # \W+ matches any non-word character (equal to [^a-zA-Z0-9_])
-    # + Quantifier — Matches between one and unlimited times, as many times as 
+    # + Quantifier — Matches between one and unlimited times, as many times as
     # possible, giving back as needed (greedy)
-    words_only = re.sub(r'\W+','', str(input_string))
-    return unicodedata.normalize('NFKD', words_only).encode('ascii', 'ignore').decode('utf8')
+    words_only = re.sub(r"\W+", "", str(input_string))
+    return (
+        unicodedata.normalize("NFKD", words_only)
+        .encode("ascii", "ignore")
+        .decode("utf8")
+    )
 
 
 def customemoji(self, find_this):
     find_sanitised = sanitise_input(find_this.lower())
-    return discord.utils.get(self.client.emojis, name = str(find_sanitised))
+    return discord.utils.get(self.client.emojis, name=str(find_sanitised))
+
 
 def embed_pagination(description):
-    paginator = commands.Paginator(prefix='', suffix='', max_size=2000)
+    paginator = commands.Paginator(prefix="", suffix="", max_size=2000)
     for ship_line in description:
         paginator.add_line(ship_line)
     return paginator.pages
@@ -52,10 +60,10 @@ def embed_pagination(description):
 
 def argument_parser(sc, arg1):
     clean_arg1 = sanitise_input(arg1)
-    if sc == 'dmg':
+    if sc == "dmg":
         dmg_bracket = process.extractOne(clean_arg1, damage_brackets)
         return dmg_bracket[0]
-    elif sc == 'rand':
+    elif sc == "rand":
         try:
             int(arg1)
         except ValueError:
@@ -68,16 +76,22 @@ def argument_parser(sc, arg1):
         if len(clean_arg1) <= 4:
             shortcut = shortcut_obj(clean_arg1.lower())
             if len(shortcut) > 0:
-                return shortcut[0]['name']
+                return shortcut[0]["name"]
         else:
             arg_found = process.extractOne(clean_arg1, arg_list)
             return arg_found[0]
 
+
 def get_em_colour(arg1):
-    embed_colours = {"Shield Breaker": 0x3a77f9, "High Impact": 0xee4529, "Armor Piercing": 0xffb820}
+    embed_colours = {
+        "Shield Breaker": 0x3A77F9,
+        "High Impact": 0xEE4529,
+        "Armor Piercing": 0xFFB820,
+    }
     return embed_colours[arg1]
 
-class ShipLister():
+
+class ShipLister:
     def __init__(self, bot_self, ctx, arg1, sc):
         self.bot_self = bot_self
         self.ctx = ctx
@@ -87,7 +101,7 @@ class ShipLister():
         self.s_obj = self.ship_obj()
 
     def ship_obj(self):
-        if self.sub_command in ('all', 'rand'):
+        if self.sub_command in ("all", "rand"):
             return ships_all
         else:
             s = self
@@ -99,25 +113,27 @@ class ShipLister():
 
     def create_description(self):
         description = []
-        if self.sub_command == 'dmg':
+        if self.sub_command == "dmg":
             for i in self.s_obj:
                 description.append(
                     f"{customemoji(self.bot_self, i['affinity'])} "
                     f"{customemoji(self.bot_self, i['name'])} "
-                    f"{i['name']}")
+                    f"{i['name']}"
+                )
             return embed_pagination(description)
-        elif self.sub_command == 'affinity':
+        elif self.sub_command == "affinity":
             for i in self.s_obj:
                 description.append(
-                    f"{customemoji(self.bot_self, i['name'])} "
-                    f"{i['name']}")
+                    f"{customemoji(self.bot_self, i['name'])} {i['name']}"
+                )
             return embed_pagination(description)
-        elif self.sub_command == 'rand':
+        elif self.sub_command == "rand":
             for i in self.s_obj:
                 description.append(
                     f"{customemoji(self.bot_self, i['affinity'])} "
                     f"{customemoji(self.bot_self, i['name'])} "
-                    f"{i['name']}")
+                    f"{i['name']}"
+                )
             return embed_pagination(random.sample(description, int(self.arg1)))
         # having an else without knowing what uses it sucks
         else:
@@ -125,23 +141,25 @@ class ShipLister():
                 description.append(
                     f"{customemoji(self.bot_self, i['affinity'])} "
                     f"{customemoji(self.bot_self, i['name'])} "
-                    f"{i['name']}")
+                    f"{i['name']}"
+                )
             return embed_pagination(description)
 
     async def create_embed(self):
         ctx = self.ctx
-        if self.sub_command == 'affinity':
+        if self.sub_command == "affinity":
             colour = get_em_colour(self.arg1)
             for page in self.create_description():
-                await ctx.send(embed=discord.Embed(
-                    title=self.embed_title,
-                    description=page,
-                    color=colour))
+                await ctx.send(
+                    embed=discord.Embed(
+                        title=self.embed_title, description=page, color=colour
+                    )
+                )
         else:
             for page in self.create_description():
-                await ctx.send(embed=discord.Embed(
-                    title=self.embed_title,
-                    description=page))
+                await ctx.send(
+                    embed=discord.Embed(title=self.embed_title, description=page)
+                )
 
     def title(self):
         if self.sub_command == "dmg":
@@ -154,7 +172,7 @@ class ShipLister():
             return f"{customemoji(self.bot_self, self.arg1)} {self.arg1} Ships"
 
 
-class ShipData():
+class ShipData:
     def __init__(self, bot_self, find_this):
         self.bot_self = bot_self
         self.ship_name = ship_search(find_this)
@@ -165,13 +183,15 @@ class ShipData():
 
     def ship_obj(self):
         for s_obj in ships_all:
-            if s_obj['name'] == self.ship_name:
+            if s_obj["name"] == self.ship_name:
                 return s_obj
 
     # Creates the title of the discord emebed consisting of the rarity emoji
     # the ship name.
     def get_ship_title(self):
-        return f"{customemoji(self.bot_self, self.s_obj['rarity'])} {self.s_obj['name']}"
+        return (
+            f"{customemoji(self.bot_self, self.s_obj['rarity'])} {self.s_obj['name']}"
+        )
 
     # The embed is made up of two sections of content the title and this section
     # the description. The description contains weapon, aura and zen info using
@@ -185,13 +205,15 @@ class ShipData():
             f"{customemoji(self.bot_self, 'dps')} {self.s_obj['dmg']}\n"
             f"{customemoji(self.bot_self, self.s_obj['affinity'])} {self.s_obj['weapon_name']}\n"
             f"{customemoji(self.bot_self, self.s_obj['aura'])} {self.s_obj['aura']}\n"
-            f"{customemoji(self.bot_self, self.s_obj['zen'])} {self.s_obj['zen']}")
+            f"{customemoji(self.bot_self, self.s_obj['zen'])} {self.s_obj['zen']}"
+        )
         return embed_description
 
     def get_ship_description_detail(self):
         embed_description = (
             f"{customemoji(self.bot_self, 'dps')} {self.s_obj['dmg']}\n"
-            f"{customemoji(self.bot_self, self.s_obj['affinity'])} {self.s_obj['weapon_name']}")
+            f"{customemoji(self.bot_self, self.s_obj['affinity'])} {self.s_obj['weapon_name']}"
+        )
         return embed_description
 
     def get_ship_image(self):
@@ -206,29 +228,32 @@ class ShipData():
     def info_embed(self, find_this):
         title = self.get_ship_title()
         desc = self.get_ship_description_info()
-        col = int(self.s_obj['colour'], 16)
-        embed = discord.Embed(title=title,
-                              description=desc,
-                              colour=col).set_thumbnail(url=self.img_url)
+        col = int(self.s_obj["colour"], 16)
+        embed = discord.Embed(title=title, description=desc, colour=col).set_thumbnail(
+            url=self.img_url
+        )
         embed.set_footer(text=f"Ship {self.s_obj[0]}")
         return embed
 
     def detail_embed(self, ship_name):
         title = self.get_ship_title()
         desc = self.get_ship_description_detail()
-        col = int(self.s_obj['colour'], 16)
+        col = int(self.s_obj["colour"], 16)
         embed = discord.Embed(title=title, description=desc, colour=col)
         embed.add_field(
             name=f"{customemoji(self.bot_self, self.s_obj['aura'])} {self.s_obj['aura']}",
             value=f"{self.s_obj['aura_desc']}",
-            inline=False)
+            inline=False,
+        )
         embed.add_field(
             name=f"{customemoji(self.bot_self, self.s_obj['zen'])} {self.s_obj['zen']}",
             value=f"{self.s_obj['zen_desc']}",
-            inline=False)
+            inline=False,
+        )
         embed.set_thumbnail(url=self.img_url)
         embed.set_footer(text=f"Ship {self.s_obj['number']}")
         return embed
+
 
 def embed_title(self, bot_self, sub_command):
     if sub_command == "affinity":
@@ -243,7 +268,7 @@ def embed_title(self, bot_self, sub_command):
         return f"{customemoji(bot_self, 'vegemite')} Rarities"
 
 
-class CategoryLister():
+class CategoryLister:
     def __init__(self, bot_self, sub_command):
         self.bot_self = bot_self
         self.sub_command = sub_command
@@ -256,12 +281,13 @@ class CategoryLister():
         for i in self.s_obj:
             new_set.add(i[self.sub_command])
         for i in sorted(new_set):
-            if self.sub_command == 'dmg':
+            if self.sub_command == "dmg":
                 list1.append(f"{i}")
             else:
                 list1.append(f"{customemoji(self.bot_self, i)} {i}")
-        description = '\n'.join(list1)
+        description = "\n".join(list1)
         embed = discord.Embed(
             title=embed_title(self, self.bot_self, self.sub_command),
-            description=description)
+            description=description,
+        )
         return embed

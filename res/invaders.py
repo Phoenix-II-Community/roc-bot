@@ -9,19 +9,25 @@ def get_description(bot_self, sc):
         for i in invader_all:
             if sc in i:
                 list1.append(f"{customemoji(bot_self, i['type'])} {i['hp']}")
-        return '\n'.join(list1)
+        return "\n".join(list1)
     else:
         for i in invader_all:
             if sc in i:
                 list1.append(f"{customemoji(bot_self, i['name'])} {i['hp']}")
-        return '\n'.join(list1)
+        return "\n".join(list1)
 
 
 def get_title(bot_self, sc):
-        return f"{customemoji(bot_self, sc)} {sc.capitalize()}"
+    return f"{customemoji(bot_self, sc)} {sc.capitalize()}"
+
 
 def get_i_embed(bot_self, sc):
-    em_col = {"shielded": 0x3a77f9, "unprotected": 0xee4529, "armored": 0xffb820, 'split': 0x945e91}
+    em_col = {
+        "shielded": 0x3A77F9,
+        "unprotected": 0xEE4529,
+        "armored": 0xFFB820,
+        "split": 0x945E91,
+    }
     title = get_title(bot_self, sc)
     desc = get_description(bot_self, sc)
     invader_names = get_invaders()
