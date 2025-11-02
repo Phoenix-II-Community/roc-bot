@@ -50,6 +50,7 @@ invader_stats = sqlite_util.get_invaders()
 # shortcuts = sqlite_util.sql_ship_info_obj()
 apex_tier = sqlite_util.sql_rank_obj()
 apex_num = sqlite_util.sql_apex_num_obj()
+apex_price = sqlite_util.sql_p_a_obj()
 arg_list = [i for i in sqlite_util.sql_arg_list()]
 invader_all = sqlite_util.sql_invader_obj()
 invader_names = invaders_names()

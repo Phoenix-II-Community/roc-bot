@@ -411,3 +411,29 @@ def sql_invader_obj():
     i_obj = c.fetchall()
     conn.close()
     return i_obj
+
+    ############################################################################
+    # was originally in price.py module but got yanked out with the v3 refactor
+    ############################################################################
+
+
+def sql_p_s_obj(sc):
+    conn = sqlite3.connect("rocbot.sqlite")
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    query = "SELECT * FROM "
+    if sc == "weapon":
+        query = query + "price_weapon"
+    elif sc == "aura":
+        query = query + "price_aura"
+    elif sc == "zen":
+        query = query + "price_zen"
+    return c.execute(query).fetchall()
+
+
+def sql_p_a_obj():
+    conn = sqlite3.connect("rocbot.sqlite")
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    query = "SELECT name, cost FROM apex_tier"
+    return c.execute(query).fetchall()
