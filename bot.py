@@ -2,13 +2,16 @@
 # -*- coding: utf-8 -*-
 import asyncio
 import logging
+import sys
+import traceback
+from typing import Literal, Optional
+
 import discord
 import discord.ext.commands
 from discord.ext import commands
 from discord.utils import get
+
 import settings
-from typing import Optional, Literal
-import sys, traceback
 
 ############################################################################
 # OTEL tracing
@@ -40,7 +43,7 @@ def get_prefix(client, message):
 initial_extensions = [
     "cogs.simple",
     "cogs.aura",
-    "cogs.apex",
+    # "cogs.apex",
     "cogs.ship",
     "cogs.invader",
     "cogs.daily",

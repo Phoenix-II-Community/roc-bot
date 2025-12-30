@@ -1,4 +1,5 @@
 import sqlite3
+
 from rapidfuzz import process
 
 # It's 31/12/2023 and Dune Part 2 still hasn't been released, so this module
@@ -194,6 +195,15 @@ def get_ships():
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
     ship_list = c.execute("""select * from s_info ORDER BY name""").fetchall()
+    conn.close()
+    return ship_list
+
+
+def get_ships_player_num():
+    conn = sqlite3.connect("rocbot.sqlite")
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    ship_list = c.execute("""select * from s_info ORDER BY number""").fetchall()
     conn.close()
     return ship_list
 

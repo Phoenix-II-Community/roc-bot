@@ -43,6 +43,7 @@ def invaders_names():
 
 
 ships_all = sqlite_util.get_ships()
+ships_all_by_num = sqlite_util.get_ships_player_num()
 # apexs_all = sqlite_util.sql_ship_info_obj('s_apex')
 # mission_daily = sqlite_util.sql_ship_info_obj('m_daily')
 damage_brackets = dmg_bracket_list()

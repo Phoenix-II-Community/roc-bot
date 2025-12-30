@@ -1,13 +1,20 @@
 # -*- coding: utf-8 -*-
 
-from rapidfuzz import process
-import unicodedata
+import random
 import re
+import unicodedata
+
 import discord.ext.commands
 from discord.ext import commands
-from res.data import arg_list, ships_all
-import random
-from res.data import damage_brackets, invader_names
+from rapidfuzz import process
+
+from res.data import (
+    arg_list,
+    damage_brackets,
+    invader_names,
+    ships_all,
+    ships_all_by_num,
+)
 from res.sqlite_util import shortcut_obj
 
 
@@ -19,7 +26,7 @@ def get_ships():
 
 
 def ship_search(find_this):
-    found_this = process.extractOne(find_this, get_ships())
+    found_this = process.extractOne(find_this, ships_all)
     ship_name = found_this[0]
     return ship_name
 
@@ -102,7 +109,7 @@ class ShipLister:
 
     def ship_obj(self):
         if self.sub_command in ("all", "rand"):
-            return ships_all
+            return ships_all_by_num
         else:
             s = self
             s_obj = []
