@@ -13,7 +13,8 @@ from res.data import (
     damage_brackets,
     invader_names,
     ships_all,
-    ships_all_by_num,
+    ships_name_alphabetical,
+    ships_name_by_num,
 )
 from res.sqlite_util import shortcut_obj
 
@@ -26,8 +27,9 @@ def get_ships():
 
 
 def ship_search(find_this):
-    found_this = process.extractOne(find_this, ships_all)
+    found_this = process.extractOne(find_this, ships_name_by_num)
     ship_name = found_this[0]
+    print(ship_name)
     return ship_name
 
 
@@ -55,7 +57,12 @@ def sanitise_input(input_string):
 
 def customemoji(self, find_this):
     find_sanitised = sanitise_input(find_this.lower())
-    return discord.utils.get(self.client.emojis, name=str(find_sanitised))
+    emoji = discord.utils.get(self.client.emojis, name=str(find_sanitised))
+    print(emoji)
+    if emoji:
+        return emoji
+    else:
+        return f"[{find_sanitised}]"
 
 
 def embed_pagination(description):
