@@ -60,7 +60,6 @@ def sql_ship_info_obj(aoc_input):
     c = conn.cursor()
     # using a defined view s_info collect all table info
     for move in aoc_input:
-        tick = int(move[1])
         match move:
             case ["ships", str]:
                 c.execute("select * from s_info")
@@ -80,21 +79,21 @@ def sql_ship_info_obj(aoc_input):
 ############################################################################
 # was originally in mission.py module but got yanked out with the v3 refactor
 ############################################################################
-def sql_daily_obj(self):
-    # connect to the sqlite database
-    conn = sqlite3.connect("rocbot.sqlite")
-    # return a class sqlite3.row object which requires a tuple input query
-    conn.row_factory = sqlite3.Row
-    # make an sqlite connection object
-    c = conn.cursor()
-    # using a defined view s_info find the ship
-    c.execute("select * from m_daily where day = ?", (self.day_number(),))
-    # return the ship object including the required elemnts
-    m_obj = c.fetchone()
-    # close the databse connection
-    conn.close()
-    # return the sqlite3.cursor object
-    return m_obj
+# def sql_daily_obj(self):
+#     # connect to the sqlite database
+#     conn = sqlite3.connect("rocbot.sqlite")
+#     # return a class sqlite3.row object which requires a tuple input query
+#     conn.row_factory = sqlite3.Row
+#     # make an sqlite connection object
+#     c = conn.cursor()
+#     # using a defined view s_info find the ship
+#     c.execute("select * from m_daily where day = ?", (self.day_number(),))
+#     # return the ship object including the required elemnts
+#     m_obj = c.fetchone()
+#     # close the databse connection
+#     conn.close()
+#     # return the sqlite3.cursor object
+#     return m_obj
 
 
 ############################################################################
@@ -102,55 +101,55 @@ def sql_daily_obj(self):
 ############################################################################
 
 
-def get_invaders():
-    # connect to the sqlite database
-    conn = sqlite3.connect("rocbot.sqlite")
-    # Return a list of items instead of 1 item tuples
-    conn.row_factory = lambda cursor, row: row[0]
-    # make an sqlite connection object
-    c = conn.cursor()
-    # creates a variable and assigns the list of ship names to it
-    invader_list = c.execute("""SELECT name FROM invaders""").fetchall()
-    # close the databse connection
-    conn.close()
-    # return a list of ship names
-    return invader_list
+# def get_invaders():
+#     # connect to the sqlite database
+#     conn = sqlite3.connect("rocbot.sqlite")
+#     # Return a list of items instead of 1 item tuples
+#     conn.row_factory = lambda cursor, row: row[0]
+#     # make an sqlite connection object
+#     c = conn.cursor()
+#     # creates a variable and assigns the list of ship names to it
+#     invader_list = c.execute("""SELECT name FROM invaders""").fetchall()
+#     # close the databse connection
+#     conn.close()
+#     # return a list of ship names
+#     return invader_list
 
 
-# Grab the Invader stats for a specific ship from the SQL view
-def sql_i_name_obj(self):
-    # connect to the sqlite database
-    conn = sqlite3.connect("rocbot.sqlite")
-    # return a class sqlite3.row object which requires a tuple input query
-    conn.row_factory = sqlite3.Row
-    # make an sqlite connection object
-    c = conn.cursor()
-    # using a defined view s_info find the ship
-    c.execute("select * from i_hp where name = ?", (self.i_name,))
-    # return the ship object including the required elemnts
-    i_obj = c.fetchall()
-    # close the databse connection
-    conn.close()
-    # return the sqlite3.cursor object
-    return i_obj
+# # Grab the Invader stats for a specific ship from the SQL view
+# def sql_i_name_obj(self):
+#     # connect to the sqlite database
+#     conn = sqlite3.connect("rocbot.sqlite")
+#     # return a class sqlite3.row object which requires a tuple input query
+#     conn.row_factory = sqlite3.Row
+#     # make an sqlite connection object
+#     c = conn.cursor()
+#     # using a defined view s_info find the ship
+#     c.execute("select * from i_hp where name = ?", (self.i_name,))
+#     # return the ship object including the required elemnts
+#     i_obj = c.fetchall()
+#     # close the databse connection
+#     conn.close()
+#     # return the sqlite3.cursor object
+#     return i_obj
 
 
-# Grab the Invader stats for a specific affinity of invader from the SQL view
-def sql_i_type_obj(self):
-    # connect to the sqlite database
-    conn = sqlite3.connect("rocbot.sqlite")
-    # return a class sqlite3.row object which requires a tuple input query
-    conn.row_factory = sqlite3.Row
-    # make an sqlite connection object
-    c = conn.cursor()
-    # using a defined view s_info find the ship
-    c.execute("select * from i_hp where type = ?", (self.sc,))
-    # return the ship object including the required elemnts
-    i_obj = c.fetchall()
-    # close the databse connection
-    conn.close()
-    # return the sqlite3.cursor object
-    return i_obj
+# # Grab the Invader stats for a specific affinity of invader from the SQL view
+# def sql_i_type_obj(self):
+#     # connect to the sqlite database
+#     conn = sqlite3.connect("rocbot.sqlite")
+#     # return a class sqlite3.row object which requires a tuple input query
+#     conn.row_factory = sqlite3.Row
+#     # make an sqlite connection object
+#     c = conn.cursor()
+#     # using a defined view s_info find the ship
+#     c.execute("select * from i_hp where type = ?", (self.sc,))
+#     # return the ship object including the required elemnts
+#     i_obj = c.fetchall()
+#     # close the databse connection
+#     conn.close()
+#     # return the sqlite3.cursor object
+#     return i_obj
 
 
 ############################################################################
@@ -158,29 +157,29 @@ def sql_i_type_obj(self):
 ############################################################################
 
 
-def sql_apex_num_obj():
-    # connect to the sqlite database
-    conn = sqlite3.connect("rocbot.sqlite")
-    # return a class sqlite3.row object which requires a tuple input query
-    conn.row_factory = sqlite3.Row
-    # make an sqlite connection object
-    c = conn.cursor()
-    # using a defined view s_info find the ship
-    c.execute("""
-select
-    ship.id as id,
-    apex_tier.name as rank,
-    apex_ships.apex_num as apex_num
-from apex_ships inner join ship on apex_ships.ship_name = ship.id
-inner join apexs on apex_ships.apex_id = apexs.id
-inner join apex_tier on apex_ships.apex_tier = apex_tier.id;
-    """)
-    # return the ship object including the required elemnts
-    a_obj = c.fetchall()
-    # close the databse connection
-    conn.close()
-    # return the sqlite3.cursor object
-    return a_obj
+# def sql_apex_num_obj():
+#     # connect to the sqlite database
+#     conn = sqlite3.connect("rocbot.sqlite")
+#     # return a class sqlite3.row object which requires a tuple input query
+#     conn.row_factory = sqlite3.Row
+#     # make an sqlite connection object
+#     c = conn.cursor()
+#     # using a defined view s_info find the ship
+#     c.execute("""
+# select
+#     ship.id as id,
+#     apex_tier.name as rank,
+#     apex_ships.apex_num as apex_num
+# from apex_ships inner join ship on apex_ships.ship_name = ship.id
+# inner join apexs on apex_ships.apex_id = apexs.id
+# inner join apex_tier on apex_ships.apex_tier = apex_tier.id;
+#     """)
+#     # return the ship object including the required elemnts
+#     a_obj = c.fetchall()
+#     # close the databse connection
+#     conn.close()
+#     # return the sqlite3.cursor object
+#     return a_obj
 
 
 ############################################################################
@@ -190,16 +189,27 @@ inner join apex_tier on apex_ships.apex_tier = apex_tier.id;
 
 # Connect to the local sqlite database `rocbot.sqlite` and generate a list of
 # ship names from the `ship` table
-def get_ships():
+def get_ship_names_alphabetical():
     conn = sqlite3.connect("rocbot.sqlite")
-    conn.row_factory = sqlite3.Row
+    conn.row_factory = lambda cursor, row: row[0]
     c = conn.cursor()
-    ship_list = c.execute("""select * from s_info ORDER BY name""").fetchall()
+    ship_list = c.execute("""SELECT name FROM ship ORDER BY name""").fetchall()
     conn.close()
     return ship_list
 
 
+# Connect to the local sqlite database `rocbot.sqlite` and generate a list of
+# ship names from the `ship` table
 def get_ships_player_num():
+    conn = sqlite3.connect("rocbot.sqlite")
+    conn.row_factory = lambda cursor, row: row[0]
+    c = conn.cursor()
+    ship_list = c.execute("""SELECT name FROM ship ORDER BY id""").fetchall()
+    conn.close()
+    return ship_list
+
+
+def get_ships():
     conn = sqlite3.connect("rocbot.sqlite")
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
@@ -221,55 +231,55 @@ def ship_search(find_this):
     return ship_name
 
 
-# Connect to the local sqlite database `rocbot.sqlite` and generate a list of
-# invader names from the invaders table
-def get_invaders():
-    # connect to the sqlite database
-    conn = sqlite3.connect("rocbot.sqlite")
-    # Return a list of items instead of 1 item tuples
-    conn.row_factory = lambda cursor, row: row[0]
-    # make an sqlite connection object
-    c = conn.cursor()
-    # creates a variable and assigns the list of ship names to it
-    invader_list = c.execute("""SELECT name FROM invaders""").fetchall()
-    # close the databse connection
-    conn.close()
-    # return a list of ship names
-    return invader_list
+# # Connect to the local sqlite database `rocbot.sqlite` and generate a list of
+# # invader names from the invaders table
+# def get_invaders():
+#     # connect to the sqlite database
+#     conn = sqlite3.connect("rocbot.sqlite")
+#     # Return a list of items instead of 1 item tuples
+#     conn.row_factory = lambda cursor, row: row[0]
+#     # make an sqlite connection object
+#     c = conn.cursor()
+#     # creates a variable and assigns the list of ship names to it
+#     invader_list = c.execute("""SELECT name FROM invaders""").fetchall()
+#     # close the databse connection
+#     conn.close()
+#     # return a list of ship names
+#     return invader_list
 
 
-def shortcut_obj(arg1):
-    # connect to the sqlite database
-    conn = sqlite3.connect("rocbot.sqlite")
-    # return a class sqlite3.row object which requires a tuple input query
-    conn.row_factory = sqlite3.Row
-    # make an sqlite connection object
-    c = conn.cursor()
-    # using a defined view shortcut collect all table info
-    c.execute("select * from shortcut where shortcut =?", (arg1,))
-    # return the shortcut object including the required elemnts
-    # using shortc instead of sc so not to be confused with
-    # sub command abbrehviations
-    shortc_obj = c.fetchall()
-    # close the databse connection
-    conn.close()
-    # return the sqlite3.cursor object
-    return shortc_obj
+# def shortcut_obj(arg1):
+#     # connect to the sqlite database
+#     conn = sqlite3.connect("rocbot.sqlite")
+#     # return a class sqlite3.row object which requires a tuple input query
+#     conn.row_factory = sqlite3.Row
+#     # make an sqlite connection object
+#     c = conn.cursor()
+#     # using a defined view shortcut collect all table info
+#     c.execute("select * from shortcut where shortcut =?", (arg1,))
+#     # return the shortcut object including the required elemnts
+#     # using shortc instead of sc so not to be confused with
+#     # sub command abbrehviations
+#     shortc_obj = c.fetchall()
+#     # close the databse connection
+#     conn.close()
+#     # return the sqlite3.cursor object
+#     return shortc_obj
 
 
-def sql_dmg_brackets():
-    # connect to the sqlite database
-    conn = sqlite3.connect("rocbot.sqlite")
-    # Return a list of items instead of 1 item tuples
-    conn.row_factory = lambda cursor, row: row[0]
-    # make an sqlite connection object
-    c = conn.cursor()
-    # creates a variable and assigns the list of ship names to it
-    dmg_obj = c.execute("""SELECT amount FROM ship_damage""").fetchall()
-    # close the databse connection
-    conn.close()
-    # return a list of ship names
-    return dmg_obj
+# def sql_dmg_brackets():
+#     # connect to the sqlite database
+#     conn = sqlite3.connect("rocbot.sqlite")
+#     # Return a list of items instead of 1 item tuples
+#     conn.row_factory = lambda cursor, row: row[0]
+#     # make an sqlite connection object
+#     c = conn.cursor()
+#     # creates a variable and assigns the list of ship names to it
+#     dmg_obj = c.execute("""SELECT amount FROM ship_damage""").fetchall()
+#     # close the databse connection
+#     conn.close()
+#     # return a list of ship names
+#     return dmg_obj
 
 
 def sql_arg_list():
@@ -289,7 +299,7 @@ def sql_arg_list():
 
 # Connect to the local sqlite database `rocbot.sqlite` and generate a list of
 # invader names from the invaders table
-def get_invaders():
+def get_invader_names():
     conn = sqlite3.connect("rocbot.sqlite")
     conn.row_factory = lambda cursor, row: row[0]
     c = conn.cursor()
@@ -447,3 +457,49 @@ def sql_p_a_obj():
     c = conn.cursor()
     query = "SELECT name, cost FROM apex_tier"
     return c.execute(query).fetchall()
+
+
+############################################################################
+# recovered this sql from discord chat history after losing the completed apex work
+# yay for rubber ducking into the void of a private chat
+############################################################################
+
+# select
+#     ship.id,
+#     ship.name,
+#     ship_affinity.name as affinity,
+#     apexs.name as apex,
+#     apex_type.type as type,
+#     apex_tier.name as rank,
+#     apex_tier.cost as cost,
+#     apexs.description as a_desc,
+#     ship.weapon_name,
+#     ship_aura.name as aura,
+#     ship_zen.name as zen
+# from apex_ships inner join ship on apex_ships.ship_name = ship.id
+# inner join apexs on apex_ships.apex_id = apexs.id
+# inner join apex_tier on apex_ships.apex_tier = apex_tier.id
+# inner join apex_type on apexs.apex_type_id = apex_type.id
+# inner join ship_aura on ship.aura_id=ship_aura.id
+# inner join ship_affinity on ship.affinity_id=ship_affinity.id
+# inner join ship_zen on ship.zen_id=ship_zen.id
+
+
+def sql_apex_obj(self):
+    # connect to the sqlite database
+    conn = sqlite3.connect("rocbot.sqlite")
+    # return a class sqlite3.row object which requires a tuple input query
+    conn.row_factory = sqlite3.Row
+    # make an sqlite connection object
+    c = conn.cursor()
+    # using a defined view s_info find the ship
+    c.execute(
+        "select * from s_apex where name = ? and rank = ?",
+        (self.ship_name, self.apex_tier),
+    )
+    # return the ship object including the required elemnts
+    s_apex_obj = c.fetchone()
+    # close the databse connection
+    conn.close()
+    # return the sqlite3.cursor object
+    return s_apex_obj
