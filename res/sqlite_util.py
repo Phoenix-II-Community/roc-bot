@@ -352,7 +352,7 @@ select
     apex_tier.name as rank,
     apex_ships.apex_num as apex_num
 from apex_ships inner join ship on apex_ships.ship_name = ship.id
-inner join apexs on apex_ships.apex_id = apexs.id
+inner join mods on apex_ships.apex_id = mods.id
 inner join apex_tier on apex_ships.apex_tier = apex_tier.id;
     """)
     a_obj = c.fetchall()
