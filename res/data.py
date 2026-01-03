@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from sqlite3 import Row
+import sqlite3
+from typing import List
 
 import res.sqlite_util as sqlite_util
 
@@ -47,19 +48,20 @@ def dmg_bracket_list():
     return [i for i in sqlite_util.sql_dmg_brackets()]
 
 
-ships_all = sqlite_util.get_ships()
-ships_name_by_num = sqlite_util.get_ships_player_num()
-print(ships_name_by_num)
+ships_all: List[sqlite3.Row] = sqlite_util.get_ships()
+ships_name_by_num: List = sqlite_util.get_ships_player_num()
 # apexs_all = sqlite_util.sql_ship_info_obj('s_apex')
 # mission_daily = sqlite_util.sql_ship_info_obj('m_daily')
-damage_brackets = dmg_bracket_list()
+damage_brackets: List = dmg_bracket_list()
+
 # shortcuts = sqlite_util.sql_ship_info_obj()
-apex_tier = sqlite_util.sql_rank_obj()
-apex_num = sqlite_util.sql_apex_num_obj()
-apex_price = sqlite_util.sql_p_a_obj()
-arg_list = [i for i in sqlite_util.sql_arg_list()]
-invader_all: Row = sqlite_util.sql_invader_obj()
-invader_names: list = sqlite_util.get_invader_names()
+apex_tier: List[sqlite3.Row] = sqlite_util.sql_rank_obj()
+
+apex_num: List[sqlite3.Row] = sqlite_util.sql_apex_num_obj()
+apex_price: List[sqlite3.Row] = sqlite_util.sql_p_a_obj()
+arg_list: List = [i for i in sqlite_util.sql_arg_list()]
+invader_all: List[sqlite3.Row] = sqlite_util.sql_invader_obj()
+invader_names: List = sqlite_util.get_invader_names()
 
 """
 Except for the detail command the embeds used have the same basic parts.
