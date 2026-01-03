@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from sqlite3 import Row
 
 import res.sqlite_util as sqlite_util
 
@@ -30,31 +31,35 @@ import res.sqlite_util as sqlite_util
 # s_info; ship info
 # shortcut; list of shortcuts for auras, zens weapon affinity, and rarity
 
+############################################################################
+# Kudos to Echelon on the P2 Discord for sharing these name changes
+############################################################################
+#  Aurora Tau: Radiant Drift
+# Heeci Beta: Cascade Regulator
+# X-81 Beta: AIM-541 Splinter
+# Yoth-Hola Beta: Perihelix Array
+# Wrackr Alpha: Echelon Beam
+# Essin Alpha: Homing Star
+# Kada Veni Alpha: Pulse Directive
+
 
 def dmg_bracket_list():
     return [i for i in sqlite_util.sql_dmg_brackets()]
 
 
-def invaders_names():
-    names = []
-    for i in invader_all:
-        names.append(i["name"])
-    return names
-
-
 ships_all = sqlite_util.get_ships()
-ships_all_by_num = sqlite_util.get_ships_player_num()
+ships_name_by_num = sqlite_util.get_ships_player_num()
+print(ships_name_by_num)
 # apexs_all = sqlite_util.sql_ship_info_obj('s_apex')
 # mission_daily = sqlite_util.sql_ship_info_obj('m_daily')
 damage_brackets = dmg_bracket_list()
-invader_stats = sqlite_util.get_invaders()
 # shortcuts = sqlite_util.sql_ship_info_obj()
 apex_tier = sqlite_util.sql_rank_obj()
 apex_num = sqlite_util.sql_apex_num_obj()
 apex_price = sqlite_util.sql_p_a_obj()
 arg_list = [i for i in sqlite_util.sql_arg_list()]
-invader_all = sqlite_util.sql_invader_obj()
-invader_names = invaders_names()
+invader_all: Row = sqlite_util.sql_invader_obj()
+invader_names: list = sqlite_util.get_invader_names()
 
 """
 Except for the detail command the embeds used have the same basic parts.
