@@ -1,11 +1,13 @@
 import discord.ext.commands
+
 from res.common import customemoji
-from res.data import invader_all
+from res.data import invader_all, invader_names
 
 
 def get_description(bot_self, sc):
+    print(f"invader stats --- {invader_names}")
     list1 = []
-    if sc in get_invaders():
+    if sc in invader_names:
         for i in invader_all:
             if sc in i:
                 list1.append(f"{customemoji(bot_self, i['type'])} {i['hp']}")
@@ -30,7 +32,6 @@ def get_i_embed(bot_self, sc):
     }
     title = get_title(bot_self, sc)
     desc = get_description(bot_self, sc)
-    invader_names = get_invaders()
     print(invader_names)
     if sc in invader_names:
         return discord.Embed(title=title, description=desc)
