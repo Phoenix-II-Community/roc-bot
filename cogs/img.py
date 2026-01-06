@@ -1,16 +1,14 @@
 import discord
 import discord.ext.commands
-from discord.ext import commands
 from discord import app_commands
-from res.common import sanitise_input, ship_search, customemoji
-from res.data import apex_tier, apex_num
-from res.common import ShipData
+from discord.ext import commands
+
+from res.common import ShipData, customemoji, sanitise_input, ship_search
+from res.data import apex_num, apex_tier
 
 
 def get_ship_image(ship_name):
-    urlgit = (
-        "https://raw.githubusercontent.com/Phoenix-II-Community/roc-bot/master/ships/"
-    )
+    urlgit = "https://raw.githubusercontent.com/Phoenix-II-Community/roc-bot/refs/heads/v3/ships/"
     return f"{urlgit}ship_{ship_name}.png"
 
 
@@ -32,8 +30,8 @@ class ImageCog(commands.Cog, name="Image Commands"):
         rank_list = [i[0] for i in apex_tier]
         res = [i for i in rank_list if i.lower() in ship_name.lower()]
         if len(res) == 0:
-            print("*** len = 0")
             s_obj = ShipData(self, ship_name).s_obj
+
             ship_embed_title = f"{customemoji(self, s_obj['rarity'])} {s_obj['name']}"
             col = int(s_obj["colour"], 16)
             embed = discord.Embed(title=ship_embed_title, colour=col)
@@ -41,7 +39,6 @@ class ImageCog(commands.Cog, name="Image Commands"):
             embed.set_footer(text=f"Ship {s_obj['number']}")
             await ctx.send(embed=embed)
         else:
-            print("*** ELSE")
             s_obj = ShipData(self, ship_name).s_obj
             for i in apex_num:
                 if i["id"] == s_obj["number"] and i["rank"] == res[0]:
@@ -54,6 +51,7 @@ class ImageCog(commands.Cog, name="Image Commands"):
                         url=get_ship_image(f"{i['id']}_apex_{i['apex_num']}")
                     )
                     embed.set_footer(text=f"Ship {s_obj['number']}")
+
                     await ctx.send(embed=embed)
 
 

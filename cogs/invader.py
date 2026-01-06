@@ -1,4 +1,5 @@
 from discord.ext import commands
+
 from res.invaders import get_i_embed
 
 
@@ -15,7 +16,6 @@ class InvaderCog(commands.Cog, group_name="Invader Commands"):
     @commands.hybrid_group(invoke_without_command=True, aliases=["invaders"])
     @commands.guild_only()
     async def invader(self, ctx):
-        sc = ctx.subcommand_passed
         if ctx.invoked_subcommand is None:
             await ctx.send("Invalid invader command passed.")
 

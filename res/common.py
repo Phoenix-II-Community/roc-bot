@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-
 import random
 import re
 import unicodedata
+from typing import List
 
 import discord.ext.commands
 from discord.ext import commands
@@ -13,7 +13,6 @@ from res.data import (
     damage_brackets,
     invader_names,
     ships_all,
-    ships_name_alphabetical,
     ships_name_by_num,
 )
 from res.sqlite_util import shortcut_obj
@@ -29,13 +28,15 @@ def get_ships():
 def ship_search(find_this):
     found_this = process.extractOne(find_this, ships_name_by_num)
     ship_name = found_this[0]
-    print(ship_name)
+    print(f" found_this {found_this}")
+    print(f" ship_search result {ship_name}")
     return ship_name
 
 
 def invader_search(find_this):
     if find_this != None:
         found_this = process.extractOne(find_this, invader_names)
+        print(f" invader_search result {found_this}")
         invader_name = found_this[0]
         return invader_name
     else:
@@ -116,7 +117,7 @@ class ShipLister:
 
     def ship_obj(self):
         if self.sub_command in ("all", "rand"):
-            return ships_all_by_num
+            return ships_all
         else:
             s = self
             s_obj = []
@@ -305,3 +306,8 @@ class CategoryLister:
             description=description,
         )
         return embed
+
+
+###############################################################################
+# v8.0 Mods functions
+###############################################################################

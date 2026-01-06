@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sqlite3
-import discord.ext.commands
 from datetime import datetime, timezone
+
+import discord.ext.commands
+
 from res.common import customemoji
 from res.sqlite_util import sql_daily_obj
 
