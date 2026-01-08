@@ -43,7 +43,7 @@ def get_prefix(client, message):
 initial_extensions = [
     "cogs.simple",
     "cogs.aura",
-    # "cogs.apex",
+    "cogs.apex",
     "cogs.ship",
     "cogs.invader",
     "cogs.daily",

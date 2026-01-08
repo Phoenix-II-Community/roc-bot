@@ -464,25 +464,26 @@ def sql_p_a_obj():
 # yay for rubber ducking into the void of a private chat
 ############################################################################
 
-# select
+# SELECT
 #     ship.id,
 #     ship.name,
-#     ship_affinity.name as affinity,
-#     apexs.name as apex,
-#     apex_type.type as type,
-#     apex_tier.name as rank,
-#     apex_tier.cost as cost,
-#     apexs.description as a_desc,
+#     ship_affinity.name AS affinity,
+#     mods.name AS apex,
+#     mod_type.type AS type,
+#     apex_tier.name AS rank,
+#     apex_tier.cost AS cost,
+#     mods.description AS a_desc,
 #     ship.weapon_name,
-#     ship_aura.name as aura,
-#     ship_zen.name as zen
-# from apex_ships inner join ship on apex_ships.ship_name = ship.id
-# inner join apexs on apex_ships.apex_id = apexs.id
-# inner join apex_tier on apex_ships.apex_tier = apex_tier.id
-# inner join apex_type on apexs.apex_type_id = apex_type.id
-# inner join ship_aura on ship.aura_id=ship_aura.id
-# inner join ship_affinity on ship.affinity_id=ship_affinity.id
-# inner join ship_zen on ship.zen_id=ship_zen.id
+#     ship_aura.name AS aura,
+#     ship_zen.name AS zen
+# FROM apex_ships
+# INNER JOIN ship ON apex_ships.ship_name = ship.id
+# INNER JOIN mods ON apex_ships.apex_id = mods.id
+# INNER JOIN apex_tier ON apex_ships.apex_tier = apex_tier.id
+# INNER JOIN mod_type ON mods.apex_type_id = mod_type.id
+# INNER JOIN ship_aura ON ship.aura_id = ship_aura.id
+# INNER JOIN ship_affinity ON ship.affinity_id = ship_affinity.id
+# INNER JOIN ship_zen ON ship.zen_id = ship_zen.id
 
 
 def sql_apex_obj(self):
