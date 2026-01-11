@@ -334,12 +334,22 @@ def sql_dmg_brackets():
 
 def sql_rank_obj():
     conn = sqlite3.connect("rocbot.sqlite")
-    conn.row_factory = sqlite3.Row
+    conn.row_factory = lambda cursor, row: row[0]
     c = conn.cursor()
     c.execute("select name from apex_tier")
     r_obj = c.fetchall()
     conn.close()
     return r_obj
+
+
+def sql_type_obj():
+    conn = sqlite3.connect("rocbot.sqlite")
+    conn.row_factory = lambda cursor, row: row[0]
+    c = conn.cursor()
+    c.execute("select name from mods")
+    t_obj = c.fetchall()
+    conn.close()
+    return t_obj
 
 
 def sql_apex_num_obj():
@@ -503,4 +513,16 @@ def sql_apex_obj(self):
     # close the databse connection
     conn.close()
     # return the sqlite3.cursor object
+    return s_apex_obj
+
+
+def sql_apex_all_obj():
+    conn = sqlite3.connect("rocbot.sqlite")
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    c.execute(
+        "select * from s_apex ",
+    )
+    s_apex_obj = c.fetchall()
+    conn.close()
     return s_apex_obj

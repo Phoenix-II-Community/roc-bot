@@ -1,5 +1,6 @@
 from discord.ext import commands
-from res.common import ShipData, CategoryLister, ShipLister
+
+from res.common import CategoryLister, ShipData, ShipLister
 
 
 class ShipCog(commands.Cog, group_name="ship"):

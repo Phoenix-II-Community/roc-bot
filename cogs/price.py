@@ -1,15 +1,17 @@
 import inspect
+
 from discord.ext import commands
-from res.price import Prices, ApexPrices
+
+from res.price import ApexPrices, Prices
 
 
 class PriceCog(commands.Cog, name="Price Commands"):
     """PriceCog"""
 
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self, client):
+        self.client = client
 
-    @commands.group(invoke_without_command=True)
+    @commands.hybrid_group(invoke_without_command=True)
     @commands.guild_only()
     async def price(self, ctx, *, arg1=None):
         sc = inspect.stack()[0][3]

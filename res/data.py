@@ -55,10 +55,12 @@ ships_name_by_num: List = sqlite_util.get_ships_player_num()
 damage_brackets: List = dmg_bracket_list()
 
 # shortcuts = sqlite_util.sql_ship_info_obj()
-apex_tier: List[sqlite3.Row] = sqlite_util.sql_rank_obj()
+apex_tier: List = sqlite_util.sql_rank_obj()  # list of apex rank names
+apex_types: List = sqlite_util.sql_type_obj()  # list of apex type names
 
 apex_num: List[sqlite3.Row] = sqlite_util.sql_apex_num_obj()
 apex_price: List[sqlite3.Row] = sqlite_util.sql_p_a_obj()
+apex_ships: List[sqlite3.Row] = sqlite_util.sql_apex_all_obj()  # all apex ships
 arg_list: List = [i for i in sqlite_util.sql_arg_list()]
 invader_all: List[sqlite3.Row] = sqlite_util.sql_invader_obj()
 invader_names: List = sqlite_util.get_invader_names()

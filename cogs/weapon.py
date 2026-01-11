@@ -1,7 +1,8 @@
 import discord
-from discord.ext import commands
 from discord import app_commands
-from res.common import ShipData, CategoryLister, ShipLister
+from discord.ext import commands
+
+from res.common import CategoryLister, ShipData, ShipLister
 
 
 # Previously this was under the ship cog and it's a straight copy/paste.
