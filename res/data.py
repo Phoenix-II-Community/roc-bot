@@ -56,7 +56,12 @@ damage_brackets: List = dmg_bracket_list()
 
 # shortcuts = sqlite_util.sql_ship_info_obj()
 apex_tier: List = sqlite_util.sql_rank_obj()  # list of apex rank names
+
 apex_types: List = sqlite_util.sql_type_obj()  # list of apex type names
+aura_names: List = sqlite_util.sql_aura_name_obj()  # list of aura names
+ship_names: List = sqlite_util.sql_ship_name_obj()  # list of ship names
+zen_names: List = sqlite_util.sql_zen_name_obj()  # list of zen names
+
 
 apex_num: List[sqlite3.Row] = sqlite_util.sql_apex_num_obj()
 apex_price: List[sqlite3.Row] = sqlite_util.sql_p_a_obj()

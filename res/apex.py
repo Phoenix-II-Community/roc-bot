@@ -2,8 +2,16 @@ import discord.ext.commands
 from rapidfuzz import process
 
 from res.common import customemoji, get_em_colour, sanitise_input
-from res.data import apex_price, apex_ships, apex_tier, apex_types
-from res.sqlite_util import sql_apex_num_obj, sql_apex_obj
+from res.data import (
+    apex_price,
+    apex_ships,
+    apex_tier,
+    apex_types,
+    aura_names,
+    ship_names,
+    zen_names,
+)
+from res.sqlite_util import sql_apex_num_obj, sql_apex_obj, sql_apex_search
 
 
 async def embed_apex_ranks(ctx):
@@ -85,7 +93,50 @@ async def embed_apex_mod_list(self, ctx, mod):
     await ctx.send(embed=embed)
 
 
-async def embed_apex_search_list(self, ctx, ship, apex, aura, zen):
+async def embed_apex_search_list(self, ctx, ship=None, mod=None, aura=None, zen=None):
+    """Search apexes with flexible filtering."""
+
+    if not any([ship, mod, aura, zen]):
+        await ctx.send("Please provide at least one filter: ship, mod, aura, or zen")
+        return
+
+    filters_applied = []
+
+    if ship:
+        ship = process.extractOne(ship, ship_names)[0]
+        filters_applied.append(f"Ship: {ship}")
+
+    if mod:
+        mod = process.extractOne(mod.title(), apex_types)[0]
+        filters_applied.append(f"Mod: {mod}")
+
+    if aura:
+        aura = process.extractOne(aura.title(), aura_names)[0]
+        filters_applied.append(f"Aura: {aura}")
+
+    if zen:
+        zen = process.extractOne(zen.title(), zen_names)[0]
+        filters_applied.append(f"Zen: {zen}")
+
+    results = sql_apex_search(ship=ship, mod=mod, aura=aura, zen=zen)
+
+    if not results:
+        await ctx.send(f"No apexes found matching: {', '.join(filters_applied)}")
+        return
+
+    description = []
+    for i in results:
+        # {affinity emoji} {ship emoji} Ship name Apex name (aura/zen/weapon emoji)
+        ship_apex = sanitise_input(i["name"].lower() + i["rank"].upper())
+        emoji_apex = discord.utils.get(self.client.emojis, name=ship_apex)
+        emoji_affinity = customemoji(self, i["affinity"])
+        emoji_ability = customemoji(self, i["apex_ability"])
+        description.append(
+            f"{emoji_affinity} {emoji_apex} {i['name']} {i['apex']} {emoji_ability}"
+        )
+
+    title = f"Apex Search: {', '.join(filters_applied)}"
+    embed = discord.Embed(title=title, description="\n".join(description))
     await ctx.send(embed=embed)
 
 

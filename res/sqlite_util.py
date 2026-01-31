@@ -352,6 +352,37 @@ def sql_type_obj():
     return t_obj
 
 
+# list of aura names
+def sql_aura_name_obj():
+    conn = sqlite3.connect("rocbot.sqlite")
+    conn.row_factory = lambda cursor, row: row[0]
+    c = conn.cursor()
+    c.execute("select name from ship_aura")
+    t_obj = c.fetchall()
+    conn.close()
+    return t_obj
+
+
+def sql_ship_name_obj():  # list of ship names
+    conn = sqlite3.connect("rocbot.sqlite")
+    conn.row_factory = lambda cursor, row: row[0]
+    c = conn.cursor()
+    c.execute("select name from ship")
+    t_obj = c.fetchall()
+    conn.close()
+    return t_obj
+
+
+def sql_zen_name_obj():  # list of zen names
+    conn = sqlite3.connect("rocbot.sqlite")
+    conn.row_factory = lambda cursor, row: row[0]
+    c = conn.cursor()
+    c.execute("select name from ship_zen")
+    t_obj = c.fetchall()
+    conn.close()
+    return t_obj
+
+
 def sql_apex_num_obj():
     conn = sqlite3.connect("rocbot.sqlite")
     conn.row_factory = sqlite3.Row
@@ -526,3 +557,79 @@ def sql_apex_all_obj():
     s_apex_obj = c.fetchall()
     conn.close()
     return s_apex_obj
+
+
+def sql_apex_search(ship=None, mod=None, aura=None, zen=None):
+    """
+    Query apex ships with optional filters.
+
+    All parameters should be pre-matched using rapidfuzz before calling
+    this function, as SQLite cannot handle fuzzy matching effectively.
+
+    Args:
+        ship: Exact ship name (e.g., "Veil")
+        mod: Exact apex/mod name (e.g., "Shield Breaker")
+        aura: Exact aura name - filters apexes that MODIFY this aura
+        zen: Exact zen name - filters apexes that MODIFY this zen
+
+    Returns:
+        List of sqlite3.Row objects matching all provided filters
+    """
+    conn = sqlite3.connect("rocbot.sqlite")
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+
+    # Base query with apex_ability calculated
+    query = """
+        SELECT
+            ship.id,
+            ship.name,
+            ship_affinity.name AS affinity,
+            mods.name AS apex,
+            mod_type.type AS type,
+            apex_tier.name AS rank,
+            apex_tier.cost AS cost,
+            mods.description AS a_desc,
+            ship.weapon_name,
+            ship_aura.name AS aura,
+            ship_zen.name AS zen,
+            CASE mod_type.type
+                WHEN 'aura' THEN ship_aura.name
+                WHEN 'zen' THEN ship_zen.name
+                WHEN 'weapon' THEN ship.weapon_name
+            END AS apex_ability
+        FROM apex_ships
+        INNER JOIN ship ON apex_ships.ship_name = ship.id
+        INNER JOIN mods ON apex_ships.apex_id = mods.id
+        INNER JOIN apex_tier ON apex_ships.apex_tier = apex_tier.id
+        INNER JOIN mod_type ON mods.apex_type_id = mod_type.id
+        INNER JOIN ship_aura ON ship.aura_id = ship_aura.id
+        INNER JOIN ship_affinity ON ship.affinity_id = ship_affinity.id
+        INNER JOIN ship_zen ON ship.zen_id = ship_zen.id
+        WHERE 1=1
+    """
+    params = []
+
+    if ship:
+        query += " AND ship.name = ?"
+        params.append(ship)
+
+    if mod:
+        query += " AND mods.name = ?"
+        params.append(mod)
+
+    # Filter by apex_ability (the ability the apex modifies)
+    if aura:
+        query += " AND mod_type.type = 'aura' AND ship_aura.name = ?"
+        params.append(aura)
+
+    if zen:
+        query += " AND mod_type.type = 'zen' AND ship_zen.name = ?"
+        params.append(zen)
+
+    query += " ORDER BY cost"
+
+    c.execute(query, params)
+    results = c.fetchall()
+    conn.close()
+    return results

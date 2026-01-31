@@ -42,13 +42,15 @@ class ApexCog(commands.Cog, name="Apexs"):
         else:
             await embed_apex_mod_list(self, ctx, type)
 
-    @apex.command(name="search", help=" list apexs for a specific ship")
+    @apex.command(name="search", help="list apexes for a specific ship")
     @commands.guild_only()
-    async def search(self, ctx, *, ship=None, apex=None, aura=None, zen=None):
-        if apex is None:
+    async def search(self, ctx, *, ship=None, mod=None, aura=None, zen=None):
+        if not any([ship, mod, aura, zen]):
             await embed_apex_ranks(ctx)
         else:
-            await embed_apex_search_list(self, ctx, ship, apex, aura, zen)
+            await embed_apex_search_list(
+                self, ctx, ship=ship, mod=mod, aura=aura, zen=zen
+            )
 
 
 # The setup function below is necessary. Remember we give client.add_cog() the
